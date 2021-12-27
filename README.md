@@ -58,3 +58,20 @@ https://blog.gangnamunni.com/post/ui-text-guideline/
 
 신한카드(pdf)
 https://drive.google.com/file/d/1Ku6Q9uw2ZUwgizBf3nnj2ZyvP2nYc9QZ/view?usp=sharing
+
+## PWA 테스트를 하는 경우
+
+https://create-react-app.dev/docs/making-a-progressive-web-app/
+
+현재 프로젝트 설정은 build 버전의 경우에만 service worker가 작동하도록 되어있습니다.  
+만약 PWA테스트를 하시는 경우 build 명령어를 실행 후 build 서버를 이용해 테스트해 주시면 됩니다.
+
+```
+npm run build
+serve -s build
+```
+
+service worker는 https에서만 작동하지만 예외적으로 localhost에서도 동작합니다.  
+또한 캐시 기능 때문에 시크릿창에서 테스트를 하셔야 편리합니다.
+만약 스마트폰에서 동작을 확인하고 싶으면 ngrok을 이용해 임시 https주소를 만들면 편리합니다.  
+현재 pwa기능은 캐싱 기능 밖에 없기 때문에 push알람과 업데이트 같은 기능은 직접 구현해야 합니다.
