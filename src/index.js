@@ -4,10 +4,14 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-
+import { BrowserRouter } from "react-router-dom";
+import MenuNav from "./components/MenuNav.jsx";
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+      <MenuNav />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
