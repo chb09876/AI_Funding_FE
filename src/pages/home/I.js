@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import C from "./C";
+import D from "./D";
 
 export default function I({}) {
   return (
@@ -6,7 +8,7 @@ export default function I({}) {
       <StyledA>강연구님의 첫 계좌입니다.</StyledA>
       <StyledC></StyledC>
       <StyledB>투자일로부터 + 00일</StyledB>
-      <StyledD>10000000원</StyledD>
+      <StyledD money={100000}></StyledD>
       <StyledF1>▲ 0.00%</StyledF1>
       <StyledG1>
         누적 수익률<br></br>▲ 0.00%
@@ -44,7 +46,7 @@ const StyledB = styled.p`
   margin: 0;
 `;
 
-const StyledC = styled.div`
+const StyledC = styled(C)`
   border: solid 1px red;
   width: 50px;
   height: 50px;
@@ -53,7 +55,7 @@ const StyledC = styled.div`
   right: 3vw;
 `;
 
-const StyledD = styled.p`
+const StyledD = styled(D)`
   border: solid 1px red;
   position: absolute;
   top: 20vh;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Home from "./pages/home/Home";
 import GlobalStyle from "./style/GlobalStyle";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -11,6 +12,18 @@ function App() {
     </Back>
   );
 }
+// import ComponentI from './pages/home/I';
+// import SomePage from './pages/home/somePage';
+// import './App.css';
+
+// function App() {
+//   return (
+// 		<Routes>
+// 			<Route path = '/' element={<ComponentI/>}/>
+// 			<Route path = '/somePage' element={<SomePage/>}/>
+// 		</Routes>
+// 	);
+// }
 
 export default App;
 
