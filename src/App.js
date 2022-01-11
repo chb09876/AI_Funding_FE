@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Home from "./pages/home/Home";
+import MenuNav from "./pages/home/MenuNav";
 import GlobalStyle from "./style/GlobalStyle";
 import { Route, Routes } from "react-router-dom";
 
@@ -8,10 +9,32 @@ function App() {
     <Back className="App">
       <GlobalStyle />
       <Home></Home>
-      <Nav></Nav>
+      <StyledNav />
     </Back>
   );
 }
+
+// import React from "react";
+// import test1 from "./pages/test1";
+// import test2 from "./pages/test2";
+// import test3 from "./pages/test3";
+// import test4 from "./pages/test4";
+// import test5 from "./pages/test5";
+// import { Route, Routes } from "react-router-dom";
+// import "./App.css";
+// function Nav() {
+//   return (
+//     <div className="container">
+//       <Routes>
+//         <Route path="*" element={test1} />
+//         <Route path="/second" element={test2} />
+//         <Route path="/third" element={test3} />
+//         <Route path="/forth" element={test4} />
+//         <Route path="/fifth" element={test5} />
+//       </Routes>
+//     </div>
+//   );
+// }
 // import ComponentI from './pages/home/I';
 // import SomePage from './pages/home/somePage';
 // import './App.css';
@@ -36,7 +59,7 @@ const Back = styled.div`
   height: 100%;
 `;
 
-const Nav = styled.div`
+const StyledNav = styled(MenuNav)`
   height: 70px;
   width: 100%;
   border: solid 1px blue;
