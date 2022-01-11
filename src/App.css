@@ -1,1 +1,9 @@
 /* TODO */
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+html {
+	background-color: #020202;
+	font-family: 'SpoqaHanSansNeo';
+	font-weight: 100;
+	color: white;
+}
