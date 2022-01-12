@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
     @font-face {
         font-family: "Spoqa Han Sans Neo";
         src: url(${SpoqaHanSansNeo});
-    }    
+    }
 
     * {
         box-sizing: border-box;

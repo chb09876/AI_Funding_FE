@@ -12,8 +12,8 @@ export default function Home() {
 }
 
 const StyledHome = styled.div`
-  height: 100%;
-  border: 3px yellow solid;
+  // border: 3px yellow solid;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 `;
