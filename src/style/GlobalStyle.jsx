@@ -31,6 +31,17 @@ const GlobalStyle = createGlobalStyle`
         width:100%;
         height: 100%;
     }
+
+    //AI 소개 하단 위치바
+    .swiper-pagination-bullet{
+        background-color: rgb(96 96 96);
+        width: 40px;
+        height: 2.5px;
+        opacity: 1;
+    }
+    .swiper-pagination-bullet-active{
+        background-color: white;
+    }
 `;
 
 export default GlobalStyle;
