@@ -1,3 +1,3 @@
-export default function intro2() {
+export default function Intro2() {
   return <div>intro2</div>;
 }

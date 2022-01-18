@@ -4,8 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import styled from "styled-components";
-import intro1 from "./AI-intros/intro1";
-import intro2 from "./AI-intros/intro2";
+import Intro1 from "./AI-intros/intro1";
+import Intro2 from "./AI-intros/intro2";
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
@@ -21,13 +21,13 @@ const App = () => {
       >
         <SwiperSlide>
           <div className="intro1">
-            <intro1 />
+            <Intro1 />
             page 1
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="intro2">
-            <intro2 />
+            <Intro2 />
             page 2
           </div>
         </SwiperSlide>

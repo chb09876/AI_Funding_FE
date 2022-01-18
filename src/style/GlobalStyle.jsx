@@ -38,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
         width: 40px;
         height: 2.5px;
         opacity: 1;
+        border-radius:0px;
     }
     .swiper-pagination-bullet-active{
         background-color: white;
