@@ -29,5 +29,5 @@ const LayoutedKakao = styled(KakaoLoginButton)`
 `;
 
 const LayoutedGoogle = styled(GoogleLoginButton)`
-  margin-top: 10%;
+  margin-top: 7%;
 `;
