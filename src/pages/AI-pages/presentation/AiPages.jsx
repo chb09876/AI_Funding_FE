@@ -12,7 +12,7 @@ const obj = {
 export default function AiPages() {
   const [SelectedTab, SelectTab] = useState(0);
   return (
-    <StyledAiPages>
+    <StyledAiPages className="ai-page-container">
       <div className="wrapper">
         <StyledTabs className="tabs">
           <StyledTab>
@@ -46,7 +46,7 @@ export default function AiPages() {
   );
 }
 const StyledAiPages = styled.div`
-  height: 100%;
+  height: 95vh;
 `;
 const StyledTabs = styled.div`
   padding-top: 10px;

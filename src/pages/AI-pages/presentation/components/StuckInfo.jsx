@@ -5,6 +5,7 @@ export default function StuckInfo({
   PriceFluc,
   RateFluc,
   Fluc,
+  onClick,
 }) {
   let color;
   let tri;
