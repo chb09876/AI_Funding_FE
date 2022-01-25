@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import BackgroundLayout from "./sample/common/BackgroundLayout";
 import MenuNav from "./sample/common/MenuNav";
-import Home from "./sample/pages/home/presentational/Home";
+import Home from "./pages/home/presentational/Home";
 // import BackgroundLayout from "./common/BackgroundLayout";
 
 export default function App() {
