@@ -16,7 +16,12 @@ const App = () => {
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={"auto"}
-        pagination={true}
+        pagination={{
+          clickable: true,
+          type: "bullets",
+          bulletClass:
+            "swiper-pagination-bullet-custom swiper-pagination-bullet",
+        }}
         className="mySwiper"
       >
         <SwiperSlide>

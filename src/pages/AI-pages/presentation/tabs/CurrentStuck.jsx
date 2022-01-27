@@ -115,8 +115,8 @@ const StyledDetailInfo = styled.div`
   position: fixed;
   top: 57px;
   background-color: rgb(32, 32, 32);
-  height: 85vh;
   width: 100%;
+  height: 100%;
   color: white;
   animation: ${InfoAnimation} 0.6s ease-in-out;
   ${(props) => {

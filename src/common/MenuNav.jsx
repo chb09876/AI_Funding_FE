@@ -68,6 +68,10 @@ const StyledMenubar = styled.nav`
   overflow: hidden;
   height: 70px;
   border-top: 2px solid rgb(184, 168, 142);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 const StyledMenuButton = styled(Link)`

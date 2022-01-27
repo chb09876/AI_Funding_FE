@@ -34,51 +34,67 @@ export default function TransHistory() {
           6M
         </StyledTermButton>
       </StyledTermSelector>
-      <StyledHistories className="Histories">
-        <StyledDetails>
-          <summary>
-            <div style={{ fontSize: "1.4rem", fontWeight: 700 }}>종목 이름</div>
-            <div style={{ fontSize: "0.8rem", fontWeight: 300, color: "gray" }}>
-              거래 날짜
-            </div>
-          </summary>
-          <StyledDetailsContainer>
-            <StyledDetailsContent>
-              거래종류 : 주식 매도 / 주식 매수
-              <br />
-              거래수량 : 00
-              <br />
-              단가 : 000,000원
-              <br />
-              매수가 : 000,000원
-            </StyledDetailsContent>
-          </StyledDetailsContainer>
-        </StyledDetails>
-        <StyledDetails>
-          <summary>
-            <div style={{ fontSize: "1.4rem", fontWeight: 700 }}>종목 이름</div>
-            <div style={{ fontSize: "0.8rem", fontWeight: 300, color: "gray" }}>
-              거래 날짜
-            </div>
-          </summary>
-          <StyledDetailsContainer>
-            <StyledDetailsContent>
-              거래종류 : 주식 매도 / 주식 매수
-              <br />
-              거래수량 : 00
-              <br />
-              단가 : 000,000원
-              <br />
-              매수가 : 000,000원
-            </StyledDetailsContent>
-          </StyledDetailsContainer>
-        </StyledDetails>
-      </StyledHistories>
+      <StyledScrollArea className="container">
+        <StyledHistories className="Histories">
+          <StyledDetails>
+            <summary>
+              <div style={{ fontSize: "1.4rem", fontWeight: 700 }}>
+                종목 이름
+              </div>
+              <div
+                style={{ fontSize: "0.8rem", fontWeight: 300, color: "gray" }}
+              >
+                거래 날짜
+              </div>
+            </summary>
+            <StyledDetailsContainer>
+              <StyledDetailsContent>
+                거래종류 : 주식 매도 / 주식 매수
+                <br />
+                거래수량 : 00
+                <br />
+                단가 : 000,000원
+                <br />
+                매수가 : 000,000원
+              </StyledDetailsContent>
+            </StyledDetailsContainer>
+          </StyledDetails>
+          <StyledDetails>
+            <summary>
+              <div style={{ fontSize: "1.4rem", fontWeight: 700 }}>
+                종목 이름
+              </div>
+              <div
+                style={{ fontSize: "0.8rem", fontWeight: 300, color: "gray" }}
+              >
+                거래 날짜
+              </div>
+            </summary>
+            <StyledDetailsContainer>
+              <StyledDetailsContent>
+                거래종류 : 주식 매도 / 주식 매수
+                <br />
+                거래수량 : 00
+                <br />
+                단가 : 000,000원
+                <br />
+                매수가 : 000,000원
+              </StyledDetailsContent>
+            </StyledDetailsContainer>
+          </StyledDetails>
+        </StyledHistories>
+      </StyledScrollArea>
     </StyledHistoryContainer>
   );
 }
 
+const StyledScrollArea = styled.div`
+  overflow: scroll;
+  height: 95%;
+`;
+
 const StyledHistoryContainer = styled.div`
+  height: 85vh;
   margin: 10px;
 `;
 const StyledTermSelector = styled.div`
