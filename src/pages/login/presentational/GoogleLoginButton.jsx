@@ -1,12 +1,16 @@
 import styled from "styled-components";
-import google_img from "../../../image/btn_google_signin_dark_normal_web.png";
+import google_img from "../../../image/google_login.png";
 import GoogleLoginBtn from "../container/google-login";
 
 export default function GoogleLoginButton({ className, login }) {
   return (
     //<GoogleLoginBtn></GoogleLoginBtn>
-    
     <GoogleButton
+      className={className}
+    >
+    <GoogleLoginBtn></GoogleLoginBtn>
+    </GoogleButton>
+    /*<GoogleButton
       className={className}
       onClick={
         login ||
@@ -17,11 +21,12 @@ export default function GoogleLoginButton({ className, login }) {
     >
     <GoogleLoginBtn></GoogleLoginBtn>
     </GoogleButton>
-    
+    */
   );
 }
 
-styled(GoogleLoginBtn)`
+styled(GoogleLoginButton)`
+  background-image: url(${google_img});
   background-size: contain;
 
   width: 216px;
