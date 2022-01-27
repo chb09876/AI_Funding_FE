@@ -46,9 +46,10 @@ const StyledContainer = styled.div`
   width: 95vw;
   background: black;
   border-radius: 5px;
-  margin: 30px auto;
+  margin: 10px auto;
 `;
 const StyledSwiper = styled(Swiper)`
   color: white;
   height: 100%;
+  margin: 10px;
 `;
