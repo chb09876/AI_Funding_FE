@@ -1,9 +1,16 @@
 import styled from "styled-components";
-import google_img from "../../../image/btn_google_signin_dark_normal_web.png";
+import google_img from "../../../image/google_login.png";
+import GoogleLoginBtn from "../container/google-login";
 
 export default function GoogleLoginButton({ className, login }) {
   return (
+    //<GoogleLoginBtn></GoogleLoginBtn>
     <GoogleButton
+      className={className}
+    >
+    <GoogleLoginBtn></GoogleLoginBtn>
+    </GoogleButton>
+    /*<GoogleButton
       className={className}
       onClick={
         login ||
@@ -11,12 +18,27 @@ export default function GoogleLoginButton({ className, login }) {
           alert("로그인 함수를 넣어주세요.");
         })
       }
-    ></GoogleButton>
+    >
+    <GoogleLoginBtn></GoogleLoginBtn>
+    </GoogleButton>
+    */
   );
 }
 
-const GoogleButton = styled.button`
+styled(GoogleLoginButton)`
   background-image: url(${google_img});
+  background-size: contain;
+
+  width: 216px;
+  height: 53px;
+  border-radius: 12px;
+
+  // reset user agent
+  padding: 0;
+  border: none;
+`;
+
+const GoogleButton = styled.button`
   background-size: contain;
 
   width: 216px;
