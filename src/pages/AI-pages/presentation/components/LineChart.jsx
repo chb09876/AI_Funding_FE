@@ -25,8 +25,10 @@ const data = {
     {
       type: "line",
       label: "Dataset 1",
-      borderColor: "rgb(54, 162, 235)",
-      borderWidth: 2,
+      borderColor: "rgb(152, 128, 101)",
+      borderWidth: 4,
+      pointRadius: 1,
+      pointBorderColor: "white",
       data: [
         { x: "January", y: 10000 },
         { x: "February", y: 20000 },
