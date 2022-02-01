@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StuckInfo from "../components/StuckInfo";
 import styled, { keyframes } from "styled-components";
-
+import LineChart from "../components/LineChart";
 const InfoAnimation = keyframes`
     0%{
         opacity: 0;
@@ -13,6 +13,7 @@ const InfoAnimation = keyframes`
         
     }
     `;
+
 export default function CurrentStuck() {
   const [DetailInfo, ShowDetail] = useState("none");
 
@@ -105,7 +106,10 @@ export default function CurrentStuck() {
         <StyledBackButton onClick={() => ShowDetail("none")}>
           ◀ 이전
         </StyledBackButton>
-        <StyledStackGraph>{DetailInfo}</StyledStackGraph>
+        <StyledStackGraph>
+          {DetailInfo}
+          <LineChart />
+        </StyledStackGraph>
       </StyledDetailInfo>
     </StyledScrollArea>
   );
@@ -113,7 +117,7 @@ export default function CurrentStuck() {
 
 const StyledDetailInfo = styled.div`
   position: fixed;
-  top: 57px;
+  top: 60px;
   background-color: rgb(32, 32, 32);
   width: 100%;
   height: 100%;

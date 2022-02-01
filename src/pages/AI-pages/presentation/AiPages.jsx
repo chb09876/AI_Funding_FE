@@ -68,7 +68,7 @@ const StyledTabButton = styled.div`
   line-height: 45px;
   font-size: 18px;
   ${(props) => {
-    if (props.className == "selected") {
+    if (props.className === "selected") {
       return `color: rgb(152, 128, 101);
       font-weight:bold;
       
@@ -77,12 +77,12 @@ const StyledTabButton = styled.div`
       border-top: 2px solid rgb(152, 128, 101);
       border-radius:15px 15px 0px 0px;
       `;
-    } else if (props.className == "notselectedLeft") {
+    } else if (props.className === "notselectedLeft") {
       return `color: rgb(119, 119, 119);
       border-bottom: 2px solid rgb(152, 128, 101);
       
       `;
-    } else if ((props.className = "notselectedRight")) {
+    } else if (props.className === "notselectedRight") {
       return `color: rgb(119, 119, 119);
       border-bottom: 2px solid rgb(152, 128, 101);
       
