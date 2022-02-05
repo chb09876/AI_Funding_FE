@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const JAVASCRIPT_KEY = "5ee2800aa4b571c6550874f422877d17";
-const RESTAPI_KEY = "b26f4121402ec2c51e7ff905f16de3ac";
-const REDIRECT_URI = "http://localhost:3000/oauth";
-const CLIENT_SECRET = "YoJ7AkY8nXUOZceyDeY5egaSCYve8BFj";
+const JAVASCRIPT_KEY = process.env.REACT_APP_KAKAO_JAVASCRIPT_KEY;
+const RESTAPI_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
+const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_KEY;
+const CLIENT_SECRET = process.env.REACT_APP_KAKAO_CLIENT_SECRET;
 const Kakao = window.Kakao;
 
 export const initializeKakao = () => {
@@ -16,7 +16,9 @@ export const cleanUpKakao = () => {
   Kakao.cleanup();
 };
 
-export const authorizeKakao = async (redirectUri = "http://localhost:3000/oauth") => {
+export const authorizeKakao = async (
+  redirectUri = "http://localhost:3000/oauth"
+) => {
   const response = await Kakao.Auth.authorize({
     redirectUri,
   });
@@ -78,11 +80,15 @@ export const getTokensFromKakao = async () => {
   data.append("client_secret", CLIENT_SECRET);
 
   try {
-    const response = await axios.post("https://kauth.kakao.com/oauth/token", data, {
-      headers: {
-        "content-type": "application/x-www-form-urlencoded;charset=utf-8",
-      },
-    });
+    const response = await axios.post(
+      "https://kauth.kakao.com/oauth/token",
+      data,
+      {
+        headers: {
+          "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+        },
+      }
+    );
     return response;
   } catch (err) {
     console.log("Error: ", err);
