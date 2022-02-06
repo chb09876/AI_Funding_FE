@@ -1,9 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
-import styled from "styled-components";
 import Intro1 from "./AI-intros/intro1";
 import Intro2 from "./AI-intros/intro2";
 
@@ -19,6 +19,7 @@ const App = () => {
         pagination={{
           clickable: true,
           type: "bullets",
+          bulletActiveClass: "swiper-pagination-bullet-active",
           bulletClass:
             "swiper-pagination-bullet-custom swiper-pagination-bullet",
         }}
