@@ -1,9 +1,9 @@
-import { Route, Routes } from "react-router-dom";
-import BackgroundLayout from "./common/BackgroundLayout";
-import MenuNav from "./common/MenuNav";
-import Home from "./sample/pages/home/presentational/Home";
-import Login from "./pages/login/container/Login";
-import { useState } from "react";
+import { Route, Routes } from 'react-router-dom';
+import BackgroundLayout from './common/BackgroundLayout';
+import MenuNav from './common/MenuNav';
+import Home from './sample/pages/home/presentational/Home';
+import Login from './pages/login/container/Login';
+import { useState } from 'react';
 
 export default function App() {
   // 해당 state는 임시로 만들어둔 것. 추후 수정 예정.
@@ -16,11 +16,11 @@ export default function App() {
         {isLoggedIn ? (
           <>
             <Route path="/" element={<Home />} />
-            <Route path="/second" element={"AI page"} />
-            <Route path="/third" element={"Account page"} />
-            <Route path="/fourth" element={"Community page"} />
-            <Route path="/fifth" element={"Settings page"} />
-            <Route path="*" element={"404"} />
+            <Route path="/second" element={'AI page'} />
+            <Route path="/third" element={'Account page'} />
+            <Route path="/fourth" element={'Community page'} />
+            <Route path="/fifth" element={'Settings page'} />
+            <Route path="*" element={'404'} />
           </>
         ) : (
           <>
@@ -41,7 +41,7 @@ export default function App() {
                 </>
               }
             />
-            <Route path="*" element={"404"} />
+            <Route path="*" element={'404'} />
           </>
         )}
       </Routes>
