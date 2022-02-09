@@ -3,13 +3,14 @@ import BackgroundLayout from './common/BackgroundLayout';
 import MenuNav from './common/MenuNav';
 import Home from './sample/pages/home/presentational/Home';
 import Login from './pages/login/container/Login';
-import { useState } from 'react';
+import KakaoAuth from './pages/login/container/KakaoAuth';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn } from './modules/login';
 
 export default function App() {
-  // 해당 state는 임시로 만들어둔 것. 추후 수정 예정.
-  // isLoggedIn이 true면 로그인이 된 상태로 로그인 페이지 이외의 페이지에 접속할 수 있습니다.
-  // isLoggedIn이 false면 로그인페이지만 접속할 수 있고 나머지는 접속할 수 없습니다.
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  const dispatch = useDispatch();
+
   return (
     <BackgroundLayout className="App">
       <Routes>
@@ -33,7 +34,7 @@ export default function App() {
                     onClick={() => {
                       // 개발용 로그인 스킵 버튼.
                       // set isLoggedIn True
-                      setIsLoggedIn(true);
+                      dispatch(signIn());
                     }}
                   >
                     Skip
@@ -41,6 +42,7 @@ export default function App() {
                 </>
               }
             />
+            <Route path="/oauth/*" element={<KakaoAuth />} />
             <Route path="*" element={'404'} />
           </>
         )}
