@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { useState } from "react";
-import IntroAi from "./tabs/IntroAi";
-import CurrentStuck from "./tabs/CurrentStuck";
-import TransHistory from "./tabs/TransHistory";
+import styled from 'styled-components';
+import { useState } from 'react';
+import IntroAi from './tabs/IntroAi';
+import CurrentStuck from './tabs/CurrentStuck';
+import TransHistory from './tabs/TransHistory';
 
 const obj = {
   0: <IntroAi />,
@@ -17,7 +17,7 @@ export default function AiPages() {
       <StyledTabs className="tabs">
         <StyledTab>
           <StyledTabButton
-            className={SelectedTab === 0 ? "selected" : "notselectedLeft"}
+            className={SelectedTab === 0 ? 'selected' : 'notselectedLeft'}
             onClick={() => SelectTab(0)}
           >
             AI 소개
@@ -25,7 +25,7 @@ export default function AiPages() {
         </StyledTab>
         <StyledTab>
           <StyledTabButton
-            className={SelectedTab === 1 ? "selected" : "notselected"}
+            className={SelectedTab === 1 ? 'selected' : 'notselected'}
             onClick={() => SelectTab(1)}
           >
             현재 종목
@@ -33,7 +33,7 @@ export default function AiPages() {
         </StyledTab>
         <StyledTab>
           <StyledTabButton
-            className={SelectedTab === 2 ? "selected" : "notselectedRight"}
+            className={SelectedTab === 2 ? 'selected' : 'notselectedRight'}
             onClick={() => SelectTab(2)}
           >
             거래 내역
@@ -45,6 +45,7 @@ export default function AiPages() {
     </StyledAiPages>
   );
 }
+
 const StyledAiPages = styled.div`
   height: 100%;
 `;
@@ -68,7 +69,7 @@ const StyledTabButton = styled.div`
   line-height: 45px;
   font-size: 18px;
   ${(props) => {
-    if (props.className === "selected") {
+    if (props.className === 'selected') {
       return `color: rgb(152, 128, 101);
       font-weight:bold;
       
@@ -77,12 +78,12 @@ const StyledTabButton = styled.div`
       border-top: 2px solid rgb(152, 128, 101);
       border-radius:15px 15px 0px 0px;
       `;
-    } else if (props.className === "notselectedLeft") {
+    } else if (props.className === 'notselectedLeft') {
       return `color: rgb(119, 119, 119);
       border-bottom: 2px solid rgb(152, 128, 101);
       
       `;
-    } else if (props.className === "notselectedRight") {
+    } else if (props.className === 'notselectedRight') {
       return `color: rgb(119, 119, 119);
       border-bottom: 2px solid rgb(152, 128, 101);
       
