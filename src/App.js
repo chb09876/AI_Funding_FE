@@ -9,10 +9,10 @@ export default function App() {
     <BackgroundLayout className="App">
       <Routes>
         <Route path="/" element={<Home></Home>} />
-        <Route path="/second" element={"AI page"} />
-        <Route path="/third" element={"Account page"} />
-        <Route path="/fourth" element={"Community page"} />
-        <Route path="/fifth" element={"Settings page"} />
+        <Route path="/second" element={'AI page'} />
+        <Route path="/third" element={'Account page'} />
+        <Route path="/fourth" element={'Community page'} />
+        <Route path="/fifth" element={'Settings page'} />
       </Routes>
       <MenuNav></MenuNav>
     </BackgroundLayout>
