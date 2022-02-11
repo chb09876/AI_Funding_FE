@@ -7,7 +7,7 @@ export default function Profit(props) {
       <div>{props.name}</div>
       <ValueStyle border={props.border}>
         <ArrowStyle color={props.value}>{(Number(props.value) > 0 ? "▲" : "▼") || "-"}&nbsp;</ArrowStyle>
-        {props.value || "0.00"}
+        {props.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || "0.00"}
         {props.name.substr(-1) === "률" ? "%" : "원"}
       </ValueStyle>
     </ProfitStyle>
@@ -19,7 +19,7 @@ const ProfitStyle = styled.div`
   flex-direction: column;
   justify-content: space-between;
 	align-items: center;
-  height: 8vh;
+  height: 7vh;
 `;
 
 

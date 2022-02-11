@@ -9,7 +9,7 @@ export default function Stock(props) {
 			<CardRow>
 				<TypeColumn>
 					<CardName>{props.name || 'default'}</CardName>
-					<CardMoney>{props.money || '000,000'}원</CardMoney>
+					<CardMoney>{props.money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || '000,000'}원</CardMoney>
 				</TypeColumn>
 				<Profit name="금일 수익률" value={props.rate || '00.0'}></Profit>
 			</CardRow>
