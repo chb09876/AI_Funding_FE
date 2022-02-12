@@ -5,20 +5,13 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import GlobalStyle from "./style/GlobalStyle";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import rootReducer from "./modules";
-
-const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <GlobalStyle />
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
