@@ -23,7 +23,7 @@ export default function Home() {
 	/*초기 마운트*/
   useEffect(() => {
     axios
-      .get("http://localhost:8080/")
+      .post("http://localhost:8080/")
       .then((res) => {
         setData(res.data);
 				setAccounts(res.data.accounts);
