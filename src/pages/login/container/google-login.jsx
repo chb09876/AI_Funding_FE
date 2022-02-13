@@ -3,8 +3,7 @@ import React from 'react';
 import GoogleLogin from 'react-google-login';
 import { useGoogleLogin } from 'react-google-login';
 import google_img from '../../../image/google_login.png';
-const clientId =
-  '553483572727-gd4ld8e84b825dk38eqjspbiqut6fjrg.apps.googleusercontent.com';
+const clientId = '553483572727-gd4ld8e84b825dk38eqjspbiqut6fjrg.apps.googleusercontent.com';
 
 export default function GoogleLoginBtn({ onGoogleLogin }) {
   const onSuccess = async (response) => {
