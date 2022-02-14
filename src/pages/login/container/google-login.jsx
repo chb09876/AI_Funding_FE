@@ -7,7 +7,7 @@ const clientId = "553483572727-gd4ld8e84b825dk38eqjspbiqut6fjrg.apps.googleuserc
 
 export default function GoogleLoginBtn({ onGoogleLogin }){
     const onSuccess = async(response) => {
-        const { googleId, profileObj : { email, name } } = response;
+        //const { googleId, profileObj : { email, name } } = response;
         console.log(response);
         /*
         await onGoogleLogin (
@@ -25,7 +25,7 @@ export default function GoogleLoginBtn({ onGoogleLogin }){
         clientId,
         isSignedIn: true,
         accessType: 'offline',
-        // responseType: 'code',
+        responseType: 'code',
         // prompt: 'consent',
       });
       
@@ -71,18 +71,4 @@ const Testbutton = styled.button`
   // reset user agent
   padding: 0;
   border: none;
-`;
-
-styled.button`
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 216px;
-  height: 53px;
-  border-radius: 12px;
-
-  // reset user agent
-  padding: 0;
-  border: none;
-  outline: 0;
-  box-shadow: none;
 `;
