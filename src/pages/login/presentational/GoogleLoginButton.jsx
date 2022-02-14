@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import google_img from "../../../image/google_login.png";
-import GoogleLoginBtn from "../container/google";
+import styled from 'styled-components';
+import google_img from '../../../image/google_login.png';
+import GoogleLoginBtn from '../container/google';
 
 export default function GoogleLoginButton({ className, login }) {
   return (

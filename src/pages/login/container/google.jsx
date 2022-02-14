@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import { useGoogleLogin } from "react-google-login";
@@ -6,6 +6,7 @@ import google_img from "../../../image/google_login.png";
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { signIns } from '../../../modules/login';
 
 const clientId = "553483572727-gd4ld8e84b825dk38eqjspbiqut6fjrg.apps.googleusercontent.com";
 
@@ -16,7 +17,7 @@ export default function GoogleLoginBtn({ onGoogleLogin }){
   const onSuccess = async(response) => {
       //const { googleId, profileObj : { email, name } } = response;
       console.log(response);
-      dispatch(signIn());
+      dispatch(signIns());
       //navigate('/');
       /*
       await onGoogleLogin (

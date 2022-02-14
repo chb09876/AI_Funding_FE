@@ -17,6 +17,13 @@ export const signIn = () => ({
   accessToken: null,
 });
 
+export const signIns = () => ({
+  type: SIGN_IN,
+  isLoggedIn: true,
+  hasRefresh: true,
+  accessToken: null,
+});
+
 export const signOut = () => ({
   type: SIGN_OUT,
   isLoggedIn: false,
