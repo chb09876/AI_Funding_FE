@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import GoogleLoginButton from '../presentational/GoogleLoginButton';
 import KakaoLoginButton from '../presentational/KakaoLoginButton';
+import GoogleLoginBtn from './google';
 import Logo from '../presentational/Logo';
 import { authorizeKakao, initializeKakao } from './kakao';
 import { useDispatch } from 'react-redux';
@@ -18,8 +18,8 @@ export default function Login() {
           initializeKakao();
           authorizeKakao();
         }}
-      ></LayoutedKakao>
-      <LayoutedGoogle></LayoutedGoogle>
+      />
+      <LayoutedGoogle />
       <button
         onClick={() => {
           // 개발용 로그인 스킵 버튼.
@@ -48,6 +48,6 @@ const LayoutedKakao = styled(KakaoLoginButton)`
   margin-top: 10%;
 `;
 
-const LayoutedGoogle = styled(GoogleLoginButton)`
+const LayoutedGoogle = styled(GoogleLoginBtn)`
   margin-top: 7%;
 `;
