@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import google_img from "../../../image/google_login.png";
-import GoogleLoginBtn from "../container/google-login";
+import GoogleLoginBtn from "../container/google";
 
 export default function GoogleLoginButton({ className, login }) {
   return (
@@ -8,7 +8,7 @@ export default function GoogleLoginButton({ className, login }) {
     <GoogleButton
       className={className}
     >
-    <GoogleLoginBtn></GoogleLoginBtn>
+      <GoogleLoginBtn></GoogleLoginBtn>
     </GoogleButton>
     /*<GoogleButton
       className={className}
@@ -38,7 +38,7 @@ styled(GoogleLoginButton)`
   border: none;
 `;
 
-const GoogleButton = styled.button`
+const GoogleButton = styled.div`
   background-size: contain;
 
   width: 216px;

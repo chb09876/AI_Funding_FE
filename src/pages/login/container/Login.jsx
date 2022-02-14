@@ -1,29 +1,17 @@
-import styled from "styled-components";
-import GoogleLoginButton from "../presentational/GoogleLoginButton";
-import KakaoLoginButton from "../presentational/KakaoLoginButton";
-import Logo from "../presentational/Logo";
-import { useEffect, useState } from "react";
-import { initializeKakao, loginKakaoWithPopup } from "./kakao";
+import styled from 'styled-components';
+import GoogleLoginButton from '../presentational/GoogleLoginButton';
+import KakaoLoginButton from '../presentational/KakaoLoginButton';
+import Logo from '../presentational/Logo';
+import { authorizeKakao, initializeKakao } from './kakao';
 
 export default function Login() {
-  // const [login, setIsLogin] = useState(false);
-  // useEffect(() => {
-  //   if (!login) console.log("로그인 해주세요");
-  //   else console.log("로그인 되었습니다!");
-  // }, [login]);
-  useEffect(() => {
-    initializeKakao();
-    // check token
-    // if token is not exist or expired, make user to press login button
-    // else token is validated, go home page
-  }, []);
-
   return (
     <LoginPageLayout>
       <Logo></Logo>
       <LayoutedKakao
         login={() => {
-          loginKakaoWithPopup();
+          initializeKakao();
+          authorizeKakao();
         }}
       ></LayoutedKakao>
       <LayoutedGoogle></LayoutedGoogle>
