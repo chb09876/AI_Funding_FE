@@ -20,7 +20,7 @@ export default function App() {
       console.log('I have Refresh Token!');
       try {
         // const response = await axios.get('localhost:8080/api/login/auto');
-        dispatch(autoSignIn('fakeToken'));
+        // dispatch(autoSignIn('fakeToken'));
       } catch (error) {
         // case1. refresh token is expired
         if (error.msg === 'expired') {
