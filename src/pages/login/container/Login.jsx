@@ -3,8 +3,13 @@ import GoogleLoginButton from '../presentational/GoogleLoginButton';
 import KakaoLoginButton from '../presentational/KakaoLoginButton';
 import Logo from '../presentational/Logo';
 import { authorizeKakao, initializeKakao } from './kakao';
+import { useDispatch } from 'react-redux';
+import { autoSignIn, signIn } from '../../../modules/login';
+import { useEffect } from 'react';
 
 export default function Login() {
+  const dispatch = useDispatch();
+
   return (
     <LoginPageLayout>
       <Logo></Logo>
@@ -15,6 +20,15 @@ export default function Login() {
         }}
       ></LayoutedKakao>
       <LayoutedGoogle></LayoutedGoogle>
+      <button
+        onClick={() => {
+          // 개발용 로그인 스킵 버튼.
+          // set isLoggedIn True
+          dispatch(signIn('fakeToken'));
+        }}
+      >
+        Skip
+      </button>
     </LoginPageLayout>
   );
 }

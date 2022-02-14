@@ -4,19 +4,32 @@ import MenuNav from './common/MenuNav';
 import Home from './sample/pages/home/presentational/Home';
 import Login from './pages/login/container/Login';
 import KakaoAuth from './pages/login/container/KakaoAuth';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import useCookie from './hooks/useCookie';
+import { autoSignIn } from './modules/login';
 
 export default function App() {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
   const [hasRefreshCookie] = useCookie('hasRefresh', '');
 
   useEffect(() => {
+    console.log('are you logged in?');
     if (hasRefreshCookie === 'true') {
       console.log('I have Refresh Token!');
+      try {
+        // const response = await axios.get('localhost:8080/api/login/auto');
+        dispatch(autoSignIn('fakeToken'));
+      } catch (error) {
+        // case1. refresh token is expired
+        if (error.msg === 'expired') {
+          console.log('토큰이 만료되었습니다. 로그인을 다시 해주세요.');
+        }
+        // case2. other error
+      }
     }
-  }, [hasRefreshCookie]);
+  }, []);
 
   return (
     <BackgroundLayout className="App">
