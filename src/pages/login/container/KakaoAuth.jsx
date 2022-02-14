@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -11,8 +12,19 @@ export default function KakaoAuth() {
   useEffect(() => {
     try {
       const data = new URLSearchParams(window.location.search);
-      console.log(data.get('code'));
       // fetch auth code to back: use axios.get()
+      // axios
+      //   .get('localhost:8080/api/login/manual', {
+      //     headers: {
+      //       Authorization: `Basic ${data.get('code')}`,
+      //     },
+      //   })
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
       setHasRefresh('true');
       dispatch(signIn());
       navigate('/', { replace: true });
