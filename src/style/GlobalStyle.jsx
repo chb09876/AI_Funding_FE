@@ -33,21 +33,19 @@ const GlobalStyle = createGlobalStyle`
         height: 100%;
     }
 
-		.swiper-pagination-bullet-custom {
-				background-color: #616060;
-				width: 40px;
-				height: 2.5px;
-				opacity: 1;
-				border-radius:0px;
-		}
-
-		.swiper-pagination-bullet {
-			background-color: #616060;
-		}
-
-		.swiper-pagination-bullet-active {
-				background-color: white;
-		}
+	.swiper-pagination-bullet-custom {
+		background-color: #616060;
+		width: 40px;
+		height: 2.5px;
+		opacity: 1;
+		border-radius:0px;
+	}
+	.swiper-pagination-bullet {
+		background-color: #616060;
+	}
+	.swiper-pagination-bullet-active {
+		background-color: white;
+	}
 `;
 
 export default GlobalStyle;

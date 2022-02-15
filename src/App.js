@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import useCookie from './hooks/useCookie';
 import { autoSignIn } from './modules/login';
 
+import AiPages from './pages/AI-pages/presentation/AiPages';
+
 export default function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
@@ -37,7 +39,7 @@ export default function App() {
         {isLoggedIn ? (
           <>
             <Route path="/" element={<Home />} />
-            <Route path="/second" element={'AI page'} />
+            <Route path="/second" element={<AiPages />} />
             <Route path="/third" element={'Account page'} />
             <Route path="/fourth" element={'Community page'} />
             <Route path="/fifth" element={'Settings page'} />
