@@ -1,3 +1,4 @@
+
 import { Route, Routes } from 'react-router-dom';
 import BackgroundLayout from './common/BackgroundLayout';
 import MenuNav from './common/MenuNav';
@@ -8,8 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import useCookie from './hooks/useCookie';
 import { autoSignIn } from './modules/login';
-
 import AiPages from './pages/AI-pages/presentation/AiPages';
+
 
 export default function App() {
   const dispatch = useDispatch();
