@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import KakaoLoginButton from '../presentational/KakaoLoginButton';
-import GoogleLoginBtn from './google';
+import GoogleLoginBtn from './GoogleLoginButton';
 import Logo from '../presentational/Logo';
 import { authorizeKakao, initializeKakao } from './kakao';
 import { useDispatch } from 'react-redux';
