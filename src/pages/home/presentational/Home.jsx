@@ -15,10 +15,10 @@ import Stocks from "./Stocks";
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 export default function Home() {
-  var [accountNumber, setAccountNumber] = useState(0);
-  var [data, setData] = useState("default");
-	var [accounts, setAccounts] = useState([]);
-  var [stock, setStock] = useState([]);
+  const [accountNumber, setAccountNumber] = useState(0);
+  const [data, setData] = useState("default");
+	const [accounts, setAccounts] = useState([]);
+  const [stock, setStock] = useState([]);
 
 	/*초기 마운트*/
   useEffect(() => {

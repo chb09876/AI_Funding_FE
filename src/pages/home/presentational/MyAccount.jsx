@@ -45,9 +45,9 @@ export default function MyAccount(props) {
 }
 
 const getStartDay = (createAt) => {
-	var todayDate = new Date();
-	var createDate = new Date(createAt);
-	var startDay = Math.ceil((todayDate.getTime() - createDate.getTime()) / (1000*60*60*24));
+	const todayDate = new Date();
+	const createDate = new Date(createAt);
+	const startDay = Math.ceil((todayDate.getTime() - createDate.getTime()) / (1000*60*60*24));
 	return startDay;
 } 
 
