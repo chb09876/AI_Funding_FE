@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import BackgroundLayout from './common/BackgroundLayout';
 import MenuNav from './common/MenuNav';
-import Home from './sample/pages/home/presentational/Home';
+import Home from './pages/home/presentational/Home';
 import Login from './pages/login/container/Login';
 import KakaoAuth from './pages/login/container/KakaoAuth';
 import { useDispatch, useSelector } from 'react-redux';
