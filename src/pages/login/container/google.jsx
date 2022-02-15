@@ -16,8 +16,8 @@ export default function GoogleLoginBtn({ className, onGoogleLogin }) {
   const onSuccess = async (response) => {
     //const { googleId, profileObj : { email, name } } = response;
     console.log(response);
-    // dispatch(signInAction());
-    //navigate('/');
+    dispatch(signInAction());
+    navigate('/');
     /*
       await onGoogleLogin (
           console.log("test")
