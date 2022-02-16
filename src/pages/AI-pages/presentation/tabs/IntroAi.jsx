@@ -9,6 +9,7 @@ SwiperCore.use([EffectCoverflow, Pagination]);
 
 const App = () => {
   return (
+    <StyledScrollArea>
     <StyledContainer className="Container">
       <StyledSwiper
         grabCursor={true}
@@ -39,6 +40,7 @@ const App = () => {
         </SwiperSlide>
       </StyledSwiper>
     </StyledContainer>
+    </StyledScrollArea>
   );
 };
 
@@ -50,6 +52,7 @@ const StyledContainer = styled.div`
   background: black;
   border-radius: 5px;
   margin: 10px auto;
+  
 `;
 const StyledSwiper = styled(Swiper)`
   color: white;
