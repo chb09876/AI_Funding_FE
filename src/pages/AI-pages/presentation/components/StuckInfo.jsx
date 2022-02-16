@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 export default function StuckInfo({
   StuckName,
   CurrentPrice,
@@ -9,15 +9,15 @@ export default function StuckInfo({
 }) {
   let color;
   let tri;
-  if (Fluc === 'up') {
-    color = { color: 'rgb(239, 99, 99)' };
-    tri = '▲ ';
-  } else if (Fluc === 'down') {
-    color = { color: 'rgb(99, 201, 239)' };
-    tri = '▼ ';
+  if (Fluc === "up") {
+    color = { color: "rgb(239, 99, 99)" };
+    tri = "▲ ";
+  } else if (Fluc === "down") {
+    color = { color: "rgb(99, 201, 239)" };
+    tri = "▼ ";
   } else {
-    color = { color: 'rgb(119, 119, 119)' };
-    tri = '- ';
+    color = { color: "rgb(119, 119, 119)" };
+    tri = "- ";
   }
   return (
     <StyledStuckInfo className="StuckInfo">
@@ -56,7 +56,7 @@ const StyledStuckInfo = styled.div`
 
 const StyledColor = styled.div`
   ${(props) => {
-    return props.className === 'increased'
+    return props.className === "increased"
       ? `color: rgb(239, 99, 99)`
       : `color: rgb(99, 201, 239)`;
   }};

@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import StuckInfo from '../components/StuckInfo';
-import styled, { keyframes } from 'styled-components';
-import LineChart from '../components/LineChart';
-
-//그래프 페이지 오른쪽에서 살짝 나오는 애니메이션
+import React, { useState } from "react";
+import StuckInfo from "../components/StuckInfo";
+import styled, { keyframes } from "styled-components";
+import LineChart from "../components/LineChart";
 const InfoAnimation = keyframes`
     0%{
         opacity: 0;
@@ -17,12 +15,11 @@ const InfoAnimation = keyframes`
     `;
 
 export default function CurrentStuck() {
-  //선택한 보유주식 변수
-  const [DetailInfo, ShowDetail] = useState('none');
+  const [DetailInfo, ShowDetail] = useState("none");
 
   return (
     <StyledScrollArea className="container">
-      <div onClick={() => ShowDetail('카카오')}>
+      <div onClick={() => ShowDetail("카카오")}>
         <StuckInfo
           StuckName="카카오"
           CurrentPrice="112,500"
@@ -31,7 +28,7 @@ export default function CurrentStuck() {
           Fluc="down"
         />
       </div>
-      <div onClick={() => ShowDetail('삼성전자')}>
+      <div onClick={() => ShowDetail("삼성전자")}>
         <StuckInfo
           StuckName="삼성전자"
           CurrentPrice="80,200"
@@ -40,7 +37,7 @@ export default function CurrentStuck() {
           Fluc="up"
         />
       </div>
-      <div onClick={() => ShowDetail('광운대')}>
+      <div onClick={() => ShowDetail("광운대")}>
         <StuckInfo
           StuckName="광운대"
           CurrentPrice="40,200"
@@ -49,7 +46,7 @@ export default function CurrentStuck() {
           Fluc="none"
         />
       </div>
-      <div onClick={() => ShowDetail('카카오')}>
+      <div onClick={() => ShowDetail("카카오")}>
         <StuckInfo
           StuckName="카카오"
           CurrentPrice="112,500"
@@ -58,7 +55,7 @@ export default function CurrentStuck() {
           Fluc="down"
         />
       </div>
-      <div onClick={() => ShowDetail('삼성전자')}>
+      <div onClick={() => ShowDetail("삼성전자")}>
         <StuckInfo
           StuckName="삼성전자"
           CurrentPrice="80,200"
@@ -67,7 +64,7 @@ export default function CurrentStuck() {
           Fluc="up"
         />
       </div>
-      <div onClick={() => ShowDetail('광운대')}>
+      <div onClick={() => ShowDetail("광운대")}>
         <StuckInfo
           StuckName="광운대"
           CurrentPrice="40,200"
@@ -76,7 +73,7 @@ export default function CurrentStuck() {
           Fluc="none"
         />
       </div>
-      <div onClick={() => ShowDetail('카카오')}>
+      <div onClick={() => ShowDetail("카카오")}>
         <StuckInfo
           StuckName="카카오"
           CurrentPrice="112,500"
@@ -85,7 +82,7 @@ export default function CurrentStuck() {
           Fluc="down"
         />
       </div>
-      <div onClick={() => ShowDetail('삼성전자')}>
+      <div onClick={() => ShowDetail("삼성전자")}>
         <StuckInfo
           StuckName="삼성전자"
           CurrentPrice="80,200"
@@ -94,7 +91,7 @@ export default function CurrentStuck() {
           Fluc="up"
         />
       </div>
-      <div onClick={() => ShowDetail('광운대')}>
+      <div onClick={() => ShowDetail("광운대")}>
         <StuckInfo
           StuckName="광운대"
           CurrentPrice="40,200"
@@ -103,11 +100,10 @@ export default function CurrentStuck() {
           Fluc="none"
         />
       </div>
-      {/* 그래프창 */}
       <StyledDetailInfo
-        className={DetailInfo === 'none' ? 'CloseInfo' : 'OpenInfo'}
+        className={DetailInfo === "none" ? "CloseInfo" : "OpenInfo"}
       >
-        <StyledBackButton onClick={() => ShowDetail('none')}>
+        <StyledBackButton onClick={() => ShowDetail("none")}>
           ◀ 이전
         </StyledBackButton>
         <StyledStackGraph>
@@ -128,7 +124,7 @@ const StyledDetailInfo = styled.div`
   color: white;
   animation: ${InfoAnimation} 0.6s ease-in-out;
   ${(props) => {
-    return props.className === 'CloseInfo'
+    return props.className === "CloseInfo"
       ? `display: none;`
       : `display: block;
       `;

@@ -45,7 +45,6 @@ export default function AiPages() {
     </StyledAiPages>
   );
 }
-
 const StyledAiPages = styled.div`
   height: 100%;
 `;
