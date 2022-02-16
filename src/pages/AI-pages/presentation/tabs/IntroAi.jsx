@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import SwiperCore, { EffectCoverflow, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import 'swiper/swiper-bundle.min.css';
-// import 'swiper/swiper.min.css';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import Intro1 from './AI-intros/intro1';
 import Intro2 from './AI-intros/intro2';
 
@@ -14,6 +14,7 @@ const App = () => {
     <StyledScrollArea className="ScrollArea">
       <StyledContainer className="Container">
         <StyledSwiper
+        modules={[Pagination]}
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={'auto'}
@@ -67,6 +68,6 @@ const StyledSwiper = styled(Swiper)`
   margin: 10px;
 `;
 const StyledScrollArea = styled.div`
-  overflow: scroll;
+  overflow: scroll;ㄴ
   height: 85vh;
 `;
