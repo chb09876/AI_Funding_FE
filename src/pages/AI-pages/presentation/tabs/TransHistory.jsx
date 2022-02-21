@@ -48,7 +48,7 @@ export default function TransHistory() {
               </div>
             </summary>
             <StyledDetailsContainer>
-              <StyledDetailsContent>
+              <StyledDetailsContent className="detailInfo">
                 거래종류 : 주식 매도 / 주식 매수
                 <br />
                 거래수량 : 00
@@ -71,7 +71,7 @@ export default function TransHistory() {
               </div>
             </summary>
             <StyledDetailsContainer>
-              <StyledDetailsContent>
+              <StyledDetailsContent className="detailInfo">
                 거래종류 : 주식 매도 / 주식 매수
                 <br />
                 거래수량 : 00
@@ -132,6 +132,16 @@ const StyledDetails = styled.details`
   & > summary::marker {
     display: none;
   }
+  transition: height 0.2s ease;
+  overflow:hidden;
+  &:not([open])
+  {
+    height: 5em;
+  }
+  &[open]
+  {
+    height: 10.5em;
+  }
   &[open] > summary {
     border-bottom: 2px dashed rgb(184, 168, 142);
   }
@@ -142,6 +152,7 @@ const StyledDetailsContent = styled.div`
   margin: auto;
   text-align: center;
   font-size: 16px;
+  animation: details-show 200ms ease-in-out;
 `;
 const StyledDetailsContainer = styled.div`
   margin-top: 10px;

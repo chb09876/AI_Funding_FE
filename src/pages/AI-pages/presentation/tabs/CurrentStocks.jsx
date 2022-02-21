@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StockInfo from "../components/StockInfo";
 import styled, { keyframes } from "styled-components";
 import LineChart from "../components/LineChart";
+import axios from "axios";
 const InfoAnimation = keyframes`
     0%{
         opacity: 0;
@@ -10,15 +11,40 @@ const InfoAnimation = keyframes`
     100%{
         opacity: 1;
         transform: translateX(0px);
-        
     }
     `;
 
 export default function CurrentStock() {
-  const [DetailInfo, ShowDetail] = useState("none");
+  const [account,setAccount]=useState([]);
+  const [stocks,setStocks]=useState([]);
 
+  const [DetailInfo, ShowDetail] = useState("none");
+  useEffect(()=>{
+    axios.post("http://localhost:8000/",{
+      customer_info_id:"1",
+      login_type:"00"
+    })
+    .then((res)=>{
+      //res로 백에서 데이터 정보가 넘어옴?
+      setAccount(res.data.account);
+      setStocks(res.data.account[0]);
+
+    })
+  },[]);
+  const holdingStocks = stocks.map((stock,index) =>(
+    <div key={index} onClick={() => ShowDetail(stock.stockName)}>
+        <StockInfo
+          stockName={stock.stockName}
+          currentPrice={stock.currentPrice}
+          stockPriceChange={stock.stockPriceChange}
+          stockRateChange={stock.stockRateChange}
+          stockChange={stock.stockChange}
+        />
+      </div>
+  ))
   return (
     <StyledScrollArea className="container">
+      {holdingStocks}
       <div onClick={() => ShowDetail("카카오")}>
         <StockInfo
           stockName="카카오"
