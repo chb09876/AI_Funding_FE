@@ -28,7 +28,7 @@ export default function Account2() {
                 30,000,000원
                 <Styledbtn src = {refresh} />
 
-                 </StyledUnit>
+                </StyledUnit>
             
             </StyledUnitMiddle>
 
