@@ -82,7 +82,7 @@ const StyledMoney = styled.div`
   padding-top: 10px;
   padding-bottom: 15px;
   border-bottom: 1px solid #b8a88e;
-  }
+
 `;
 
 const StyledTotalProfit = styled.div`
@@ -90,7 +90,7 @@ const StyledTotalProfit = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
   border-bottom: 1px solid #b8a88e;
-  }
+
   ${(props)=>{
     if(props.className === 'Unit'){
     }
