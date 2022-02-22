@@ -5,7 +5,7 @@ import Logo from '../presentational/Logo';
 import { useDispatch } from 'react-redux';
 import { autoSignIn, signIn } from '../../../modules/login';
 import { useEffect } from 'react';
-import { authorizeKakao, initializeKakao } from '../../../utils/kakao';
+import { initializeKakao, authorizeKakao } from './kakao';
 
 export default function Login() {
   const dispatch = useDispatch();
