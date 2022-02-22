@@ -73,7 +73,7 @@ const Chart = () => {
 export default Chart;
 
 const StyledChart = styled.div`
-  margin-top: 10px;
+  margin: 10px auto;
   width: 80vw;
   max-width: 900px;
 `;

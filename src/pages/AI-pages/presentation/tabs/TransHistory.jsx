@@ -143,7 +143,7 @@ const StyledDetails = styled.details`
     height: 10.5em;
   }
   &[open] > summary {
-    border-bottom: 2px dashed rgb(184, 168, 142);
+    border-bottom: 2px dashed rgb(119, 119, 119);
   }
 `;
 

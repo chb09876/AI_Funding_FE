@@ -10,36 +10,38 @@ SwiperCore.use([EffectCoverflow, Pagination]);
 const App = () => {
   return (
     <StyledScrollArea>
-    <StyledContainer className="Container">
-      <StyledSwiper
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={'auto'}
-        pagination={{
-          clickable: true,
-          type: 'bullets',
-          bulletActiveClass: 'swiper-pagination-bullet-active',
-          bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
-        }}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <div className="intro1">
-            <Intro1 />
-            page 1
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="intro2">
-            <Intro2 />
-            page 2
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="intro3">page 3</div>
-        </SwiperSlide>
-      </StyledSwiper>
-    </StyledContainer>
+      <StyledContainer className="Container">
+        <StyledSwiper
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={'auto'}
+          pagination={{
+            clickable: true,
+            type: 'bullets',
+            bulletActiveClass: 'swiper-pagination-bullet-active',
+            bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
+          }}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <StyledSwiperContent className="intro1">
+              <Intro1 />
+              page 1
+            </StyledSwiperContent>
+          </SwiperSlide>
+          <SwiperSlide>
+            <StyledSwiperContent className="intro2">
+              <Intro2 />
+              page 2
+            </StyledSwiperContent>
+          </SwiperSlide>
+          <SwiperSlide>
+            <StyledSwiperContent className="intro3">
+              page 3
+            </StyledSwiperContent>
+          </SwiperSlide>
+        </StyledSwiper>
+      </StyledContainer>
     </StyledScrollArea>
   );
 };
@@ -52,7 +54,6 @@ const StyledContainer = styled.div`
   background: black;
   border-radius: 5px;
   margin: 10px auto;
-  
 `;
 const StyledSwiper = styled(Swiper)`
   color: white;
@@ -62,4 +63,8 @@ const StyledSwiper = styled(Swiper)`
 const StyledScrollArea = styled.div`
   overflow: scroll;
   height: 85vh;
+`;
+
+const StyledSwiperContent = styled.div`
+  margin-top: 10px;
 `;

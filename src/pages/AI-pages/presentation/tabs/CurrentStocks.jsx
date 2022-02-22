@@ -78,7 +78,7 @@ export default function CurrentStock() {
         <StyledBackButton onClick={() => ShowDetail("none")}>
           ◀ 이전
         </StyledBackButton>
-        <StyledStackGraph>
+        <StyledStackGraph className="graph">
           {DetailInfo}
           <LineChart />
         </StyledStackGraph>
@@ -113,8 +113,9 @@ const StyledStackGraph = styled.div`
   border-radius: 10px;
   height: 75vh;
   width: 90vw;
-  margin: auto;
+  margin: 0 auto;
   padding: 10px;
+  
 `;
 
 const StyledScrollArea = styled.div`
