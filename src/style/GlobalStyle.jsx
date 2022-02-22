@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import SpoqaHanSansNeo from "../fonts/spoqa/SpoqaHanSansNeo-Regular.woff2";
+import { createGlobalStyle } from 'styled-components';
+import SpoqaHanSansNeo from '../fonts/spoqa/SpoqaHanSansNeo-Regular.woff2';
 const GlobalStyle = createGlobalStyle`
     @font-face {
         font-family: "Spoqa Han Sans Neo";

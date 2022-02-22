@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-export default function StockInfo({ stockName, currentPrice, stockPriceChange, stockRateChange, stockChange }) {
+export default function StockInfo({
+  stockName,
+  currentPrice,
+  stockPriceChange,
+  stockRateChange,
+  stockChange,
+}) {
   let color;
   let tri;
   if (stockChange === 'up') {

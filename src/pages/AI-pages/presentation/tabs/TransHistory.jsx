@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { useState } from "react";
+import styled from 'styled-components';
+import { useState } from 'react';
 
 export default function TransHistory() {
   const [SelectedTerm, SelectTerm] = useState(0);
@@ -7,28 +7,28 @@ export default function TransHistory() {
     <StyledHistoryContainer className="HistoryContainer">
       <StyledTermSelector className="SelectTerm">
         <StyledTermButton
-          className={SelectedTerm === 0 ? "selected" : "notselected"}
+          className={SelectedTerm === 0 ? 'selected' : 'notselected'}
           onClick={() => SelectTerm(0)}
         >
           ALL
         </StyledTermButton>
         <StyledBar>|</StyledBar>
         <StyledTermButton
-          className={SelectedTerm === 1 ? "selected" : "notselected"}
+          className={SelectedTerm === 1 ? 'selected' : 'notselected'}
           onClick={() => SelectTerm(1)}
         >
           1M
         </StyledTermButton>
         <StyledBar>|</StyledBar>
         <StyledTermButton
-          className={SelectedTerm === 3 ? "selected" : "notselected"}
+          className={SelectedTerm === 3 ? 'selected' : 'notselected'}
           onClick={() => SelectTerm(3)}
         >
           3M
         </StyledTermButton>
         <StyledBar>|</StyledBar>
         <StyledTermButton
-          className={SelectedTerm === 6 ? "selected" : "notselected"}
+          className={SelectedTerm === 6 ? 'selected' : 'notselected'}
           onClick={() => SelectTerm(6)}
         >
           6M
@@ -38,14 +38,8 @@ export default function TransHistory() {
         <StyledHistories className="Histories">
           <StyledDetails>
             <summary>
-              <div style={{ fontSize: "1.4rem", fontWeight: 700 }}>
-                종목 이름
-              </div>
-              <div
-                style={{ fontSize: "0.8rem", fontWeight: 300, color: "gray" }}
-              >
-                거래 날짜
-              </div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 700 }}>종목 이름</div>
+              <div style={{ fontSize: '0.8rem', fontWeight: 300, color: 'gray' }}>거래 날짜</div>
             </summary>
             <StyledDetailsContainer>
               <StyledDetailsContent className="detailInfo">
@@ -61,14 +55,8 @@ export default function TransHistory() {
           </StyledDetails>
           <StyledDetails>
             <summary>
-              <div style={{ fontSize: "1.4rem", fontWeight: 700 }}>
-                종목 이름
-              </div>
-              <div
-                style={{ fontSize: "0.8rem", fontWeight: 300, color: "gray" }}
-              >
-                거래 날짜
-              </div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 700 }}>종목 이름</div>
+              <div style={{ fontSize: '0.8rem', fontWeight: 300, color: 'gray' }}>거래 날짜</div>
             </summary>
             <StyledDetailsContainer>
               <StyledDetailsContent className="detailInfo">
@@ -105,7 +93,7 @@ const StyledTermButton = styled.span`
   margin: 0 8px;
   font-size: 1.1rem;
   ${(props) => {
-    return props.className === "selected"
+    return props.className === 'selected'
       ? `color: rgb(184, 168, 142)`
       : `color: rgb(119, 119, 119)`;
   }};
@@ -133,13 +121,11 @@ const StyledDetails = styled.details`
     display: none;
   }
   transition: height 0.2s ease;
-  overflow:hidden;
-  &:not([open])
-  {
+  overflow: hidden;
+  &:not([open]) {
     height: 5em;
   }
-  &[open]
-  {
+  &[open] {
     height: 10.5em;
   }
   &[open] > summary {
