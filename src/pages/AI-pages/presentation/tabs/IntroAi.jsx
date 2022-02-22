@@ -36,9 +36,7 @@ const App = () => {
             </StyledSwiperContent>
           </SwiperSlide>
           <SwiperSlide>
-            <StyledSwiperContent className="intro3">
-              page 3
-            </StyledSwiperContent>
+            <StyledSwiperContent className="intro3">page 3</StyledSwiperContent>
           </SwiperSlide>
         </StyledSwiper>
       </StyledContainer>
