@@ -1,11 +1,55 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
+import axios from 'axios';
+
 
 export default function TransHistory() {
   const [SelectedTerm, SelectTerm] = useState(0);
+  const [selectedAccount, setSelectedAccount] = useState(0);
+  const [account, setAccount] = useState([]);
+  const [tradeHistory, setTradeHistory] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .post('http://localhost:8080/', {
+  //       customer_info_id: 1,
+  //       login_type: '00',
+  //     })
+  //     .then((res) => {
+  //       //res로 백에서 데이터 정보가 넘어옴
+  //       setAccount(res.data.account);
+  //       setTradeHistory(res.data.account[selectedAccount].tradeHistory);
+  //       console.log("Change Account")
+  //     })
+  //     .catch((err) => {
+  //       console.log('AIpage_axios_err');
+  //     });
+  // }, [selectedAccount]);
+
+  // let accountSelctor;
+  // function setAccountSelector() {
+  //   let accountSelector = [];
+  //   for (let i = 0; i < account.length; i++) {
+  //     accountSelector.push(
+  //       <option key={i} value={i}>
+  //         {account[i].accountName}
+  //       </option>
+  //     );
+  //   }
+  //   return accountSelector;
+  // }
+  // accountSelctor = setAccountSelector();
+
+  // const selectingAccount = (e) => {
+  //   setSelectedAccount(e.target.value);
+  // };
+
+  // const history = stocks.map((stock, index) => (
+  //  <div></div>
+  // ));
+
   return (
     <StyledHistoryContainer className="HistoryContainer">
-      <StyledTermSelector className="SelectTerm">
+      {/* <StyledTermSelector className="SelectTerm">
         <StyledTermButton
           className={SelectedTerm === 0 ? 'selected' : 'notselected'}
           onClick={() => SelectTerm(0)}
@@ -33,7 +77,13 @@ export default function TransHistory() {
         >
           6M
         </StyledTermButton>
-      </StyledTermSelector>
+      </StyledTermSelector> */}
+
+      {/* <StyledSelectBox className="accountSelector">
+        <StyledSelect onChange={selectingAccount} value={selectedAccount}>
+          {accountSelctor}
+        </StyledSelect>
+      </StyledSelectBox> */}
       <StyledScrollArea className="container">
         <StyledHistories className="Histories">
           <StyledDetails>
@@ -85,6 +135,7 @@ const StyledHistoryContainer = styled.div`
   height: 85vh;
   margin: 10px;
 `;
+
 const StyledTermSelector = styled.div`
   margin: auto;
 `;
@@ -97,6 +148,18 @@ const StyledTermButton = styled.span`
       ? `color: rgb(184, 168, 142)`
       : `color: rgb(119, 119, 119)`;
   }};
+`;
+const StyledSelectBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+const StyledSelect = styled.select`
+
+  background: none;
+  color: white;
+  border: none;
+  font-size: 20px;
+  margin: 10px 10px 0px 10px;
 `;
 
 const StyledBar = styled.span`
