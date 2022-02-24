@@ -30,9 +30,10 @@ export default function CurrentStock() {
         //res로 백에서 데이터 정보가 넘어옴
         setAccount(res.data.account);
         setStocks(res.data.account[selectedAccount].stock);
+        console.log("Change Account")
       })
       .catch((err) => {
-        console.log('post_err');
+        console.log('AIpage_axios_err');
       });
   }, [selectedAccount]);
   const holdingStocks = stocks.map((stock, index) => (
