@@ -51,7 +51,7 @@ export default function CurrentStock() {
       />
     </div>
   ));
-  let accountSelctor;
+  let accountSelector;
   function setAccountSelector() {
     let accountSelector = [];
     for (let i = 0; i < account.length; i++) {
@@ -63,7 +63,7 @@ export default function CurrentStock() {
     }
     return accountSelector;
   }
-  accountSelctor = setAccountSelector();
+  accountSelector = setAccountSelector();
 
   const selectingAccount = (e) => {
     setSelectedAccount(e.target.value);
@@ -72,7 +72,7 @@ export default function CurrentStock() {
     <StyledScrollArea className="container">
       <StyledSelectBox className="accountSelector">
         <StyledSelect onChange={selectingAccount} value={selectedAccount}>
-          {accountSelctor}
+          {accountSelector}
         </StyledSelect>
       </StyledSelectBox>
       {holdingStocks}
