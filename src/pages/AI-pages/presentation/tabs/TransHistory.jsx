@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 export default function TransHistory() {
-  const [SelectedTerm, SelectTerm] = useState(0);
+  const [selectedTerm, selectTerm] = useState(0);
   const [selectedAccount, setSelectedAccount] = useState(0);
   const [account, setAccount] = useState([]);
   const [tradeHistory, setTradeHistory] = useState([]);
