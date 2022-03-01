@@ -22,7 +22,7 @@ export default function CurrentStock() {
   const [detailName, setDetailName] = useState("none");
   useEffect(() => {
     axios
-      .post('http://localhost:8080/', {
+      .post('http://localhost:8060/', {
         customer_info_id: 1,
         login_type: '00',
       })
@@ -33,7 +33,7 @@ export default function CurrentStock() {
         console.log("Change Account")
       })
       .catch((err) => {
-        console.log('AIpage_axios_err');
+        console.log('AIpage_currentstock_axios_err');
       });
   }, [selectedAccount]);
   const holdingStocks = stocks.map((stock, index) => (
