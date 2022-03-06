@@ -3,9 +3,7 @@ import KakaoLoginButton from '../presentational/KakaoLoginButton';
 import GoogleLoginBtn from './GoogleLoginButton';
 import Logo from '../presentational/Logo';
 import { useDispatch } from 'react-redux';
-import { autoSignIn, signIn } from '../../../modules/login';
-import { useEffect } from 'react';
-import { initializeKakao, authorizeKakao } from './kakao';
+import { signIn } from '../../../modules/login';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -13,12 +11,7 @@ export default function Login() {
   return (
     <LoginPageLayout>
       <Logo></Logo>
-      <LayoutedKakao
-        login={() => {
-          initializeKakao();
-          authorizeKakao();
-        }}
-      />
+      <LayoutedKakao />
       <LayoutedGoogle />
       <button
         onClick={() => {
