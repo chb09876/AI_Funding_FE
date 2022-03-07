@@ -17,10 +17,10 @@ export default function KakaoAuth() {
       }
       // fetch auth code to back: use axios.post()
       axios
-        .post(
-          'http://ec2-13-209-73-79.ap-northeast-2.compute.amazonaws.com:8080/auth/KAKAO/callback',
-          { code, loginType: 'KAKAO' }
-        )
+        .post('http://ec2-13-209-73-79.ap-northeast-2.compute.amazonaws.com:8080/auth/callback', {
+          code,
+          loginType: 'KAKAO',
+        })
         .then((response) => {
           console.log(response);
           setItem('loginHistory', 'true'); // set cookie
