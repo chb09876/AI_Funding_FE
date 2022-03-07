@@ -11,7 +11,7 @@ export default function Login() {
   return (
     <LoginPageLayout>
       <Logo></Logo>
-      <LayoutedKakao />
+      <LayoutedKakao href="http://ec2-13-209-73-79.ap-northeast-2.compute.amazonaws.com:8080/auth/KAKAO" />
       <LayoutedGoogle />
       <button
         onClick={() => {
