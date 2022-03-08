@@ -10,8 +10,8 @@ SwiperCore.use([EffectCoverflow, Pagination]);
 
 export default function CheckProfit() {
   return (
-    <StyledLogContainer className="LogContainer">
-    <StyledScrollArea className="Container">
+    <StyledLogContainer>
+    <StyledScrollArea>
     <StyledCheck>
       <StyledTop className="Top">
         <StyledSwiper
