@@ -1,4 +1,3 @@
-
 import { Route, Routes } from 'react-router-dom';
 import BackgroundLayout from './common/BackgroundLayout';
 import MenuNav from './common/MenuNav';
@@ -10,8 +9,7 @@ import { useEffect } from 'react';
 import useCookie from './hooks/useCookie';
 import { autoSignIn } from './modules/login';
 import AiPages from './pages/AI-pages/presentation/AiPages';
-import AccountPage from "./pages/Accountpage/presentational/AccountPage";
-
+import AccountPage from './pages/Accountpage/presentational/AccountPage';
 
 export default function App() {
   const dispatch = useDispatch();
