@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { useState } from 'react';
+import CustomBubbleChart from './BubbleChart';
 
 export default function CheckProfit() {
   const [SelectUnit, SelectPercent] = useState(0);
+	console.log(window.innerHeight, window.innerWidth);
   return (
       <StyledCompareProfit>
         <StyledTop>
@@ -41,6 +43,7 @@ export default function CheckProfit() {
 
         </StyledTop>
         <StyledBottom>
+					<CustomBubbleChart height={window.innerHeight*35/100} width={window.innerWidth-20}/>
         </StyledBottom>
       </StyledCompareProfit>
       
@@ -94,5 +97,5 @@ border: solid 1px #b8a88e;
 border-radius: 10px;
 background-color: black;
 position: relative;
-margin: 10px
+margin: 10px;
 `;

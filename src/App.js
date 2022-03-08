@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import useCookie from './hooks/useCookie';
 import { autoSignIn } from './modules/login';
 import AiPages from './pages/AI-pages/presentation/AiPages';
+import AccountPage from './pages/Accountpage/presentational/AccountPage';
 
 
 export default function App() {
@@ -41,7 +42,7 @@ export default function App() {
           <>
             <Route path="/" element={<Home />} />
             <Route path="/second" element={<AiPages />} />
-            <Route path="/third" element={'Account page'} />
+            <Route path="/third" element={<AccountPage/>} />
             <Route path="/fourth" element={'Community page'} />
             <Route path="/fifth" element={'Settings page'} />
             <Route path="*" element={'404'} />

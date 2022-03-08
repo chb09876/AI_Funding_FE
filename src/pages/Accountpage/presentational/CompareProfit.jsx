@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { useState } from 'react';
 
 export default function CompareProfit() {
   const [SelectedTerm, SelectTerm] = useState(0);
   return (
-      <StyledCompareProfit className = "compareProfit">
-        <StyledTop className = "term">
+    <StyledCompareProfit className="compareProfit">
+      <StyledTop className="term">
         <StyledTermButton
           className={SelectedTerm === 0 ? 'selected' : 'notselected'}
           onClick={() => SelectTerm(0)}
@@ -33,16 +33,14 @@ export default function CompareProfit() {
         >
           6M
         </StyledTermButton>
-
-        </StyledTop>
-        <StyledBottom></StyledBottom>
-      </StyledCompareProfit>
-      
+      </StyledTop>
+      <StyledBottom></StyledBottom>
+    </StyledCompareProfit>
   );
 }
 
 const StyledCompareProfit = styled.div`
-  height: 100%  
+  height: 100%;
 `;
 
 const StyledTop = styled.div`
@@ -76,5 +74,5 @@ const StyledBottom = styled.div`
   border-radius: 10px;
   background-color: black;
   position: relative;
-  margin: 10px
+  margin: 10px;
 `;
