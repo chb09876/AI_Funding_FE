@@ -4,6 +4,7 @@ import MenuNav from './common/MenuNav';
 import Home from './pages/home/presentational/Home';
 import Login from './pages/login/container/Login';
 import KakaoAuth from './pages/login/container/KakaoAuth';
+import GoogleAuth from './pages/login/container/GoogleAuth'
 import { useSelector } from 'react-redux';
 import AiPages from './pages/AI-pages/presentation/AiPages';
 import AccountPage from './pages/Accountpage/presentational/AccountPage';
@@ -28,6 +29,7 @@ export default function App() {
           // route before login
           <>
             <Route path="/oauth/kakao" element={<KakaoAuth />} />
+            <Route path="/oauth/google" element={<GoogleAuth />} />
             <Route path="*" element={<Login />} />
           </>
         )}
