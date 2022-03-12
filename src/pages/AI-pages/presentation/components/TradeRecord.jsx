@@ -15,7 +15,7 @@ export default function TradeRecord({
 //   }
   return (
     <StyledTradeRecord className="Histories">
-      <StyledDetails>
+      <StyledDetails close>
         <summary>
           <div
             style={{
@@ -39,7 +39,7 @@ export default function TradeRecord({
             }}
           >
             <div className="leftside">{tradeDate}</div>
-            <StyledType className="rightside" className={tradeType === '매수' ? 'Buy' : 'Sell'}>{tradeType}</StyledType>
+            <StyledType className={tradeType === '매수' ? 'Buy' : 'Sell'}>{tradeType}</StyledType>
           </div>
         </summary>
         <StyledDetailsContainer>
