@@ -14,6 +14,8 @@ export default function CheckProfit() {
   const [SelectUnit, SelectPercent] = useState(0);
 	console.log(window.innerHeight, window.innerWidth);
   return (
+    <StyledLogContainer>
+    <StyledScrollArea>
     <StyledCheck>
       <StyledTop className="Top">
         <StyledSwiper
@@ -42,13 +44,6 @@ export default function CheckProfit() {
             <div className="Account3">
              <Account3/>
             </div>
-      
-  );
-
-//const StyledPercentButton = styled.div``;
-const StyledUnitButton = styled.div``;
-
-const StyledLine = styled.div``;
 
           </SwiperSlide>
         </StyledSwiper>
@@ -58,27 +53,47 @@ const StyledLine = styled.div``;
 					<CustomBubbleChart height={window.innerHeight*35/100} width={window.innerWidth-20}/>
         </StyledBottom>
 
-    </StyledCheck>
+      </StyledCheck>
+      </StyledScrollArea>
+    </StyledLogContainer>
   );
 };
 
+
+const StyledPercentButton = styled.div``;
+const StyledUnitButton = styled.div``;
+
+const StyledLine = styled.div``;
+
+const StyledScrollArea = styled.div`
+  overflow: scroll;
+  height: 95%;
+`;
+
+const StyledLogContainer = styled.div`
+  height: 90vh;
+`;
+
 const StyledTop = styled.div`
-  height: 40vh;
+  flex-grow : 1;
   width: 95%;
   border: solid 1px #b8a88e;
   border-radius: 10px;
   background-color: black;
   margin: 10px auto;
+  
 `;
+
 const StyledSwiper = styled(Swiper)`
+  padding-top: 10px;
   color: white;
   height: 100%;
-  margin: 10px;
 `;
+
 const StyledCheck = styled.div``;
 
 const StyledBottom = styled.div`
-height: 40vh;
+height: 45vh;
 width: 95%;
 border: solid 1px #b8a88e;
 border-radius: 10px;
