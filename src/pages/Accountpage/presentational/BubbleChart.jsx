@@ -9,7 +9,6 @@ export default function CustomBubbleChart(props) {
       <PlustDayStyle>+00일</PlustDayStyle>
       <BottomStyle>
         <BubbleChart
-					style={tempStyle}
           data={[
             { key: '할리스', data: 40 },
             { key: '스타벅스', data: 30 },
@@ -18,7 +17,6 @@ export default function CustomBubbleChart(props) {
           ]}
           height={props.height*0.8}
           width={props.width}
-					margin={50}
           center={true}
           series={
             <BubbleSeries
@@ -108,7 +106,3 @@ const MoneyStyle = styled.div`
 	font-weight: bold; 
 	font-size: 42px;
 `
-
-const tempStyle = {
-	margin: "60px"
-}
