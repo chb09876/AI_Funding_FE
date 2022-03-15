@@ -59,12 +59,6 @@ export default function CheckProfit() {
   );
 };
 
-
-const StyledPercentButton = styled.div``;
-const StyledUnitButton = styled.div``;
-
-const StyledLine = styled.div``;
-
 const StyledScrollArea = styled.div`
   overflow: scroll;
   height: 95%;
