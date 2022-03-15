@@ -1,24 +1,23 @@
 import styled from "styled-components";
-import DetailLogs from "./DetailLogs";
 
-export default function Logs(props) {
+export default function DetailLogs() {
   return (
     <StyledLogContainer>
     <StyledLog>
       <StyledDateLog>
-       2022-00-00
+       2022-00-07
        <br/>
-       2022-00-01
+       2022-00-08
        <br/>
-       2022-00-02
+       2022-00-09
        <br/>
-       2022-00-03
+       2022-00-10
        <br/>
-       2022-00-04
+       2022-00-11
        <br/>
-       2022-00-05
+       2022-00-12
        <br/>
-       2022-00-06
+       2022-00-13
       </StyledDateLog>
       <StyledProfitLog>
        + 000000원
@@ -35,34 +34,19 @@ export default function Logs(props) {
        <br/>
        + 000000원
       </StyledProfitLog>
-
-      
-    <StyledDetails>
-    <summary>
-      <StyledMoreLog>
-        더보기
-      </StyledMoreLog>
-    </summary>
-    <DetailLogs/>
-    </StyledDetails>
     </StyledLog>
+    <summary>
+      <StyledLogClose>
+        닫기
+      </StyledLogClose>
+    </summary>
     </StyledLogContainer>
   );
 }
 
-const StyledDetails = styled.details`
-  & > summary {
-    color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    list-style: none;
-  }
-`;
-
 // 기록 날짜
 const StyledDateLog = styled.div`
   float: left;
-  border-top: 1px solid #b8a88e;
   font-size: 1.2rem;
   padding-left: 20px;
   padding-top: 20px;
@@ -72,7 +56,6 @@ const StyledDateLog = styled.div`
 
 // 기록 이익 
 const StyledProfitLog = styled.div`
-  border-top: 1px solid #b8a88e;
   font-size: 1.2rem;
   padding-right: 20px;
   padding-top:20px;
@@ -82,19 +65,14 @@ const StyledProfitLog = styled.div`
   text-align: right;
 `;
 
-const StyledLog = styled.div`
-  color: white;
-  margin: auto;
-  font-size: 16px;
-`;
+const StyledLog = styled.div``;
+
 const StyledLogContainer = styled.div`
   margin-top: 10px;
   padding-bottom: 10px;
   width: 100%;
 `;
-
-const StyledMoreLog = styled.div`
+const StyledLogClose = styled.div`
   text-align: center;
   color: gray;
 `;
-
