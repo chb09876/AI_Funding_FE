@@ -7,15 +7,11 @@ export default function TradeRecord({
   tradeAmount,
   unitPrice,
   tradePrice,
+  closeDetail,
 }) {
-//   let plusMinus;
-//   if (unitPrice > tradePrice) {
-//     plusMinus = '-';
-//   } else if (unitPrice < tradePrice) {
-//   }
   return (
     <StyledTradeRecord className="Histories">
-      <StyledDetails>
+      <StyledDetails open={false}>
         <summary>
           <div
             style={{
