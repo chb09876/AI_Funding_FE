@@ -23,7 +23,7 @@ export default function Home() {
   /*초기 마운트*/
   useEffect(() => {
     axios
-      .post('http://ec2-13-209-73-79.ap-northeast-2.compute.amazonaws.com:8080/api/home', {
+      .post('http://ec2-3-39-83-29.ap-northeast-2.compute.amazonaws.com:8080/api/home', {
         customer_info_id: 1,
         login_type: '00',
       })
