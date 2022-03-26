@@ -11,13 +11,13 @@ export default function Login() {
   return (
     <LoginPageLayout>
       <Logo></Logo>
-      <LayoutedKakao href="http://ec2-13-209-73-79.ap-northeast-2.compute.amazonaws.com:8080/auth/KAKAO" />
-      <LayoutedGoogle href="http://ec2-13-209-73-79.ap-northeast-2.compute.amazonaws.com:8080/auth/GOOGLE"/>
+      <LayoutedKakao href={`${process.env.REACT_APP_API_TEST}/auth/KAKAO`} />
+      <LayoutedGoogle href={`${process.env.REACT_APP_API_TEST}/auth/GOOGLE`} />
       <button
         onClick={() => {
           // 개발용 로그인 스킵 버튼.
           // set isLoggedIn True
-          dispatch(signIn('fakeToken'));
+          dispatch(signIn('fakeToken', 'fakeUID'));
         }}
       >
         Skip
