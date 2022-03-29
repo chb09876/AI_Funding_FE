@@ -7,11 +7,10 @@ export default function TradeRecord({
   tradeAmount,
   unitPrice,
   tradePrice,
-  closeDetail,
 }) {
   return (
     <StyledTradeRecord className="Histories">
-      <StyledDetails open={false}>
+      <StyledDetails >
         <summary>
           <div
             style={{

@@ -7,6 +7,9 @@ export default function TransHistory(tradeInfo) {
   const [account, setAccount] = useState([]);
   const [tradeHistory, setTradeHistory] = useState([]);
   const [closeDetail, setCloseDetail] = useState(true);
+ 
+  const remover = useRef();
+
   useEffect(() => {
     setAccount(tradeInfo.data);
     setTradeHistory(tradeInfo.data[selectedAccount].tradeHistory);
@@ -22,7 +25,6 @@ export default function TransHistory(tradeInfo) {
         tradeAmount={history.tradeAmount}
         unitPrice={history.unitPrice}
         tradePrice={history.tradePrice}
-        closeDetail={closeDetail}
       />
     </div>
   ));
@@ -47,6 +49,7 @@ export default function TransHistory(tradeInfo) {
     setCloseDetail(false);
     // details.forEach((detail) => {
     //     detail.removeAttribute("open");
+    remover.current.removeAttribute("open");
     // });
   };
   return (
