@@ -17,26 +17,28 @@ export default function KakaoAuth() {
       }
       // fetch auth code to back: use axios.post()
       axios
-        .post('http://ec2-13-209-73-79.ap-northeast-2.compute.amazonaws.com:8080/auth/callback', {
+        .post(`${process.env.REACT_APP_API_TEST}/auth/callback`, {
           code,
           loginType: 'KAKAO',
         })
         .then((response) => {
-          console.log(response);
-          setItem('loginHistory', 'true'); // set cookie
-          dispatch(signIn());
-          console.log('login success!');
-          navigate('/', { replace: true });
+          if (response.data.isExistUser === true) {
+            // success login
+            const { accessToken, UID } = response.data;
+            dispatch(signIn(accessToken, UID));
+            setItem('has_refresh', 'true', 90);
+            navigate('/', { replace: true });
+          } else if (response.data.isExistUser === false) {
+            navigate('/sign-up', { replace: true });
+          }
         })
         .catch((error) => {
           // network communication error
-          console.log(error);
-          console.log('post error!');
+          console.log('newtwork error!', error);
           navigate('/', { replace: true });
         });
     } catch (error) {
-      console.log(error);
-      console.log('login error!');
+      console.log('unexpected error!', error);
       navigate('/', { replace: true });
     }
   }, [dispatch, navigate]);
