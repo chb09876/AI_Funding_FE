@@ -44,7 +44,7 @@ const StyledStuckInfo = styled.div`
   color: white;
   margin: 10px 10px;
   border-radius: 10px;
-  padding: 7px;
+  padding: 8px 8px 2px 8px;
 
   //   크기 자동 수정
   overflow: hidden;

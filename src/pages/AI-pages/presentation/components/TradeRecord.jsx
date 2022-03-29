@@ -8,14 +8,9 @@ export default function TradeRecord({
   unitPrice,
   tradePrice,
 }) {
-//   let plusMinus;
-//   if (unitPrice > tradePrice) {
-//     plusMinus = '-';
-//   } else if (unitPrice < tradePrice) {
-//   }
   return (
     <StyledTradeRecord className="Histories">
-      <StyledDetails>
+      <StyledDetails >
         <summary>
           <div
             style={{
@@ -39,7 +34,7 @@ export default function TradeRecord({
             }}
           >
             <div className="leftside">{tradeDate}</div>
-            <StyledType className="rightside" className={tradeType === '매수' ? 'Buy' : 'Sell'}>{tradeType}</StyledType>
+            <StyledType className={tradeType === '매수' ? 'Buy' : 'Sell'}>{tradeType}</StyledType>
           </div>
         </summary>
         <StyledDetailsContainer>

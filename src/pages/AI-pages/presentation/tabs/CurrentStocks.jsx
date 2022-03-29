@@ -14,34 +14,24 @@ const InfoAnimation = keyframes`
     }
     `;
 
-export default function CurrentStock() {
+export default function CurrentStock(stockInfo) {
   const [account, setAccount] = useState([]);
   const [stocks, setStocks] = useState([]);
   const [selectedAccount, setSelectedAccount] = useState(0);
   const [detailInfo, setDetailInfo] = useState([]);
-  const [detailName, setDetailName] = useState("none");
+  const [detailName, setDetailName] = useState('none');
   useEffect(() => {
-    axios
-      .post('http://localhost:8060/', {
-        customer_info_id: 1,
-        login_type: '00',
-      })
-      .then((res) => {
-        //res로 백에서 데이터 정보가 넘어옴
-        setAccount(res.data.account);
-        setStocks(res.data.account[selectedAccount].stock);
-        console.log("Change Account")
-      })
-      .catch((err) => {
-        console.log('AIpage_currentstock_axios_err');
-      });
+    setAccount(stockInfo.data);
+    setStocks(stockInfo.data[selectedAccount].stock);
   }, [selectedAccount]);
   const holdingStocks = stocks.map((stock, index) => (
-    <div key={index} onClick={() => {
-      setDetailName(stock.stockName);
-      setDetailInfo(stock.stockDetail);
-    }
-      }>
+    <div
+      key={index}
+      onClick={() => {
+        setDetailName(stock.stockName);
+        setDetailInfo(stock.stockDetail);
+      }}
+    >
       <StockInfo
         stockName={stock.stockName}
         currentPrice={stock.currentPrice}
@@ -80,7 +70,7 @@ export default function CurrentStock() {
         <StyledBackButton onClick={() => setDetailName('none')}>◀ 이전</StyledBackButton>
         <StyledStackGraph className="graph">
           {detailName}
-          <LineChart stockDetail={detailInfo}/>
+          <LineChart stockDetail={detailInfo} />
         </StyledStackGraph>
       </StyledDetailInfo>
     </StyledScrollArea>
@@ -107,7 +97,6 @@ const StyledSelectBox = styled.div`
   justify-content: flex-end;
 `;
 const StyledSelect = styled.select`
-
   background: none;
   color: white;
   border: none;

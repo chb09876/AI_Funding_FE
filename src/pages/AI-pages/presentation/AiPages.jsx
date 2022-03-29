@@ -1,17 +1,38 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import IntroAi from './tabs/IntroAi';
 import CurrentStock from './tabs/CurrentStocks';
 import TransHistory from './tabs/TransHistory';
-
-const obj = {
-  0: <IntroAi />,
-  1: <CurrentStock />,
-  2: <TransHistory />,
-};
+import axios from 'axios';
 
 export default function AiPages() {
   const [SelectedTab, SelectTab] = useState(0);
+  const [currentStock, setCurrentStock] = useState([]);
+  const [tradeHistory, setTradeHistory] = useState([]);
+
+  const obj = {
+    0: <IntroAi />,
+    1: <CurrentStock data={currentStock} />,
+    2: <TransHistory data={tradeHistory} />,
+  };
+
+  useEffect(() => {
+    axios
+      .post('http://localhost:8060/', {
+        customer_info_id: 1,
+        login_type: '00',
+      })
+      .then((res) => {
+        //res로 백에서 데이터 정보가 넘어옴
+        setCurrentStock(res.data.currentStock);
+        setTradeHistory(res.data.tradeHistory);
+        console.log('Get currentStocks & tradeHistory Info');
+      })
+      .catch((err) => {
+        console.log('AIpage_axios_err');
+      });
+  }, []);
+
   return (
     <StyledAiPages className="ai-page-container">
       <StyledTabs className="tabs">
@@ -20,7 +41,9 @@ export default function AiPages() {
             className={SelectedTab === 0 ? 'selected' : 'notselectedLeft'}
             onClick={() => SelectTab(0)}
           >
-            AI 소개
+            <StyledBottomBar className={SelectedTab === 0 ? 'selected' : 'notselectedLeft'}>
+              AI 소개
+            </StyledBottomBar>
           </StyledTabButton>
         </StyledTab>
         <StyledTab>
@@ -28,7 +51,9 @@ export default function AiPages() {
             className={SelectedTab === 1 ? 'selected' : 'notselected'}
             onClick={() => SelectTab(1)}
           >
-            현재 종목
+            <StyledBottomBar className={SelectedTab === 1 ? 'selected' : 'notselectedLeft'}>
+              현재 종목
+            </StyledBottomBar>
           </StyledTabButton>
         </StyledTab>
         <StyledTab>
@@ -36,7 +61,9 @@ export default function AiPages() {
             className={SelectedTab === 2 ? 'selected' : 'notselectedRight'}
             onClick={() => SelectTab(2)}
           >
-            거래 내역
+            <StyledBottomBar className={SelectedTab === 2 ? 'selected' : 'notselectedLeft'}>
+              거래 내역
+            </StyledBottomBar>
           </StyledTabButton>
         </StyledTab>
       </StyledTabs>
@@ -53,7 +80,7 @@ const StyledTabs = styled.div`
   width: 100%;
   /* 세로길이 설정 */
   height: 60px;
-  background: black;
+  background: rgb(32, 32, 32);
 `;
 
 const StyledTab = styled.div`
@@ -90,11 +117,24 @@ const StyledTabButton = styled.div`
     } else {
       return `color: rgb(119, 119, 119);
       border-bottom: 2px solid rgb(152, 128, 101);
-      
-      
       `;
     }
   }};
 `;
-
+const StyledBottomBar = styled.div`
+  ${(props) => {
+    if (props.className === 'selected') {
+      return `color: rgb(152, 128, 101);
+    font-weight:bold;
+    border-bottom: 2px solid rgb(152, 128, 101);
+    margin-right: 15px;
+    margin-left: 15px;
+    `;
+    } else {
+      return `color: rgb(119, 119, 119);
+    border-bottom: none;
+    `;
+    }
+  }};
+`;
 const StyledContent = styled.div``;
