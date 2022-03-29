@@ -54,7 +54,11 @@ export default function TransHistory() {
   accountSelctor = setAccountSelector();
 
   const selectingAccount = (e) => {
+    const details = document.querySelectorAll("details");
     setSelectedAccount(e.target.value);
+    details.forEach((detail) => {
+        detail.removeAttribute("open");
+    });
   };
   return (
     <StyledHistoryContainer className="HistoryContainer">
@@ -73,31 +77,15 @@ export default function TransHistory() {
 const StyledScrollArea = styled.div`
   overflow: scroll;
   height: 95%;
+  margin-right:5px;
+  margin-left:5px;
 `;
 
 const StyledHistoryContainer = styled.div`
   height: 85vh;
-  margin: 10px;
+  margin: 0;
 `;
 
-const StyledTermSelector = styled.div`
-  margin: auto;
-`;
-
-const StyledType = styled.strong`
-  color: red;
-`;
-
-const StyledTermButton = styled.span`
-  font-weight: bold;
-  margin: 0 8px;
-  font-size: 1.1rem;
-  ${(props) => {
-    return props.className === 'selected'
-      ? `color: rgb(184, 168, 142)`
-      : `color: rgb(119, 119, 119)`;
-  }};
-`;
 const StyledSelectBox = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -108,52 +96,9 @@ const StyledSelect = styled.select`
   border: none;
   font-size: 20px;
   margin: 10px 10px 0px 10px;
-`;
 
-const StyledBar = styled.span`
-  font-weight: bold;
-  color: rgb(151, 151, 151);
-`;
-
-const StyledHistories = styled.div`
-  padding: 0 10px;
-`;
-
-const StyledDetails = styled.details`
-  & > summary {
-    color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid rgb(184, 168, 142);
-    // 삼각형 제거
-    list-style: none;
-  }
-  & > summary::marker {
-    display: none;
-  }
-  transition: height 0.2s ease;
-  overflow: hidden;
-  &:not([open]) {
-    height: 5em;
-  }
-  &[open] {
-    height: 10.5em;
-  }
-  &[open] > summary {
-    border-bottom: 2px dashed rgb(119, 119, 119);
+  & > option{
   }
 `;
 
-const StyledDetailsContent = styled.div`
-  color: white;
-  margin: auto;
-  text-align: center;
-  font-size: 16px;
-  animation: details-show 200ms ease-in-out;
-`;
-const StyledDetailsContainer = styled.div`
-  margin-top: 10px;
-  padding-bottom: 10px;
-  width: 100%;
-  border-bottom: 2px solid rgb(184, 168, 142);
-`;
+
