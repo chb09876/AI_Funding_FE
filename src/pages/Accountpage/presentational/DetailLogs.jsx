@@ -35,11 +35,6 @@ export default function DetailLogs() {
        + 000000원
       </StyledProfitLog>
     </StyledLog>
-    <summary>
-      <StyledLogClose>
-        닫기
-      </StyledLogClose>
-    </summary>
     </StyledLogContainer>
   );
 }
@@ -49,7 +44,6 @@ const StyledDateLog = styled.div`
   float: left;
   font-size: 1.2rem;
   padding-left: 20px;
-  padding-top: 20px;
   width: 50%;
   color: gray;
 `;
@@ -58,7 +52,6 @@ const StyledDateLog = styled.div`
 const StyledProfitLog = styled.div`
   font-size: 1.2rem;
   padding-right: 20px;
-  padding-top:20px;
   width: 50%;
   color: white;
   float: right;
@@ -71,8 +64,4 @@ const StyledLogContainer = styled.div`
   margin-top: 10px;
   padding-bottom: 10px;
   width: 100%;
-`;
-const StyledLogClose = styled.div`
-  text-align: center;
-  color: gray;
 `;

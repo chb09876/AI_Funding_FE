@@ -1,7 +1,9 @@
+import React, { useState } from 'react';
 import styled from "styled-components";
 import DetailLogs from "./DetailLogs";
 
 export default function Logs(props) {
+  const [setOpen, setClosed] = useState(false);
   return (
     <StyledLogContainer>
     <StyledLog>
@@ -35,15 +37,18 @@ export default function Logs(props) {
        <br/>
        + 000000원
       </StyledProfitLog>
+      {setOpen === true ? <DetailLogs/> : ""} 
 
-      
     <StyledDetails>
     <summary>
-      <StyledMoreLog>
-        더보기
+      <StyledMoreLog
+        onClick = {() => {
+        setClosed(!setOpen)
+        }}>
+      {setOpen === true ? "닫기" : "더보기"} 
       </StyledMoreLog>
     </summary>
-    <DetailLogs/>
+    
     </StyledDetails>
     </StyledLog>
     </StyledLogContainer>
