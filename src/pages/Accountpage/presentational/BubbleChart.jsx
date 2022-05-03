@@ -13,9 +13,9 @@ export default function CustomBubbleChart(props) {
 
   return (
     <div>
-      <AINameStyle>1234</AINameStyle>
+      <AINameStyle>AI이름</AINameStyle>
       <StartDateStyle>21.01.04</StartDateStyle>
-      <PlustDayStyle>+00일</PlustDayStyle>
+      <PlusDayStyle>+00일</PlusDayStyle>
       <BottomStyle>
         <BubbleChart
           data={bubbleData}
@@ -82,6 +82,7 @@ const AINameStyle = styled.span`
   position: relative;
   font-weight: lighter;
   font-size: 20px;
+  color: white;
 `;
 
 const StartDateStyle = styled.span`
@@ -89,21 +90,25 @@ const StartDateStyle = styled.span`
   left: 100px;
   font-weight: lighter;
   font-size: 20px;
+  color: white;
 `;
 
-const PlustDayStyle = styled.div`
+const PlusDayStyle = styled.div`
   position: relative;
   left: 220px;
   font-weight: lighter;
   font-size: 20px;
+  color: white;
 `;
 
 const MoneyIntroStyle = styled.div`
   font-size: 18px;
   font-weight: lighter;
+  color: white;
 `;
 
 const MoneyStyle = styled.div`
   font-weight: bold;
   font-size: 42px;
+  color: white;
 `;

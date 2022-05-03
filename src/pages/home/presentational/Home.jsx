@@ -23,7 +23,7 @@ export default function Home() {
   /*초기 마운트*/
   useEffect(() => {
     axios
-      .post('http://ec2-3-39-83-29.ap-northeast-2.compute.amazonaws.com:8080/api/home', {
+      .post(process.env.REACT_APP_HOST+'/api/home', {
         customer_info_id: 1,
         login_type: '00',
       })
@@ -86,4 +86,5 @@ export default function Home() {
 const HomeStyle = styled.div`
   flex-grow: 1;
   padding: 10px;
+  color: white;
 `;
