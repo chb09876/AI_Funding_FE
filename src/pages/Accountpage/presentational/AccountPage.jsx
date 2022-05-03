@@ -3,12 +3,6 @@ import { useState } from 'react';
 import CheckProfit from './CheckProfit';
 import CompareProfit from './CompareProfit';
 
-
-const obj = {
-  0: <CheckProfit />,
-  1: <CompareProfit />,
-};
-
 export default function AccountPage() {
   const [SelectedTab, SelectTab] = useState(0);
   return (
@@ -31,7 +25,9 @@ export default function AccountPage() {
           </StyledTabButton>
         </StyledTab>
       </StyledTabs>
-      <StyledContent className="contents">{obj[SelectedTab]}</StyledContent>
+      <StyledContent className="contents">
+        {SelectedTab === 0 ? <CheckProfit/> : <CompareProfit/>}
+      </StyledContent>
     </StyledAccountPage>
   );
 }

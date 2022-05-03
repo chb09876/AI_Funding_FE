@@ -11,6 +11,7 @@ import CustomBubbleChart from './BubbleChart';
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
+
 export default function CheckProfit() {
 	const [accountNumber, setAccountNumber] = useState(0);
 	const [accounts, setAccounts] = useState([]);
@@ -42,11 +43,13 @@ export default function CheckProfit() {
 		}
 	}, [accountNumber])
 
+  let accountCount  = 3; // 계좌 개수
+
   return (
     <StyledLogContainer>
       <StyledScrollArea>
         <StyledCheck>
-          <StyledTop className="Top">
+          <StyledTop>
             <StyledSwiper
               grabCursor={true}
               centeredSlides={true}
@@ -54,29 +57,38 @@ export default function CheckProfit() {
               pagination={{
                 clickable: true,
                 type: 'bullets',
+                watchOverflow: true, // 계좌 1개 일때 버튼 삭제
                 bulletActiveClass: 'swiper-pagination-bullet-active',
                 bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
               }}
               className="mySwiper"
-              onSlideChange={(e) => {
-                setAccountNumber(e.activeIndex);
-              }}
             >
               <SwiperSlide>
                 <div className="Account1">
                   <Account1 />
                 </div>
               </SwiperSlide>
-              <SwiperSlide>
-                <div className="Account2">
-                  <Account2 />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="Account3">
-                  <Account3 />
-                </div>
-              </SwiperSlide>
+
+              {accountCount >= 2 ? (
+                <SwiperSlide>
+                  <div className="Account2">
+                    <Account2 />
+                  </div>
+                </SwiperSlide>
+              ) : (
+                ''
+              )}
+
+              {accountCount >= 3 ? (
+                <SwiperSlide>
+                  <div className="Account3">
+                    <Account3 />
+                  </div>
+                </SwiperSlide>
+              ) : (
+                ''
+              )}
+
             </StyledSwiper>
           </StyledTop>
 
@@ -84,9 +96,9 @@ export default function CheckProfit() {
             <CustomBubbleChart
               height={(window.innerHeight * 35) / 100}
               width={window.innerWidth - 20}
-							accountNumber={accountNumber}
-							account={accounts[accountNumber]}
-							profitDetail={profitDetail}
+              accountNumber={accountNumber}
+              account={accounts[accountNumber]}
+              profitDetail={profitDetail}
             />
           </StyledBottom>
         </StyledCheck>
