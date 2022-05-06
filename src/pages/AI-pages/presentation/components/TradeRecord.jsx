@@ -1,4 +1,15 @@
-import styled from 'styled-components';
+import styled,{ keyframes }from 'styled-components';
+import {useEffect, useState}  from 'react';
+const selectStockAnimation = keyframes`
+    0%{
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+`;
 export default function TradeRecord({
   stockName,
   tradeDate,
@@ -7,51 +18,40 @@ export default function TradeRecord({
   tradeAmount,
   unitPrice,
   tradePrice,
+  toggleOFF
 }) {
+  useEffect(()=>{
+    setDetailToggle(0);
+;  },[toggleOFF])
+  const [detailToggle, setDetailToggle] = useState(0);
   return (
-    <StyledTradeRecord className="Histories">
-      <StyledDetails >
-        <summary>
-          <div
-            style={{
-              fontSize: '1.4rem',
-              fontWeight: 700,
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div className="leftside">{stockName}</div>
-            <div className="rightside">{totalPrice.toString()
-  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
-          </div>
-          <div
-            style={{
-              fontSize: '0.8rem',
-              fontWeight: 300,
-              color: 'gray',
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div className="leftside">{tradeDate}</div>
-            <StyledType className={tradeType === '매수' ? 'Buy' : 'Sell'}>{tradeType}</StyledType>
-          </div>
-        </summary>
-        <StyledDetailsContainer>
-          <StyledDetailsContent className="detailInfo">
-            거래종류 :{' '}
-            <StyledType className={tradeType === '매수' ? 'Buy' : 'Sell'}>{tradeType}</StyledType>
-            <br />
-            거래수량 : {tradeAmount}주
-            <br />
-            단가 : {unitPrice.toString()
-  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원
-            <br />
-            매수가 : {tradePrice.toString()
-  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원
-          </StyledDetailsContent>
-        </StyledDetailsContainer>
-      </StyledDetails>
+    <StyledTradeRecord className="Records">
+        <StyledDetails>
+            <StyledSummary className={detailToggle === -1 ? 'active' : ''} onClick={() => {
+                setDetailToggle(~detailToggle);
+            }}>
+                <StyledTopOfSummary className="top">
+                    <div className="leftside">{stockName}</div>
+                    <div className="rightside">{totalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
+                </StyledTopOfSummary>
+                <StyledBottomofSummary className="bottom">
+                    <div className="leftside">{tradeDate}</div>
+                    <StyledType className={tradeType === '매수' ? 'Buy' : 'Sell'}>{tradeType}</StyledType>
+                </StyledBottomofSummary>
+            </StyledSummary>
+            <StyledDetailsContainer className={detailToggle === -1 ? 'active detail' : ''}>
+                <StyledDetailsContent className="detailInfo">
+                    거래종류 :{' '}
+                    <StyledType className={tradeType === '매수' ? 'Buy' : 'Sell'}>{tradeType}</StyledType>
+                    <br />
+                    거래수량 : {tradeAmount}주
+                    <br />
+                    단가 : {unitPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원
+                    <br />
+                    매수가 : {tradePrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원
+                </StyledDetailsContent>
+            </StyledDetailsContainer>
+        </StyledDetails> 
     </StyledTradeRecord>
   );
 }
@@ -66,41 +66,45 @@ const StyledTradeRecord = styled.div`
   padding: 0 10px;
 `;
 
-const StyledDetails = styled.details`
-  & > summary {
+const StyledDetails = styled.div`
+    .active.detail{
+        display:block;
+    }
+    animation: ${selectStockAnimation} 0.6s ease-in-out;
+`;
+const StyledSummary = styled.div`
     color: white;
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 2px solid rgb(184, 168, 142);
-    // 삼각형 제거
-    list-style: none;
-  }
-  & > summary::marker {
-    display: none;
-  }
-  transition: height 0.2s ease;
-  overflow: hidden;
-  &:not([open]) {
-    height: 5em;
-  }
-  &[open] {
-    height: 10.5em;
-  }
-  &[open] > summary {
-    border-bottom: 2px dashed rgb(119, 119, 119);
-  }
+    width:100%;
+    ${(props) => {
+        return props.className === 'active' ? `border-bottom: 2px dashed rgb(119, 119, 119);` : `border-bottom: 2px solid rgb(184, 168, 142);`;
+    }};
 `;
-
+const StyledTopOfSummary = styled.div`
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+`;
+const StyledBottomofSummary = styled.div`
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: gray;
+    display: flex;
+    justify-content: space-between;
+`;
 const StyledDetailsContent = styled.div`
   color: white;
-  margin: auto;
+  margin-top: 10px;
   text-align: center;
   font-size: 16px;
-  animation: details-show 200ms ease-in-out;
+  
 `;
 const StyledDetailsContainer = styled.div`
   margin-top: 10px;
   padding-bottom: 10px;
-  width: 100%;
   border-bottom: 2px solid rgb(184, 168, 142);
+  display:none;
+  animation: ${selectStockAnimation} 0.5s ease-in-out;
 `;
