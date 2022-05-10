@@ -34,10 +34,9 @@ export default function CompareProfit() {
         >
           6M
         </StyledTermButton>
+        {/* <AccountLineChart /> */}
       </StyledTop>
-      <StyledBottom>
-        <AccountLineChart />
-      </StyledBottom>
+      {/* <StyledBottom></StyledBottom> */}
     </StyledCompareProfit>
   );
 }
@@ -47,7 +46,7 @@ const StyledCompareProfit = styled.div`
 `;
 
 const StyledTop = styled.div`
-  height: 30vh;
+  height: 100%;
   border: solid 1px #b8a88e;
   border-radius: 10px;
   margin: 8px;

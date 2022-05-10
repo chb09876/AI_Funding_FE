@@ -6,15 +6,59 @@ export default function AccountLineChart({ period }) {
   // 계좌의 생성 기간부터 지금까지 period만큼 구간을 나눠야 함
   const chartRef = useRef(null);
   const [data, setData] = useState({
-    labels: ['3월', '6월', '9월', '12월'],
+    labels: [
+      '3월',
+      '6월',
+      '9월',
+      '12월',
+      '3월',
+      '6월',
+      '9월',
+      '12월',
+      '3월',
+      '6월',
+      '9월',
+      '12월',
+      '3월',
+      '6월',
+      '9월',
+      '12월',
+      '3월',
+      '6월',
+      '9월',
+      '12월',
+      '3월',
+      '6월',
+      '9월',
+      '12월',
+      '3월',
+      '6월',
+      '9월',
+      '12월',
+      '3월',
+      '6월',
+      '9월',
+      '12월',
+    ],
     datasets: [
       {
-        label: 'dataset1',
-        data: [1, 4, -8, -3],
+        label: '코스피',
+        data: [
+          1, 4, -8, -3, 1, 4, -8, -3, 1, 4, -8, -3, 1, 4, -8, -3, 1, 4, -8, -3, 1, 4, -8, -3, 1, 4,
+          -8, -3, 1, 4, -8, -3,
+        ],
+        borderColor: 'grey',
+        order: 10,
       },
       {
-        label: 'dataset2',
-        data: [1, 10, -8, -3],
+        label: '다이아몬드',
+        data: [
+          1, 10, -8, -3, 1, 10, -8, -3, 1, 10, -8, -3, 1, 10, -8, -3, 1, 10, -8, -3, 1, 10, -8, -3,
+          1, 10, -8, -3, 1, 10, -8, -3,
+        ],
+        borderColor: 'aqua',
+        order: 1,
+        tension: 0.4,
       },
     ],
   });
@@ -50,8 +94,10 @@ const options = {
       borderColor: 'red',
       borderWidth: 3,
     },
+    point: {
+      radius: 0,
+    },
   },
-
   scales: {
     xAxis: {
       axis: 'x',
@@ -74,8 +120,8 @@ const options = {
     },
     yAxis: {
       axis: 'y',
-      suggestedMin: -50,
-      suggestedMax: 50,
+      suggestedMin: -30,
+      suggestedMax: 30,
       grid: {
         display: true,
         drawBorder: false,
@@ -83,6 +129,7 @@ const options = {
         color: '#777777',
       },
       ticks: {
+        stepSize: 15,
         callback: (value, index, ticks) => value + '%',
         color: 'white',
         font: {

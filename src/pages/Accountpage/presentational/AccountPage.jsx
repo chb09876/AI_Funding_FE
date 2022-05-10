@@ -26,7 +26,7 @@ export default function AccountPage() {
         </StyledTab>
       </StyledTabs>
       <StyledContent className="contents">
-        {SelectedTab === 0 ? <CheckProfit/> : <CompareProfit/>}
+        {SelectedTab === 0 ? <CheckProfit /> : <CompareProfit />}
       </StyledContent>
     </StyledAccountPage>
   );
@@ -68,7 +68,7 @@ const StyledTabButton = styled.div`
       border-bottom: 2px solid rgb(152, 128, 101);
       
       `;
-    }  else {
+    } else {
       return `color: rgb(119, 119, 119);
       border-bottom: 2px solid rgb(152, 128, 101);
       `;
