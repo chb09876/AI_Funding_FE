@@ -1,25 +1,25 @@
 /* Action Types */
-const AUTO_SIGN_IN = 'login/AUTO_SIGN_IN';
 const SIGN_IN = 'login/SING_IN';
 const SIGN_OUT = 'login/SIGN_OUT';
+const UPDATE_TOKEN = 'login/UPDATE_TOKEN';
 
 /* Action Creators */
-export const autoSignIn = (accessToken) => ({
-  type: AUTO_SIGN_IN,
-  isLoggedIn: true,
-  accessToken,
-});
-
-export const signIn = (accessToken) => ({
+export const signIn = (accessToken, UID) => ({
   type: SIGN_IN,
   isLoggedIn: true,
   accessToken,
+  UID,
 });
 
 export const signOut = () => ({
   type: SIGN_OUT,
   isLoggedIn: false,
   accessToken: null,
+});
+
+export const updateToken = (accessToken) => ({
+  type: UPDATE_TOKEN,
+  accessToken: accessToken,
 });
 
 /* Initial state */
@@ -37,17 +37,18 @@ export default function login(state = initialState, action) {
       return {
         ...state,
         isLoggedIn: action.isLoggedIn,
-      };
-    case AUTO_SIGN_IN:
-      return {
-        ...state,
         accessToken: action.accessToken,
-        isLoggedIn: action.isLoggedIn,
+        uid: action.UID,
       };
     case SIGN_OUT:
       return {
         ...state,
         isLoggedIn: action.isLoggedIn,
+      };
+    case UPDATE_TOKEN:
+      return {
+        ...state,
+        accessToken: action.accessToken,
       };
     default:
       return state;

@@ -23,7 +23,6 @@ export default function Account2(props) {
                 onClick = {() => {
                   setWon(!setUnit)
                 }}
-                 className={setUnit === true ? 'Won' : 'Unit'}
                 >
             </Styledbtn>
 
