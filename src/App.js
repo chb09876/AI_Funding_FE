@@ -12,6 +12,7 @@ import AccountPage from './pages/Accountpage/presentational/AccountPage';
 import { getItem } from './utils/cookies';
 import axios from 'axios';
 import { signIn, updateToken } from './modules/login';
+import CommunityPage from './pages/Communitypage/CommunityPage';
 
 export default function App() {
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
@@ -72,7 +73,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/second" element={<AiPages />} />
             <Route path="/third" element={<AccountPage />} />
-            <Route path="/fourth" element={'Community page'} />
+            <Route path="/fourth" element={<CommunityPage />} />
             <Route path="/fifth" element={'Settings page'} />
             <Route path="*" element={'404'} />
           </>
