@@ -11,8 +11,8 @@ export default function Login() {
   return (
     <LoginPageLayout>
       <Logo></Logo>
-      <LayoutedKakao href={`${process.env.REACT_APP_API_TEST}/auth/KAKAO`} />
-      <LayoutedGoogle href={`${process.env.REACT_APP_API_TEST}/auth/GOOGLE`} />
+      <LayoutedKakao href={`${process.env.REACT_APP_API}/auth/KAKAO`} />
+      <LayoutedGoogle href={`${process.env.REACT_APP_API}/auth/GOOGLE`} />
       <button
         onClick={() => {
           // 개발용 로그인 스킵 버튼.
