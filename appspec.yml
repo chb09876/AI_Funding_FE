@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /root/deploy_tmp
+    overwrite: true
+permissions:
+  - object: /root/motobi_develop
+    owner: root
+    group: root
+    mode: 755
+  - object: /root/motobi_master
+    owner: root
+    group: root
+    mode: 755
+hooks:
+  BeforeInstall:
+    - location: scripts/beforeDeploy.sh
+      runas: root
+  AfterInstall:
+    - location: scripts/afterDeploy.sh
+      runas: root

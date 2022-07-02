@@ -17,7 +17,7 @@ export default function KakaoAuth() {
       }
       // fetch auth code to back: use axios.post()
       axios
-        .post(`${process.env.REACT_APP_API_TEST}/auth/callback`, {
+        .post(`${process.env.REACT_APP_API}/auth/callback`, {
           code,
           loginType: 'KAKAO',
         })

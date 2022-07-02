@@ -1,0 +1,68 @@
+name: Deploy develop
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      # setup node.js envs
+      - name: use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ secrets.NODE_VERSION }}
+
+      - name: Check Node
+        run: node -v
+
+      - name: cache node modules
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: node_modules
+          key: npm-package-${{ hashFiles('**/package-lock.json') }}
+
+      - name: install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: give permission
+        run: chmod +x scripts/makeEnv.sh
+
+      - name: make envrionment variable
+        run: ./scripts/makeEnv.sh ${{ secrets.API_DEV }}
+
+      - name: run build
+        run: CI='' npm run build
+
+      - name: change name build folder to build-develop
+        run: mv build build-develop
+
+      - name: zip create
+        run: zip -qq -r ./develop.zip build-develop appspec.yml scripts .env
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Upload to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp --region ap-northeast-2 ./develop.zip s3://motobi-front-develop/develop/develop.zip
+
+      - name: Deploy
+        run: aws deploy create-deployment
+          --application-name motobi_front_deploy_develop
+          --deployment-config-name CodeDeployDefault.AllAtOnce
+          --deployment-group-name motobi
+          --s3-location bucket=motobi-front-develop,key=develop/develop.zip,bundleType=zip
