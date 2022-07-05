@@ -46,7 +46,6 @@ export default MenuNav;
 
 const StyledMenubar = styled.nav`
   overflow: hidden;
-  height: 70px;
   border-top: 2px solid rgb(184, 168, 142);
   flex: 0 0 70px;
 `;
