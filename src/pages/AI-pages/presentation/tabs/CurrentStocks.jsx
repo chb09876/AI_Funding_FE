@@ -76,7 +76,7 @@ export default function CurrentStock(stockInfo) {
         <StyledAccountSelector>
           <div className="selected" onClick={() => setSelectBoxToggle(~selectBoxToggle)}>
             <div className="selectedAccount">{arrayOfSelectBox[selectedAccount]}</div>
-            <div className="arrow">V</div>
+            <div className="arrow">▼</div>
           </div>
           <StyledUl
             className={selectBoxToggle === -1 ? 'ul active' : 'ul'}
@@ -154,9 +154,6 @@ const StyledAccountSelector = styled.div`
     font-size: 18px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; //줄바꿈안함
-  }
-  .arrow {
   }
   .ul {
     display: none;
@@ -177,21 +174,17 @@ const StyledUl = styled.ul`
   cursor: pointer;
   font-size: 18px;
   animation: ${selectBoxAnimation} 0.2s ease-in-out;
-
   z-index: 1;
-  li:hover {
-    background: #888;
-    border-radius: 7px;
-  }
-  li {
-    margin: 0.5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 `;
 const StyledAccountlist = styled.li`
   padding: 3px 5px;
+  margin: 0.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  :hover {
+    background: #888;
+    border-radius: 7px;
+  }
 `;
 const StyledStocks = styled.div`
   animation: ${selectBoxAnimation} 0.5s ease-in-out;
