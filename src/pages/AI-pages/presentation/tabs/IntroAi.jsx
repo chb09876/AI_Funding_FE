@@ -15,47 +15,46 @@ const App = () => {
         <StyledSwiperPagination>
           <div className="swiper-pagination-top"></div>
         </StyledSwiperPagination>
-        <StyledSwiper
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={'auto'}
-          pagination={{
-            el: '.swiper-pagination-top',
-            clickable: true,
-            type: 'bullets',
-            bulletActiveClass: 'swiper-pagination-bullet-active',
-            bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
-            renderBullet: (index, className) => {
-              return '<span class="' + className + '"></span>';
-            },
-          }}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <StyledSwiperContent className="intro1">
-              <Intro1 />
-            </StyledSwiperContent>
-          </SwiperSlide>
-          <SwiperSlide>
-            <StyledSwiperContent className="intro2">
-              <Intro2 />
-            </StyledSwiperContent>
-          </SwiperSlide>
-          <SwiperSlide>
-            <StyledSwiperContent className="intro3">
-              <Intro3 />
-            </StyledSwiperContent>
-          </SwiperSlide>
-        </StyledSwiper>
+          <StyledSwiper
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={'auto'}
+            pagination={{
+              el: '.swiper-pagination-top',
+              clickable: true,
+              type: 'bullets',
+              bulletActiveClass: 'swiper-pagination-bullet-active',
+              bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
+              renderBullet: (index, className) => {
+                return '<span class="' + className + '"></span>';
+              },
+            }}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <StyledSwiperContent className="intro1">
+                <Intro1 />
+              </StyledSwiperContent>
+            </SwiperSlide>
+            <SwiperSlide>
+              <StyledSwiperContent className="intro2">
+                <Intro2 />
+              </StyledSwiperContent>
+            </SwiperSlide>
+            <SwiperSlide>
+              <StyledSwiperContent className="intro3">
+                <Intro3 />
+              </StyledSwiperContent>
+            </SwiperSlide>
+          </StyledSwiper>
       </StyledContainer>
     </StyledScrollArea>
   );
 };
 
 export default App;
-
 const StyledContainer = styled.div`
-  height: 500px;
+  overflow:hidden;
   width: 95vw;
   background: black;
   border-radius: 5px;
