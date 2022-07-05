@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import StockInfo from '../components/StockInfo';
 import styled, { keyframes } from 'styled-components';
 import LineChart from '../components/LineChart';
-import axios from 'axios';
 const InfoAnimation = keyframes`
     0%{
         opacity: 0;
@@ -12,7 +11,17 @@ const InfoAnimation = keyframes`
         opacity: 1;
         transform: translateX(0px);
     }
-    `;
+`;
+const selectBoxAnimation = keyframes`
+    0%{
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+`;
 
 export default function CurrentStock(stockInfo) {
   const [account, setAccount] = useState([]);
@@ -20,10 +29,13 @@ export default function CurrentStock(stockInfo) {
   const [selectedAccount, setSelectedAccount] = useState(0);
   const [detailInfo, setDetailInfo] = useState([]);
   const [detailName, setDetailName] = useState('none');
+  const [selectBoxToggle, setSelectBoxToggle] = useState(0);
+
   useEffect(() => {
     setAccount(stockInfo.data);
     setStocks(stockInfo.data[selectedAccount].stock);
   }, [selectedAccount]);
+
   const holdingStocks = stocks.map((stock, index) => (
     <div
       key={index}
@@ -41,31 +53,39 @@ export default function CurrentStock(stockInfo) {
       />
     </div>
   ));
-  let accountSelector;
+
+  let arrayOfSelectBox=[];
+  let accountSelector;                          //selectBox setting
   function setAccountSelector() {
     let accountSelector = [];
     for (let i = 0; i < account.length; i++) {
       accountSelector.push(
-        <option key={i} value={i}>
+        <StyledAccountlist key={i} value={i} onClick={(e)=>setSelectedAccount(e.target.value)}>
           {account[i].accountName}
-        </option>
+        </StyledAccountlist>
       );
+      arrayOfSelectBox.push(account[i].accountName);
     }
     return accountSelector;
   }
   accountSelector = setAccountSelector();
 
-  const selectingAccount = (e) => {
-    setSelectedAccount(e.target.value);
-  };
   return (
     <StyledScrollArea className="container">
-      <StyledSelectBox className="accountSelector">
-        <StyledSelect onChange={selectingAccount} value={selectedAccount}>
-          {accountSelector}
-        </StyledSelect>
+      <StyledSelectBox className="selectBox" >
+        <StyledAccountSelector >
+          <div className="selected" onClick={() => setSelectBoxToggle(~selectBoxToggle)}>
+            <div className="selectedAccount">{arrayOfSelectBox[selectedAccount]}</div>
+            <div className="arrow">V</div>
+          </div>
+          <StyledUl className={selectBoxToggle === -1 ? 'ul active' : 'ul'} onClick={() => setSelectBoxToggle(~selectBoxToggle)}>
+            {accountSelector}
+          </StyledUl>
+        </StyledAccountSelector>
       </StyledSelectBox>
-      {holdingStocks}
+      <StyledStocks>
+        {holdingStocks}
+      </StyledStocks>
       <StyledDetailInfo className={detailName === 'none' ? 'CloseInfo' : 'OpenInfo'}>
         <StyledBackButton onClick={() => setDetailName('none')}>◀ 이전</StyledBackButton>
         <StyledStackGraph className="graph">
@@ -84,7 +104,7 @@ const StyledDetailInfo = styled.div`
   width: 100%;
   height: 100%;
   color: white;
-  animation: ${InfoAnimation} 0.6s ease-in-out;
+  animation: ${InfoAnimation} 0.5s ease-in-out;
   ${(props) => {
     return props.className === 'CloseInfo'
       ? `display: none;`
@@ -92,17 +112,7 @@ const StyledDetailInfo = styled.div`
       `;
   }};
 `;
-const StyledSelectBox = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-const StyledSelect = styled.select`
-  background: none;
-  color: white;
-  border: none;
-  font-size: 20px;
-  margin: 10px 10px 0px 10px;
-`;
+
 
 const StyledBackButton = styled.div`
   color: rgb(152, 128, 101);
@@ -121,4 +131,70 @@ const StyledStackGraph = styled.div`
 const StyledScrollArea = styled.div`
   overflow: scroll;
   height: 85vh;
+`;
+const StyledSelectBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+const StyledAccountSelector = styled.div`
+  width: 30%;
+  display: inline;
+  margin: 5px 10px 0 0 ;
+  float:right;
+  border-radius:7px;
+  color:white;
+  
+  .selected {
+    display:flex;
+    justify-content: space-between;
+    padding: 8px 5px;
+  }
+  .selectedAccount{
+    max-width: 100%;
+    font-size:18px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; //줄바꿈안함
+  }
+  .arrow{
+    
+  }
+  .ul{
+    display:none;
+  }
+  .ul.active{
+    display:initial;
+  }
+`;
+
+const StyledUl=styled.ul`
+  list-style-type: none;
+  padding-left: 0px;
+  width:30%;
+  position:absolute;
+  background:black;
+  margin:1px 0 0 -1px;
+  border-radius:6px;
+  cursor: pointer;
+  font-size:18px;
+  animation: ${selectBoxAnimation} 0.2s ease-in-out;
+  
+  z-index:1;
+  li:hover{
+    background: #888;
+    border-radius:7px;
+  }
+  li{
+    margin:0.5px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;
+const StyledAccountlist = styled.li`
+  padding: 3px 5px;
+  
+`;
+const StyledStocks = styled.div`
+animation: ${selectBoxAnimation} 0.5s ease-in-out;
 `;
