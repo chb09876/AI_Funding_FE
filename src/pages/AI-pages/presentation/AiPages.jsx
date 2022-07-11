@@ -73,7 +73,7 @@ export default function AiPages() {
   );
 }
 const StyledAiPages = styled.div`
-  height: 100%;
+  flex-grow:1;
 `;
 const StyledTabs = styled.div`
   display: flex;

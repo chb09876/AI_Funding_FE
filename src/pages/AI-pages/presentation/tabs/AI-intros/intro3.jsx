@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-export default function Intro2() {
+export default function Intro1() {
   return (
     <StyledIntroContainer>
-      <StyledNameEn>RUBY</StyledNameEn>
-      <StyledNameKr>루비</StyledNameKr>
+      <StyledNameEn>SAPPHIRE</StyledNameEn>
+      <StyledNameKr>사파이어</StyledNameKr>
       <StyledDesc className="desc">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis neque mollitia vero quos
         vitae ducimus, fuga similique quas doloribus aut.
