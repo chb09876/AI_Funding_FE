@@ -11,105 +11,60 @@ import CustomBubbleChart from './BubbleChart';
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
-
 export default function CheckProfit() {
-	const [accountNumber, setAccountNumber] = useState(0);
-	const [accounts, setAccounts] = useState([]);
-  const [profitDetail, setProfitDetail] = useState([]);
-
-	useEffect(() => {
-    axios
-      .post('http://localhost:8080/checkProfit')//, {
-        // customer_info_id: 1,
-        // login_type: '00',
-      	//})
-      .then((res) => {
-				console.log(res.data);
-        setAccounts(res.data.account);
-        setProfitDetail(res.data.account[accountNumber].profitDetail);
-      })
-      .catch((err) => {
-        console.log('에러');
-      });
-  }, []);
-
-	/*계좌 변화시*/
-	const mounted = useRef(false);
-	useEffect(() => {
-		if(!mounted.current){
-			mounted.current = true;
-		} else {
-			setProfitDetail(accounts[accountNumber].profitDetail)
-		}
-	}, [accountNumber])
-
-  let accountCount  = 3; // 계좌 개수
-
+  let accountCount = 3; // 계좌 개수
   return (
-    <StyledLogContainer>
-      <StyledScrollArea>
-        <StyledCheck>
-          <StyledTop>
-            <StyledSwiper
-              grabCursor={true}
-              centeredSlides={true}
-              slidesPerView={'auto'}
-              pagination={{
-                clickable: true,
-                type: 'bullets',
-                watchOverflow: true, // 계좌 1개 일때 버튼 삭제
-                bulletActiveClass: 'swiper-pagination-bullet-active',
-                bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
-              }}
-              className="mySwiper"
-            >
-              <SwiperSlide>
-                <div className="Account1">
-                  <Account1 />
-                </div>
-              </SwiperSlide>
+    <StyledScrollArea>
+      <StyledTop>
+        <StyledSwiper
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={'auto'}
+          pagination={{
+            clickable: true,
+            type: 'bullets',
+            watchOverflow: true, // 계좌 1개 일때 버튼 삭제
+            bulletActiveClass: 'swiper-pagination-bullet-active',
+            bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
+          }}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <div className="Account1">
+              <Account1 />
+            </div>
+          </SwiperSlide>
 
-              {accountCount >= 2 ? (
-                <SwiperSlide>
-                  <div className="Account2">
-                    <Account2 />
-                  </div>
-                </SwiperSlide>
-              ) : (
-                ''
-              )}
+          {accountCount >= 2 ? (
+            <SwiperSlide>
+              <div className="Account2">
+                <Account2 />
+              </div>
+            </SwiperSlide>
+          ) : (
+            ''
+          )}
 
-              {accountCount >= 3 ? (
-                <SwiperSlide>
-                  <div className="Account3">
-                    <Account3 />
-                  </div>
-                </SwiperSlide>
-              ) : (
-                ''
-              )}
+          {accountCount >= 3 ? (
+            <SwiperSlide>
+              <div className="Account3">
+                <Account3 />
+              </div>
+            </SwiperSlide>
+          ) : (
+            ''
+          )}
+        </StyledSwiper>
+      </StyledTop>
 
-            </StyledSwiper>
-          </StyledTop>
-
-          <StyledBottom>
-            <CustomBubbleChart
-              height={(window.innerHeight * 35) / 100}
-              width={window.innerWidth - 20}
-              accountNumber={accountNumber}
-              account={accounts[accountNumber]}
-              profitDetail={profitDetail}
-            />
-          </StyledBottom>
-        </StyledCheck>
-      </StyledScrollArea>
-    </StyledLogContainer>
+      <StyledBottom>Bottom Graph</StyledBottom>
+    </StyledScrollArea>
   );
 }
 
 const StyledScrollArea = styled.div`
   overflow-y: scroll;
-	overflow-x: hidden;
+  overflow-x: hidden;
   height: 95%;
 `;
 
@@ -135,10 +90,10 @@ const StyledSwiper = styled(Swiper)`
 const StyledCheck = styled.div``;
 
 const StyledBottom = styled.div`
+  height: 45vh;
   width: 95%;
   border: solid 1px #b8a88e;
   border-radius: 10px;
   background-color: black;
-  margin: 10px 10px 15px 10px;
-	padding: 10px;
+  margin: 10px auto;
 `;
