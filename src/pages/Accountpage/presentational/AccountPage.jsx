@@ -8,43 +8,35 @@ export default function AccountPage() {
   return (
     <StyledAccountPage className="account_page">
       <StyledTabs className="tabs">
-        <StyledTab>
-          <StyledTabButton
-            className={SelectedTab === 0 ? 'selected' : 'notselected'}
-            onClick={() => SelectTab(0)}
-          >
-            수익 확인
-          </StyledTabButton>
-        </StyledTab>
-        <StyledTab>
-          <StyledTabButton
-            className={SelectedTab === 1 ? 'selected' : 'notselected'}
-            onClick={() => SelectTab(1)}
-          >
-            수익 비교
-          </StyledTabButton>
-        </StyledTab>
+        <StyledTabButton
+          className={SelectedTab === 0 ? 'selected' : 'notselected'}
+          onClick={() => SelectTab(0)}
+        >
+          수익 확인
+        </StyledTabButton>
+        <StyledTabButton
+          className={SelectedTab === 1 ? 'selected' : 'notselected'}
+          onClick={() => SelectTab(1)}
+        >
+          수익 비교
+        </StyledTabButton>
       </StyledTabs>
       <StyledContent className="contents">
-        {SelectedTab === 0 ? <CheckProfit/> : <CompareProfit/>}
+        {SelectedTab === 0 ? <CheckProfit /> : <CompareProfit />}
       </StyledContent>
     </StyledAccountPage>
   );
 }
 
 const StyledAccountPage = styled.div`
-  height: 100%;
+  height: 92%;
 `;
 const StyledTabs = styled.div`
   display: flex;
   width: 100%;
-  height: 60px;
+  height: 50px;
   background: rgb(32, 32, 32);
-`;
-
-const StyledTab = styled.div`
   margin-top: 10px;
-  width: 50%;
 `;
 
 const StyledTabButton = styled.div`
@@ -68,7 +60,7 @@ const StyledTabButton = styled.div`
       border-bottom: 2px solid rgb(152, 128, 101);
       
       `;
-    }  else {
+    } else {
       return `color: rgb(119, 119, 119);
       border-bottom: 2px solid rgb(152, 128, 101);
       `;
