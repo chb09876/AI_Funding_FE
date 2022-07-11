@@ -21,7 +21,7 @@ export default function AccountPage() {
           수익 비교
         </StyledTabButton>
       </StyledTabs>
-      <StyledContent className="contents">
+      <StyledContent className="contents" SelectedTab={SelectedTab}>
         {SelectedTab === 0 ? <CheckProfit /> : <CompareProfit />}
       </StyledContent>
     </StyledAccountPage>
@@ -68,4 +68,8 @@ const StyledTabButton = styled.div`
   }};
 `;
 
-const StyledContent = styled.div``;
+const StyledContent = styled.div`
+  ${(props) => {
+    return props.SelectedTab ? 'height: 100%' : '';
+  }}
+`;
