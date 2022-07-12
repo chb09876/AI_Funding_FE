@@ -7,43 +7,48 @@ import Account2 from './Account2';
 import Account3 from './Account3';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import CustomBubbleChart from './BubbleChart';
+import HitMapChart from './HitMapChart';
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
-
 export default function CheckProfit() {
-	const [accountNumber, setAccountNumber] = useState(0);
-	const [accounts, setAccounts] = useState([]);
-  const [profitDetail, setProfitDetail] = useState([]);
+  const [accountNumber, setAccountNumber] = useState(0);
+  const [accounts, setAccounts] = useState([]);
+  const [aiType, setAIType] = useState('');
+  const [createAt, setCreateAt] = useState('');
+  const [stockList, setStockList] = useState([]);
 
-	useEffect(() => {
+  useEffect(() => {
     axios
-      .post('http://localhost:8080/checkProfit')//, {
-        // customer_info_id: 1,
-        // login_type: '00',
-      	//})
+      .post('http://localhost:8080/checkProfit', {
+      customer_info_id: 1,
+      login_type: '00',
+      })
       .then((res) => {
-				console.log(res.data);
+        console.log(res.data);
         setAccounts(res.data.account);
-        setProfitDetail(res.data.account[accountNumber].profitDetail);
+        setAIType(res.data.account[accountNumber].aiType);
+        setCreateAt(res.data.account[accountNumber].createAt);
+        setStockList(res.data.account[accountNumber].stockList);
       })
       .catch((err) => {
         console.log('에러');
       });
   }, []);
 
-	/*계좌 변화시*/
-	const mounted = useRef(false);
-	useEffect(() => {
-		if(!mounted.current){
-			mounted.current = true;
-		} else {
-			setProfitDetail(accounts[accountNumber].profitDetail)
-		}
-	}, [accountNumber])
+  /*계좌 변화시*/
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      setAIType(accounts[accountNumber].aiType);
+      setCreateAt(accounts[accountNumber].createAt);
+      setStockList(accounts[accountNumber].stockList);
+    }
+  }, [accountNumber]);
 
-  let accountCount  = 3; // 계좌 개수
+  let accountCount = 3; // 계좌 개수
 
   return (
     <StyledLogContainer>
@@ -62,6 +67,9 @@ export default function CheckProfit() {
                 bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
               }}
               className="mySwiper"
+              onSlideChange={(e) => {
+                setAccountNumber(e.activeIndex);
+              }}
             >
               <SwiperSlide>
                 <div className="Account1">
@@ -88,18 +96,18 @@ export default function CheckProfit() {
               ) : (
                 ''
               )}
-
             </StyledSwiper>
           </StyledTop>
 
           <StyledBottom>
-            <CustomBubbleChart
-              height={(window.innerHeight * 35) / 100}
-              width={window.innerWidth - 20}
-              accountNumber={accountNumber}
-              account={accounts[accountNumber]}
-              profitDetail={profitDetail}
-            />
+            <BottomTitle>
+              <AIType>{aiType}</AIType>
+              <BottomDate>
+                <div>{getFormatDate(createAt)}</div>
+                <div>{'+' + getStartDay(createAt)+ '일'}</div>
+              </BottomDate>
+            </BottomTitle>
+            <HitMapChart stockList={stockList} aiType={aiType} />
           </StyledBottom>
         </StyledCheck>
       </StyledScrollArea>
@@ -107,9 +115,26 @@ export default function CheckProfit() {
   );
 }
 
+const getStartDay = (createAt) => {
+  const todayDate = new Date();
+  const createDate = new Date(createAt);
+  const startDay = Math.ceil((todayDate.getTime() - createDate.getTime()) / (1000 * 60 * 60 * 24));
+  return startDay;
+};
+
+const getFormatDate = (date) => {
+  var createAt = new Date(date);
+  var year = createAt.getFullYear() - 2000;
+  var month = 1 + createAt.getMonth();
+  month = month >= 10 ? month : '0' + month;
+  var day = createAt.getDate();
+  day = day >= 10 ? day : '0' + day;
+  return year + '.' + month + '.' + day;
+};
+
 const StyledScrollArea = styled.div`
   overflow-y: scroll;
-	overflow-x: hidden;
+  overflow-x: hidden;
   height: 95%;
 `;
 
@@ -140,5 +165,23 @@ const StyledBottom = styled.div`
   border-radius: 10px;
   background-color: black;
   margin: 10px 10px 15px 10px;
-	padding: 10px;
+  padding: 10px;
+  color: white;
+`;
+
+const BottomTitle = styled.div`
+  display: flex;
+  fiex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const BottomDate = styled.div`
+  text-align: end;
+  font-size: 20px;
+`;
+
+const AIType = styled.div`
+  font-weight: bold;
+  font-size: 20px;
 `;
