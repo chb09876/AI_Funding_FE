@@ -5,17 +5,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Account1 from './Account1';
 import Account2 from './Account2';
 import Account3 from './Account3';
+import { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+import CustomBubbleChart from './BubbleChart';
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
-
 export default function CheckProfit() {
-  
-  let accountCount  = 3; // 계좌 개수
+  let accountCount = 3; // 계좌 개수
   return (
-    <StyledLogContainer>
     <StyledScrollArea>
-    <StyledCheck>
       <StyledTop>
         <StyledSwiper
           grabCursor={true}
@@ -24,50 +23,48 @@ export default function CheckProfit() {
           pagination={{
             clickable: true,
             type: 'bullets',
-            watchOverflow: true, // 계좌 1개 일때 버튼 삭제 
+            watchOverflow: true, // 계좌 1개 일때 버튼 삭제
             bulletActiveClass: 'swiper-pagination-bullet-active',
             bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
           }}
           className="mySwiper"
         >
-       
           <SwiperSlide>
             <div className="Account1">
-              <Account1/>
+              <Account1 />
             </div>
           </SwiperSlide>
-          
-          {accountCount  >= 2 ?
+
+          {accountCount >= 2 ? (
             <SwiperSlide>
               <div className="Account2">
-               <Account2/>
-             </div>
+                <Account2 />
+              </div>
             </SwiperSlide>
-           : "" }    
+          ) : (
+            ''
+          )}
 
-          {accountCount  >= 3 ?
+          {accountCount >= 3 ? (
             <SwiperSlide>
-            <div className="Account3">
-              <Account3/>
-            </div>
-          </SwiperSlide>
-           : "" }    
-
+              <div className="Account3">
+                <Account3 />
+              </div>
+            </SwiperSlide>
+          ) : (
+            ''
+          )}
         </StyledSwiper>
       </StyledTop>
-      
-      <StyledBottom>
-        Bottom Graph
-      </StyledBottom>
 
-      </StyledCheck>
-      </StyledScrollArea>
-    </StyledLogContainer>
+      <StyledBottom>Bottom Graph</StyledBottom>
+    </StyledScrollArea>
   );
-};
+}
 
 const StyledScrollArea = styled.div`
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 95%;
 `;
 
@@ -76,13 +73,12 @@ const StyledLogContainer = styled.div`
 `;
 
 const StyledTop = styled.div`
-  flex-grow : 1;
+  flex-grow: 1;
   width: 95%;
   border: solid 1px #b8a88e;
   border-radius: 10px;
   background-color: black;
   margin: 10px auto;
-  
 `;
 
 const StyledSwiper = styled(Swiper)`
@@ -94,10 +90,10 @@ const StyledSwiper = styled(Swiper)`
 const StyledCheck = styled.div``;
 
 const StyledBottom = styled.div`
-height: 45vh;
-width: 95%;
-border: solid 1px #b8a88e;
-border-radius: 10px;
-background-color: black;
-margin: 10px auto;
+  height: 45vh;
+  width: 95%;
+  border: solid 1px #b8a88e;
+  border-radius: 10px;
+  background-color: black;
+  margin: 10px auto;
 `;
