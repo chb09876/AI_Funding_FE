@@ -48,3 +48,13 @@ const ChartWrapper = styled.div`
   height: calc(100% - 80px);
   margin: 10px;
 `;
+
+const StyledBottom = styled.div`
+  height: 50vh;
+  border: solid 1px #b8a88e;
+  border-radius: 10px;
+  background-color: #202020;
+  position: relative;
+  margin: 10px;
+`;
+
