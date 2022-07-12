@@ -1,74 +1,52 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AccountLineChart from './AccountLineChart';
+import axios from 'axios';
 
 export default function CompareProfit() {
-  const [selectedTerm, SelectTerm] = useState(0);
+  const [accountList, setAccountList] = useState(null);
+
+  // fetch daily profit data about all account
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API}/api/dailyprofit`, {
+        customer_info_id: 1,
+        login_type: '00',
+      })
+      .then((response) => {
+        setAccountList(response.data);
+      })
+      .catch((error) => {
+        console.log('error!: compareprofit');
+      });
+  }, []);
+
+  // get longest label(xAxis) of accounts
+  const labels = ((accountList) => {
+    let longestLabel = [];
+    if (!!!accountList) {
+      return longestLabel;
+    }
+    accountList.foreach((account) => {
+      if (account.profits.length > longestLabel.length) longestLabel = Object.keys(account.profits);
+    });
+    return longestLabel;
+  })();
+
   return (
-    <StyledCompareProfit className="compareProfit">
-      <StyledTop className="term">
-        <StyledTermButton
-          className={selectedTerm === 0 ? 'selected' : 'notselected'}
-          onClick={() => SelectTerm(0)}
-        >
-          ALL
-        </StyledTermButton>
-        <StyledBar>|</StyledBar>
-        <StyledTermButton
-          className={selectedTerm === 1 ? 'selected' : 'notselected'}
-          onClick={() => SelectTerm(1)}
-        >
-          1M
-        </StyledTermButton>
-        <StyledBar>|</StyledBar>
-        <StyledTermButton
-          className={selectedTerm === 3 ? 'selected' : 'notselected'}
-          onClick={() => SelectTerm(3)}
-        >
-          3M
-        </StyledTermButton>
-        <StyledBar>|</StyledBar>
-        <StyledTermButton
-          className={selectedTerm === 6 ? 'selected' : 'notselected'}
-          onClick={() => SelectTerm(6)}
-        >
-          6M
-        </StyledTermButton>
-      </StyledTop>
-      <StyledBottom>
-        <AccountLineChart />
-      </StyledBottom>
-    </StyledCompareProfit>
+    <>
+      <ChartWrapper>
+        {accountList ? <AccountLineChart labels={labels} dataset={accountList} /> : <div />}
+      </ChartWrapper>
+    </>
   );
 }
 
-const StyledCompareProfit = styled.div`
-  height: 100%;
-`;
-
-const StyledTop = styled.div`
-  height: 30vh;
-  border: solid 1px #b8a88e;
-  border-radius: 10px;
-  margin: 8px;
-  background-color: black;
-  position: relative;
-`;
-
-const StyledTermButton = styled.span`
-  font-weight: bold;
-  margin: 0 8px;
-  font-size: 1.1rem;
-  ${(props) => {
-    return props.className === 'selected'
-      ? `color: rgb(184, 168, 142)`
-      : `color: rgb(119, 119, 119)`;
-  }};
-`;
-
-const StyledBar = styled.span`
-  font-weight: bold;
-  color: rgb(151, 151, 151);
+const ChartWrapper = styled.div`
+  border: 2px solid #b8a88e;
+  border-radius: 15px;
+  height: calc(100% - 80px);
+  margin: 10px;
 `;
 
 const StyledBottom = styled.div`
@@ -79,3 +57,4 @@ const StyledBottom = styled.div`
   position: relative;
   margin: 10px;
 `;
+

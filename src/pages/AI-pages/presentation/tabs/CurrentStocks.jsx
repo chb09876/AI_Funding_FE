@@ -54,13 +54,13 @@ export default function CurrentStock(stockInfo) {
     </div>
   ));
 
-  let arrayOfSelectBox=[];
-  let accountSelector;                          //selectBox setting
+  let arrayOfSelectBox = [];
+  let accountSelector; //selectBox setting
   function setAccountSelector() {
     let accountSelector = [];
     for (let i = 0; i < account.length; i++) {
       accountSelector.push(
-        <StyledAccountlist key={i} value={i} onClick={(e)=>setSelectedAccount(e.target.value)}>
+        <StyledAccountlist key={i} value={i} onClick={(e) => setSelectedAccount(e.target.value)}>
           {account[i].accountName}
         </StyledAccountlist>
       );
@@ -72,20 +72,21 @@ export default function CurrentStock(stockInfo) {
 
   return (
     <StyledScrollArea className="container">
-      <StyledSelectBox className="selectBox" >
-        <StyledAccountSelector >
+      <StyledSelectBox className="selectBox">
+        <StyledAccountSelector>
           <div className="selected" onClick={() => setSelectBoxToggle(~selectBoxToggle)}>
             <div className="selectedAccount">{arrayOfSelectBox[selectedAccount]}</div>
-            <div className="arrow">V</div>
+            <div className="arrow">▼</div>
           </div>
-          <StyledUl className={selectBoxToggle === -1 ? 'ul active' : 'ul'} onClick={() => setSelectBoxToggle(~selectBoxToggle)}>
+          <StyledUl
+            className={selectBoxToggle === -1 ? 'ul active' : 'ul'}
+            onClick={() => setSelectBoxToggle(~selectBoxToggle)}
+          >
             {accountSelector}
           </StyledUl>
         </StyledAccountSelector>
       </StyledSelectBox>
-      <StyledStocks>
-        {holdingStocks}
-      </StyledStocks>
+      <StyledStocks>{holdingStocks}</StyledStocks>
       <StyledDetailInfo className={detailName === 'none' ? 'CloseInfo' : 'OpenInfo'}>
         <StyledBackButton onClick={() => setDetailName('none')}>◀ 이전</StyledBackButton>
         <StyledStackGraph className="graph">
@@ -113,7 +114,6 @@ const StyledDetailInfo = styled.div`
   }};
 `;
 
-
 const StyledBackButton = styled.div`
   color: rgb(152, 128, 101);
   padding: 10px;
@@ -139,62 +139,53 @@ const StyledSelectBox = styled.div`
 const StyledAccountSelector = styled.div`
   width: 30%;
   display: inline;
-  margin: 5px 10px 0 0 ;
-  float:right;
-  border-radius:7px;
-  color:white;
-  
+  margin: 5px 10px 0 0;
+  float: right;
+  border-radius: 7px;
+  color: white;
+
   .selected {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     padding: 8px 5px;
   }
-  .selectedAccount{
+  .selectedAccount {
     max-width: 100%;
-    font-size:18px;
-    overflow:hidden;
+    font-size: 18px;
+    overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; //줄바꿈안함
   }
-  .arrow{
-    
+  .ul {
+    display: none;
   }
-  .ul{
-    display:none;
-  }
-  .ul.active{
-    display:initial;
+  .ul.active {
+    display: initial;
   }
 `;
 
-const StyledUl=styled.ul`
+const StyledUl = styled.ul`
   list-style-type: none;
   padding-left: 0px;
-  width:30%;
-  position:absolute;
-  background:black;
-  margin:1px 0 0 -1px;
-  border-radius:6px;
+  width: 30%;
+  position: absolute;
+  background: black;
+  margin: 1px 0 0 -1px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size:18px;
+  font-size: 18px;
   animation: ${selectBoxAnimation} 0.2s ease-in-out;
-  
-  z-index:1;
-  li:hover{
-    background: #888;
-    border-radius:7px;
-  }
-  li{
-    margin:0.5px;
-    overflow:hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  z-index: 1;
 `;
 const StyledAccountlist = styled.li`
   padding: 3px 5px;
-  
+  margin: 0.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  :hover {
+    background: #888;
+    border-radius: 7px;
+  }
 `;
 const StyledStocks = styled.div`
-animation: ${selectBoxAnimation} 0.5s ease-in-out;
+  animation: ${selectBoxAnimation} 0.5s ease-in-out;
 `;

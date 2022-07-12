@@ -46,12 +46,8 @@ export default MenuNav;
 
 const StyledMenubar = styled.nav`
   overflow: hidden;
-  height: 70px;
   border-top: 2px solid rgb(184, 168, 142);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  flex: 0 0 70px;
 `;
 
 const StyledMenuButton = styled(Link)`

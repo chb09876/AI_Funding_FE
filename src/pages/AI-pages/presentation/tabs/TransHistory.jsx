@@ -1,4 +1,4 @@
-import styled ,{ keyframes }from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useState, useEffect, useRef } from 'react';
 import TradeRecord from '../components/TradeRecord';
 
@@ -23,7 +23,7 @@ export default function TransHistory(tradeInfo) {
     setAccount(tradeInfo.data);
     setTradeHistory(tradeInfo.data[selectedAccount].tradeHistory);
   }, [selectedAccount]);
-  
+
   const holdingRecords = tradeHistory.map((history, index) => (
     <div key={index}>
       <TradeRecord
@@ -39,13 +39,13 @@ export default function TransHistory(tradeInfo) {
     </div>
   ));
 
-  let arrayOfSelectBox=[];
-  let accountSelector;                          //selectBox setting
+  let arrayOfSelectBox = [];
+  let accountSelector; //selectBox setting
   function setAccountSelector() {
     let accountSelector = [];
     for (let i = 0; i < account.length; i++) {
       accountSelector.push(
-        <StyledAccountlist key={i} value={i} onClick={(e)=>setSelectedAccount(e.target.value)}>
+        <StyledAccountlist key={i} value={i} onClick={(e) => setSelectedAccount(e.target.value)}>
           {account[i].accountName}
         </StyledAccountlist>
       );
@@ -57,13 +57,16 @@ export default function TransHistory(tradeInfo) {
 
   return (
     <StyledHistoryContainer className="HistoryContainer">
-      <StyledSelectBox className="selectBox" >
-        <StyledAccountSelector >
+      <StyledSelectBox className="selectBox">
+        <StyledAccountSelector>
           <div className="selected" onClick={() => setSelectBoxToggle(~selectBoxToggle)}>
             <div className="selectedAccount">{arrayOfSelectBox[selectedAccount]}</div>
-            <div className="arrow">V</div>
+            <div className="arrow">▼</div>
           </div>
-          <StyledUl className={selectBoxToggle === -1 ? 'ul active' : 'ul'} onClick={() => setSelectBoxToggle(~selectBoxToggle)}>
+          <StyledUl
+            className={selectBoxToggle === -1 ? 'ul active' : 'ul'}
+            onClick={() => setSelectBoxToggle(~selectBoxToggle)}
+          >
             {accountSelector}
           </StyledUl>
         </StyledAccountSelector>
@@ -92,59 +95,52 @@ const StyledSelectBox = styled.div`
 const StyledAccountSelector = styled.div`
   width: 30%;
   display: inline;
-  margin: 5px 10px 0 0 ;
-  float:right;
-  border-radius:7px;
-  color:white;
-  
+  margin: 5px 10px 0 0;
+  float: right;
+  border-radius: 7px;
+  color: white;
+
   .selected {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     padding: 8px 5px;
   }
-  .selectedAccount{
+  .selectedAccount {
     max-width: 100%;
-    font-size:18px;
-    overflow:hidden;
+    font-size: 18px;
+    overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; //줄바꿈안함
   }
-  .arrow{
-    
+  .arrow {
   }
-  .ul{
-    display:none;
+  .ul {
+    display: none;
   }
-  .ul.active{
-    display:initial;
+  .ul.active {
+    display: initial;
   }
 `;
 
-const StyledUl=styled.ul`
+const StyledUl = styled.ul`
   list-style-type: none;
   padding-left: 0px;
-  width:30%;
-  position:absolute;
-  background:black;
-  margin:1px 0 0 -1px;
-  border-radius:6px;
+  width: 30%;
+  position: absolute;
+  background: black;
+  margin: 1px 0 0 -1px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size:18px;
+  font-size: 18px;
   animation: ${selectBoxAnimation} 0.2s ease-in-out;
-  
-  z-index:1;
-  li:hover{
-    background: #888;
-    border-radius:7px;
-  }
-  li{
-    margin:0.5px;
-    overflow:hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  z-index: 1;
 `;
 const StyledAccountlist = styled.li`
   padding: 3px 5px;
-  
+  margin: 0.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  :hover {
+    background: #888;
+    border-radius: 7px;
+  }
 `;
