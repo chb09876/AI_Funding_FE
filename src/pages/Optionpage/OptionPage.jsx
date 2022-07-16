@@ -5,10 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export default function OptionPage() {
-  const [SelectedTab, SelectTab] = useState(0);
-  const [SelectedClass, SelectClass] = useState("공지");
-  const [Title, SetTitle] = useState("커뮤니티");
-
 
 
   //옵션 목록 출력 함수
