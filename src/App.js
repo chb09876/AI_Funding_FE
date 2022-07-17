@@ -73,7 +73,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/second" element={<AiPages />} />
             <Route path="/third" element={<AccountPage />} />
-            <Route path="/fourth" element={<CommunityPage />} />
+            <Route path="/fourth/*" element={<CommunityPage />} />
             <Route path="/fifth" element={'Settings page'} />
             <Route path="*" element={'404'} />
           </>
