@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import styled from 'styled-components';
 
 const colorTable = {
-  aquamarine: 'aquamarine',
-  ruby: 'pink',
+  1: 'aquamarine',
+  2: 'pink',
 };
 
 export default function AccountLineChart({ labels, dataset }) {
@@ -97,12 +97,11 @@ export default function AccountLineChart({ labels, dataset }) {
   const data = {
     labels,
     datasets: dataset.map((data) => {
-      console.log('data', data);
       return {
-        label: data.accountName,
-        data: Object.entries(data.profits).map(([date, profit]) => ({ x: date, y: profit })),
-        order: 1,
-        borderColor: colorTable[data.model],
+        label: data.nickname,
+        data: data.profits.map(({ date, profit }) => ({ x: date, y: profit })),
+        order: data.aiType,
+        borderColor: colorTable[data.aiType],
       };
     }),
   };
@@ -123,19 +122,3 @@ const StyledLine = styled(Line)`
   border-radius: 15px;
   padding: 10px;
 `;
-
-// const horizontalDottedLine = {
-//   id: 'horizontalDottedLine',
-//   beforeDatasetsDraw: (chart, args, options) => {
-//     const {
-//       ctx,
-//       chartArea: { left, width },
-//       scales: { yAxis },
-//     } = chart;
-//     ctx.save();
-//     ctx.strokeStyle = '#777777';
-//     ctx.setLineDash([10, 20]);
-//     ctx.strokeRect(left, yAxis.getPixelForValue(33), width, 0);
-//     ctx.restore();
-//   },
-// };
