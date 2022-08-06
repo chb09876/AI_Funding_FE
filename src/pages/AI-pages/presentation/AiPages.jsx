@@ -17,7 +17,7 @@ export default function AiPages() {
   };
 
   useEffect(() => {
-    axios
+    axios//  address + /api/ai-page 
       .post(`${process.env.REACT_APP_API}`, {
         customer_info_id: 1,
         login_type: '00',

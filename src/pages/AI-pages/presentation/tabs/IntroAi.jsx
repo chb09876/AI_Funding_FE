@@ -57,7 +57,6 @@ const StyledContainer = styled.div``;
 const StyledSwiper = styled(Swiper)`
   color: white;
   height: 100%;
-  margin: 10px;
 `;
 const StyledScrollArea = styled.div`
   overflow: scroll;
