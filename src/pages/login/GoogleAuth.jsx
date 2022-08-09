@@ -2,8 +2,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { signIn } from '../../../modules/login';
-import { setItem } from '../../../utils/cookies';
+import { signIn } from '../../modules/login';
 
 export default function GoogleAuth() {
   const dispatch = useDispatch();
@@ -15,31 +14,28 @@ export default function GoogleAuth() {
       if (code === null) {
         throw Error('query parameter:code is not exist.');
       }
-      // fetch auth code to back: use axios.post()
       axios
-        .post(`${process.env.REACT_APP_API}/auth/callback`, {
+        .post(`${process.env.REACT_APP_API}/api/auth/sign-in`, {
           code,
           loginType: 'GOOGLE',
         })
-        .then((response) => {
-          if (response.data.isExistUser === true) {
-            // success login
-            const { accessToken, UID } = response.data;
-            dispatch(signIn(accessToken, UID));
-            setItem('has_refresh', 'true', 90);
+        .then((res) => {
+          const {
+            data: { accessToken, UID, isExistUser },
+          } = res;
+          dispatch(signIn(accessToken, UID));
+          if (isExistUser === true) {
             navigate('/', { replace: true });
-          } else if (response.data.isExistUser === false) {
-            navigate('/sign-up', { replace: true });
+          } else if (isExistUser === false) {
+            navigate('/sign-up', { replace: true, UID, loginType: 'GOOGLE' });
           }
         })
         .catch((error) => {
-          // network communication error
-          console.log('newtwork error!', error);
+          console.log(error);
           navigate('/', { replace: true });
         });
-    } catch (error) {
-      console.log('unexpected error!', error);
-      navigate('/', { replace: true });
+    } catch (err) {
+      console.log(err);
     }
   }, [dispatch, navigate]);
 

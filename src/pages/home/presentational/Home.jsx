@@ -23,7 +23,7 @@ export default function Home() {
   /*초기 마운트*/
   useEffect(() => {
     axios
-      .post(`${process.env.REACT_APP_API}/api/home`, {
+      .post(`${process.env.REACT_APP_API}`, {
         customer_info_id: 1,
         login_type: '00',
       })
