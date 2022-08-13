@@ -8,10 +8,10 @@ import Aquagraph from './svgs/Aquagraph.svg';
 export default function Intro1() {
   return (
     <StyledIntroContainer>
-      <StyledSpec1>
+      <StyledSpec>
         <StyledTitle>
           <StyledIcon>
-            <img src={Aquamarine} width="100%"/>
+            <img src={Aquamarine} width="100%" />
           </StyledIcon>
           <StyledFeather1>
             <img src={Aquafeather1} />
@@ -26,15 +26,12 @@ export default function Intro1() {
           <StyledFeather3>
             <img src={Aquafeather3} />
           </StyledFeather3>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis neque mollitia vero quos
-          vitae ducimus, fuga similique quas doloribus aut.
+          장기적 관점의 안정적인 투자 모델입니다.
+          <StyledGraph className="Graph">
+            <img src={Aquagraph} width="100%" />
+          </StyledGraph>
         </StyledDesc>
-      </StyledSpec1>
-      <StyledSpec2>
-        <StyledGraph className='Graph'>
-          <img src={Aquagraph} width="100%" />
-        </StyledGraph>
-      </StyledSpec2>
+      </StyledSpec>
     </StyledIntroContainer>
   );
 }
@@ -46,7 +43,7 @@ const StyledIntroContainer = styled.div`
 const StyledNameEn = styled.div`
   position: relative;
   font-size: 15vw;
-  margin: 5px;
+  margin: 25px 5px;
   text-align: center;
   z-index: 1;
   color: rgb(38, 106, 132);
@@ -98,24 +95,20 @@ const StyledFeather3 = styled.div`
   right: 0px;
   z-index: 2;
 `;
-const StyledSpec1 = styled.div`
+const StyledSpec = styled.div`
   overflow: hidden;
   width: 95vw;
   background: black;
-
   border-radius: 5px;
   margin: 10px auto;
 `;
-const StyledSpec2 = styled.div`
+const StyledGraph = styled.div`
   overflow: hidden;
   width: 95vw;
   background: black;
-  border-radius: 5px;
   margin: auto;
-  display : flex;
-  justify-content:center;
-`;
-const StyledGraph = styled.div`
+  display: flex;
+  justify-content: center;
   width: 80vw;
-  margin-top:10px;
+  margin-top: 10px;
 `;

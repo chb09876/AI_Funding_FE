@@ -7,10 +7,10 @@ import Amethgraph from './svgs/Amethgraph.svg';
 export default function Intro3() {
   return (
     <StyledIntroContainer>
-      <StyledSpec1>
+      <StyledSpec>
         <StyledTitle>
           <StyledIcon>
-            <img src={Ameth} width="100%"/>
+            <img src={Ameth} width="100%" />
           </StyledIcon>
           <StyledFeather1>
             <img src={Amethfeather1} />
@@ -22,15 +22,12 @@ export default function Intro3() {
           <StyledFeather2>
             <img src={Amethfeather2} />
           </StyledFeather2>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis neque mollitia vero quos
-          vitae ducimus, fuga similique quas doloribus aut.
+          레버리지를 활용한 공격적인 투자 모델입니다.
+          <StyledGraph className="Graph">
+            <img src={Amethgraph} width="100%" />
+          </StyledGraph>
         </StyledDesc>
-      </StyledSpec1>
-      <StyledSpec2>
-        <StyledGraph className='Graph'>
-          <img src={Amethgraph} width="100%" />
-        </StyledGraph>
-      </StyledSpec2>
+      </StyledSpec>
     </StyledIntroContainer>
   );
 }
@@ -42,7 +39,7 @@ const StyledIntroContainer = styled.div`
 const StyledNameEn = styled.div`
   position: relative;
   font-size: 15vw;
-  margin: 5px;
+  margin: 25px 5px;
   text-align: center;
   z-index: 1;
   color: rgb(65, 48, 93);
@@ -88,23 +85,21 @@ const StyledFeather2 = styled.div`
   left: 00px;
   z-index: 2;
 `;
-const StyledSpec1 = styled.div`
+const StyledSpec = styled.div`
   overflow: hidden;
   width: 95vw;
   background: black;
   border-radius: 10px;
   margin: 10px auto;
 `;
-const StyledSpec2 = styled.div`
+
+const StyledGraph = styled.div`
   overflow: hidden;
   width: 95vw;
   background: black;
-  border-radius: 10px;
   margin: auto;
-  display : flex;
-  justify-content:center;
-`;
-const StyledGraph = styled.div`
+  display: flex;
+  justify-content: center;
   width: 80vw;
-  margin-top:10px;
+  margin-top: 10px;
 `;
