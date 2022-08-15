@@ -6,6 +6,52 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function OptionPage() {
 
+  const [SelectTopOption, setSelectTopOption]=useState(1)
+  const [RightTopOption, setRightTopOption]=useState(2)
+  const [LeftTopOption, setLeftTopOption]=useState(0)
+  const [SelectTopOptionName,setSelectTopOptionName] = useState('첫번째')
+  const [SelectTopOptionIcon, setSelectTopOptionIcon]=useState('fa-solid fa-house')
+
+  const Options = [
+    {
+      id : 0,
+      name : '첫번째',
+      icon : 'fa-solid fa-house'
+    },
+    {
+      id : 1,
+      name : '두번째',
+      icon : 'fa-solid fa-comments'
+    },
+    {
+      id : 2,
+      name : '세번째',
+      icon : 'fa-solid fa-gear'
+    }
+  ];
+  const List = [0,1,2];
+
+  const TopFirstOption = () =>{
+    setSelectTopOption(0)
+    setSelectTopOptionName("첫번째");
+    setSelectTopOptionIcon('fa-solid fa-house')
+  }
+  const TopSecondOption = () =>{
+    setSelectTopOption(1)
+    setSelectTopOptionName("두번째");
+    setSelectTopOptionIcon('fa-solid fa-comments')
+  }
+  const TopThirdOption = () =>{
+    setSelectTopOption(2)
+    setSelectTopOptionName("세번째");
+    setSelectTopOptionIcon('fa-solid fa-gear')
+  }
+
+  const Swap=(a)=>{
+    const cur = SelectTopOption;
+    const next = a.id;
+
+  }
 
   //옵션 목록 출력 함수
   const PrintList = () => {
@@ -23,9 +69,6 @@ export default function OptionPage() {
   return (
 
     <StyledCommunityPage className="community_page">
-
-
-
       <SearchArea>
         <SearchBox>검 색</SearchBox>
       </SearchArea>
@@ -34,27 +77,27 @@ export default function OptionPage() {
       <TopButtenArea>
         <TopButtenBox className='notselected'><TopButten className='notselected'>
           <StyledIcon
-            icon='fa-solid fa-house'
+            icon={Options[List[0]].icon}
             className='notselected'
           >
           </StyledIcon>
-        </TopButten>첫번째</TopButtenBox>
+        </TopButten>{Options[List[0]].name}</TopButtenBox>
 
         <TopButtenBox className='selected'><TopButten className='selected'>
           <StyledIcon
-            icon='fa-solid fa-comments'
+            icon={Options[List[1]].icon}
             className='selected'
           >
           </StyledIcon>
-        </TopButten>두번째</TopButtenBox>
+        </TopButten>{Options[List[1]].name}</TopButtenBox>
 
         <TopButtenBox className='notselected'><TopButten className='notselected'>
           <StyledIcon
-            icon='fa-solid fa-gear'
+            icon={Options[List[2]].icon}
             className='notselected'
           >
           </StyledIcon>
-        </TopButten>세번째</TopButtenBox>
+        </TopButten>{Options[List[2]].name}</TopButtenBox>
       </TopButtenArea>
 
       
