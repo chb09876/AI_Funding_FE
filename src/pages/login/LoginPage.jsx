@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import google_img from '../../image/google_login.png';
-import kakao_img from '../../image/kakao_login_large_narrow.png';
+import kakao_img from '../../image/kakao_login_large_narrow.svg';
 import logo_img from '../../image/logo.svg';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../modules/login';

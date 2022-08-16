@@ -4,20 +4,23 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../modules/login';
 
-export default function GoogleAuth() {
+export default function Auth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     try {
       const code = new URLSearchParams(window.location.search).get('code');
+      const loginType = new URLSearchParams(window.location.search).get('loginType');
       if (code === null) {
         throw Error('query parameter:code is not exist.');
       }
       axios
-        .post(`${process.env.REACT_APP_API}/api/auth/sign-in`, {
-          code,
-          loginType: 'GOOGLE',
+        .get(`${process.env.REACT_APP_API}/api/auth/sign-in`, {
+          params: {
+            loginType,
+            code,
+          },
         })
         .then((res) => {
           const {
@@ -27,7 +30,7 @@ export default function GoogleAuth() {
           if (isExistUser === true) {
             navigate('/', { replace: true });
           } else if (isExistUser === false) {
-            navigate('/sign-up', { replace: true, UID, loginType: 'GOOGLE' });
+            navigate('/sign-up', { replace: true, state: { UID, loginType: 'GOOGLE' } });
           }
         })
         .catch((error) => {

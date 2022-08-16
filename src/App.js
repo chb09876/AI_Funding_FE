@@ -4,8 +4,6 @@ import BackgroundLayout from './common/BackgroundLayout';
 import MenuNav from './common/MenuNav';
 import Home from './pages/home/presentational/Home';
 import Login from './pages/login/LoginPage';
-import KakaoAuth from './pages/login/KakaoAuth';
-import GoogleAuth from './pages/login/GoogleAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import AiPages from './pages/AI-pages/presentation/AiPages';
 import AccountPage from './pages/Accountpage/presentational/AccountPage';
@@ -15,6 +13,7 @@ import { signIn, updateToken } from './modules/login';
 import CommunityPage from './pages/Communitypage/CommunityPage';
 import RegisterForm from './pages/login/RegisterForm';
 import OptionPage from './pages/Optionpage/OptionPage';
+import Auth from './pages/login/Auth';
 
 export default function App() {
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
@@ -57,7 +56,6 @@ export default function App() {
             console.log(error);
           });
       }, 25 * 60 * 1000);
-
       return () => {
         clearInterval(interval);
       };
@@ -82,8 +80,7 @@ export default function App() {
         ) : (
           // route before login
           <>
-            <Route path="/oauth/kakao" element={<KakaoAuth />} />
-            <Route path="/oauth/google" element={<GoogleAuth />} />
+            <Route path="/oauth" element={<Auth />} />
             <Route path="/sign-up" element={<RegisterForm />} />
             <Route path="*" element={<Login />} />
           </>

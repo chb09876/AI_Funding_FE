@@ -2,65 +2,23 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { useInputWithValidation } from '../../hooks/useInput';
 import { signIn } from '../../modules/login';
+import { emailValidator, nicknameValidator } from '../../utils/validator';
 
 export default function RegisterForm() {
-  const [email, setEmail] = useState({
-    value: '',
-    validation: { ok: false, msg: '이메일을 작성해주세요!' },
-  });
-
-  const [nickname, setNickname] = useState({
-    value: '',
-    validation: { ok: false, msg: '닉네임을 작성해주세요!' },
-  });
-
+  const [email, isEmailValid, onChangeEmail] = useInputWithValidation('', emailValidator);
+  const [nickname, isNicknameValid, onChangeNickname] = useInputWithValidation(
+    '',
+    nicknameValidator
+  );
+  const [isEmailDuplicated, setIsEmailDuplicated] = useState(false);
+  const [isNicknameDuplicated, setIsNicknameDuplicated] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const onChangeNickname = (event) => {
-    event.preventDefault();
-    setNickname({
-      value: event.target.value,
-      validation: {
-        ok: false,
-        msg: event.target.value === '' ? '닉네임을 작성해주세요!' : '작성중...',
-      },
-    });
-  };
-
-  const onChangeEmail = (event) => {
-    event.preventDefault();
-    setEmail({
-      value: event.target.value,
-      validation: {
-        ok: false,
-        msg: event.target.value === '' ? '이메일을 작성해주세요!' : '작성중...',
-      },
-    });
-  };
-
-  const onBlurInputNickname = (event) => {
-    event.preventDefault();
-    onBlurInput(
-      nickname,
-      setNickname,
-      `${process.env.REACT_APP_API}/api/auth/duplicate/nickname`,
-      validateNickname
-    );
-  };
-
-  const onBlurInputEmail = (event) => {
-    event.preventDefault();
-    onBlurInput(
-      email,
-      setEmail,
-      `${process.env.REACT_APP_API}/api/auth/duplicate/email`,
-      validateEmail
-    );
-  };
 
   const onClickSubmit = (event) => {
     event.preventDefault();
@@ -91,36 +49,99 @@ export default function RegisterForm() {
     <Container>
       <Title>회원가입</Title>
       <InputName>닉네임</InputName>
-      <Input
-        type="text"
-        name="nickname"
-        maxLength="12"
-        onChange={onChangeNickname}
-        onBlur={onBlurInputNickname}
-        value={nickname.value}
-      />
-      <Validation ok={nickname.validation.ok}>
-        {nickname.validation.ok ? '✔️' : '❌'}
-        {nickname.validation.msg}
-      </Validation>
+      <InputWrapper>
+        <Input
+          type="text"
+          name="nickname"
+          maxLength="12"
+          onChange={(event) => {
+            event.preventDefault();
+            onChangeNickname(event);
+            setIsNicknameDuplicated(false);
+          }}
+          value={nickname}
+        />
+        <CheckDuplicateButton
+          onClick={(event) => {
+            event.preventDefault();
+            axios
+              .post(`${process.env.REACT_APP_API}/api/auth/duplicate/nickname`, null, {
+                params: {
+                  value: nickname,
+                },
+              })
+              .then((res) => {
+                if (res.data.isExist === true) {
+                  setIsNicknameDuplicated(true);
+                } else {
+                  setIsNicknameDuplicated(false);
+                  alert('중복된 닉네임입니다');
+                }
+              });
+          }}
+        >
+          중복확인
+        </CheckDuplicateButton>
+      </InputWrapper>
+      <div>
+        <Validation ok={isNicknameValid}>
+          {isNicknameValid ? '✔️' : '❌'}
+          {'최대 12글자, 한글, 영문, 숫자'}
+        </Validation>
+        <Validation ok={isNicknameDuplicated}>
+          {isNicknameDuplicated ? '✔️' : '❌'}
+          {'중복 검사'}
+        </Validation>
+      </div>
       <InputName>이메일</InputName>
-      <Input
-        type="email"
-        name="email"
-        placeholder="example@email.com"
-        onChange={onChangeEmail}
-        onBlur={onBlurInputEmail}
-        value={email.value}
-      />
-      <Validation ok={email.validation.ok}>
-        {email.validation.ok ? '✔️' : '❌'}
-        {email.validation.msg}
-      </Validation>
+      <InputWrapper>
+        <Input
+          type="email"
+          name="email"
+          placeholder="example@email.com"
+          onChange={(event) => {
+            event.preventDefault();
+            onChangeEmail(event);
+          }}
+          value={email}
+        />
+        <CheckDuplicateButton
+          onClick={(event) => {
+            event.preventDefault();
+            axios
+              .post(`${process.env.REACT_APP_API}/api/auth/duplicate/email`, null, {
+                params: {
+                  value: email,
+                },
+              })
+              .then((res) => {
+                if (res.data.isExist === true) {
+                  setIsEmailDuplicated(true);
+                } else {
+                  setIsEmailDuplicated(false);
+                  alert('중복된 이메일입니다.');
+                }
+              });
+          }}
+        >
+          중복확인
+        </CheckDuplicateButton>
+      </InputWrapper>
+      <div>
+        <Validation ok={isEmailValid}>
+          {isEmailValid ? '✔️' : '❌'}
+          {'이메일 형식'}
+        </Validation>
+        <Validation ok={isEmailDuplicated}>
+          {isEmailDuplicated ? '✔️' : '❌'}
+          {'중복 검사'}
+        </Validation>
+      </div>
       <Submit
         type="submit"
         name="sign-up"
         onClick={onClickSubmit}
-        disabled={!(email.validation.ok && nickname.validation.ok)}
+        disabled={!isEmailValid || !isNicknameValid || !isEmailDuplicated || !isNicknameDuplicated}
       >
         계속하기
       </Submit>
@@ -128,62 +149,12 @@ export default function RegisterForm() {
   );
 }
 
-const onBlurInput = (dest, setState, checkUrl, validate) => {
-  if (dest.value === '') {
-    setState((prev) => {
-      return {
-        ...prev,
-        validation: { ok: false, msg: prev.validation.msg },
-      };
-    });
-  } else if (validate(dest.value) === true) {
-    axios
-      .post(checkUrl, {
-        value: dest.value,
-      })
-      .then((res) => {
-        if (res.data.isExist === true) {
-          setState((prev) => {
-            return {
-              ...prev,
-              validation: { ok: false, msg: '이미 누군가가 사용하고 있어요 :(.' },
-            };
-          });
-        } else if (res.data.isExist === false) {
-          setState((prev) => {
-            return {
-              ...prev,
-              validation: { ok: true, msg: '사용 가능합니다! :).' },
-            };
-          });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        setState((prev) => {
-          return {
-            ...prev,
-            validation: { ok: false, msg: '통신 오류!' },
-          };
-        });
-      });
-  } else {
-    setState((prev) => {
-      return { ...prev, validation: { ok: false, msg: '형식에 맞지 않습니다.' } };
-    });
-  }
-};
-
-const validateEmail = (email) => {
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-};
-
-const validateNickname = (nickname) => {
-  if (nickname.length > 12) {
-    return false;
-  }
-  return /^[a-zA-Z0-9가-힣]*$/.test(nickname);
-};
+const CheckDuplicateButton = styled.button`
+  background-color: aliceblue;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Spoqa Han Sans Neo', '궁서';
+`;
 
 const Submit = styled.button`
   font-size: 20px;
@@ -210,11 +181,13 @@ const Input = styled.input`
   background-color: grey;
   margin: 0 10px 0 10px;
   font-family: 'Spoqa Han Sans Neo', '궁서';
-  font-size: 25px;
+  font-size: 20px;
   border-radius: 15px;
   border: 0;
   color: black;
   padding-left: 10px;
+
+  flex-grow: 1;
 
   &:focus {
     outline: none;
@@ -237,8 +210,13 @@ const InputName = styled.span`
   margin-left: 20px;
 `;
 
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 const Validation = styled.span`
   color: ${({ ok }) => (ok ? 'green' : 'red')};
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 12px;
 `;
