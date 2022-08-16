@@ -12,9 +12,6 @@ const App = () => {
   return (
     <StyledScrollArea>
       <StyledContainer className="Container">
-        <StyledSwiperPagination>
-          <div className="swiper-pagination-top"></div>
-        </StyledSwiperPagination>
         <StyledSwiper
           grabCursor={true}
           centeredSlides={true}
@@ -31,6 +28,9 @@ const App = () => {
           }}
           className="mySwiper"
         >
+          <StyledSwiperPagination className="swiper-pagi">
+            <div className="swiper-pagination-top"></div>
+          </StyledSwiperPagination>
           <SwiperSlide>
             <StyledSwiperContent className="intro1">
               <Intro1 />
@@ -53,18 +53,10 @@ const App = () => {
 };
 
 export default App;
-
-const StyledContainer = styled.div`
-  height: 500px;
-  width: 95vw;
-  background: black;
-  border-radius: 5px;
-  margin: 10px auto;
-`;
+const StyledContainer = styled.div``;
 const StyledSwiper = styled(Swiper)`
   color: white;
   height: 100%;
-  margin: 10px;
 `;
 const StyledScrollArea = styled.div`
   overflow: scroll;
@@ -73,8 +65,10 @@ const StyledScrollArea = styled.div`
 
 const StyledSwiperContent = styled.div``;
 const StyledSwiperPagination = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 15px;
   height: 2px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  text-align: center;
+  z-index: 10;
 `;

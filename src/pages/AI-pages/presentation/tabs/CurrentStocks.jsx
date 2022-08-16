@@ -76,7 +76,7 @@ export default function CurrentStock(stockInfo) {
         <StyledAccountSelector>
           <div className="selected" onClick={() => setSelectBoxToggle(~selectBoxToggle)}>
             <div className="selectedAccount">{arrayOfSelectBox[selectedAccount]}</div>
-            <div className="arrow">▼</div>
+            <div className="arrow" style={{marginLeft: "1em"}}>▼</div>
           </div>
           <StyledUl
             className={selectBoxToggle === -1 ? 'ul active' : 'ul'}
@@ -134,7 +134,7 @@ const StyledScrollArea = styled.div`
 `;
 const StyledSelectBox = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 const StyledAccountSelector = styled.div`
   width: 30%;
@@ -146,7 +146,7 @@ const StyledAccountSelector = styled.div`
 
   .selected {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 8px 5px;
   }
   .selectedAccount {

@@ -9,15 +9,15 @@ export default function CompareProfit() {
   // fetch daily profit data about all account
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API}/api/dailyprofit`, {
+      .post(`${process.env.REACT_APP_API}/api/profit-compare`, {
         customer_info_id: 1,
         login_type: '00',
       })
       .then((response) => {
-        setAccountList(response.data);
+        setAccountList(response.data.accounts);
       })
       .catch((error) => {
-        console.log('error!: compareprofit');
+        console.log(error);
       });
   }, []);
 
@@ -28,7 +28,9 @@ export default function CompareProfit() {
       return longestLabel;
     }
     accountList.foreach((account) => {
-      if (account.profits.length > longestLabel.length) longestLabel = Object.keys(account.profits);
+      if (account.profits.length > longestLabel.length) {
+        longestLabel = Object.keys(account.profits);
+      }
     });
     return longestLabel;
   })();
@@ -46,14 +48,5 @@ const ChartWrapper = styled.div`
   border: 2px solid #b8a88e;
   border-radius: 15px;
   height: calc(100% - 80px);
-  margin: 10px;
-`;
-
-const StyledBottom = styled.div`
-  height: 50vh;
-  border: solid 1px #b8a88e;
-  border-radius: 10px;
-  background-color: #202020;
-  position: relative;
   margin: 10px;
 `;
