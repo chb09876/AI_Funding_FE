@@ -17,8 +17,8 @@ export default function AiPages() {
   };
 
   useEffect(() => {
-    axios
-      .post('http://localhost:8060/', {
+    axios//  address + /api/ai-page 
+      .post(`${process.env.REACT_APP_API}`, {
         customer_info_id: 1,
         login_type: '00',
       })
@@ -73,7 +73,7 @@ export default function AiPages() {
   );
 }
 const StyledAiPages = styled.div`
-  flex-grow:1;
+  flex-grow: 1;
 `;
 const StyledTabs = styled.div`
   display: flex;
