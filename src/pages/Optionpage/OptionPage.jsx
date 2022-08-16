@@ -11,6 +11,8 @@ export default function OptionPage() {
   const [LeftTopOption, setLeftTopOption]=useState(0)
   const [SelectTopOptionName,setSelectTopOptionName] = useState('첫번째')
   const [SelectTopOptionIcon, setSelectTopOptionIcon]=useState('fa-solid fa-house')
+  const [A, setA]=useState(0)
+  const [TestList,setTestList]=useState([0,1,2])
 
   const Options = [
     {
@@ -66,6 +68,24 @@ export default function OptionPage() {
     return result;
   }
 
+  const ClickRight=()=>{
+    console.log('right');
+    const temp=[0,1,2];
+    for (let i =0;i<3;i++){
+      temp[i] = (TestList[i]+1)%3
+      List[i] = (List[i]+1)%3;
+    }
+    setTestList(temp);
+  }
+  const ClickLeft=()=>{
+    console.log('left');
+    const temp=[0,1,2];
+    for (let i =0;i<3;i++){
+      temp[i] = (TestList[i]+2)%3
+      List[i] = (List[i]+2)%3;
+    }
+    setTestList(temp);
+  }
   return (
 
     <StyledCommunityPage className="community_page">
@@ -75,29 +95,31 @@ export default function OptionPage() {
 
 
       <TopButtenArea>
-        <TopButtenBox className='notselected'><TopButten className='notselected'>
+        <TopButtenBox className='notselected'><TopButten className='notselected'
+            onClick={ClickLeft}>
           <StyledIcon
-            icon={Options[List[0]].icon}
+            icon={Options[TestList[0]].icon}
             className='notselected'
           >
           </StyledIcon>
-        </TopButten>{Options[List[0]].name}</TopButtenBox>
+        </TopButten>{Options[TestList[0]].name}</TopButtenBox>
 
         <TopButtenBox className='selected'><TopButten className='selected'>
           <StyledIcon
-            icon={Options[List[1]].icon}
+            icon={Options[TestList[1]].icon}
             className='selected'
           >
           </StyledIcon>
-        </TopButten>{Options[List[1]].name}</TopButtenBox>
+        </TopButten>{Options[TestList[1]].name}</TopButtenBox>
 
-        <TopButtenBox className='notselected'><TopButten className='notselected'>
+        <TopButtenBox className='notselected'><TopButten className='notselected'
+            onClick={ClickRight}>
           <StyledIcon
-            icon={Options[List[2]].icon}
+            icon={Options[TestList[2]].icon}
             className='notselected'
           >
           </StyledIcon>
-        </TopButten>{Options[List[2]].name}</TopButtenBox>
+        </TopButten>{Options[TestList[2]].name}</TopButtenBox>
       </TopButtenArea>
 
       
