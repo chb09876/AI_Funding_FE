@@ -125,7 +125,7 @@ export default function OptionPage() {
       
       <div>{PrintList()}</div>
     </StyledCommunityPage>
-  );
+  ); 
 }
 //검색창 위치
 const SearchArea = styled.div`
