@@ -57,4 +57,3 @@ const StyledBottom = styled.div`
   position: relative;
   margin: 10px;
 `;
-

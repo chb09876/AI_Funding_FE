@@ -1,46 +1,40 @@
-import styled from "styled-components";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-export default function DetailLogs() {
+export default function DetailLogs(props) {
+  const [profitDetailMore, setProfitDetailMore] = useState([]);
+
+  useEffect(() => {
+    setProfitDetailMore(props.profitDetailMore);
+  }, [props.profitDetailMore]);
+
+  var detail = profitDetailMore.map((_, index) => (
+    <DetailValue key={index}>
+      <Date>{profitDetailMore[index].creatAt || 'default'}</Date>
+      {props.setUnit === true ? (
+        <Won>
+          {profitDetailMore[index].creatAtProfitWon
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ',') || '000,000'}
+          원
+        </Won>
+      ) : (
+        <Percent>{profitDetailMore[index].creatAtProfitPersent || 'default'}%</Percent>
+      )}
+    </DetailValue>
+  ));
+
   return (
     <StyledLogContainer>
-    <StyledLog>
-      <StyledDateLog>
-       2022-00-07
-       <br/>
-       2022-00-08
-       <br/>
-       2022-00-09
-       <br/>
-       2022-00-10
-       <br/>
-       2022-00-11
-       <br/>
-       2022-00-12
-       <br/>
-       2022-00-13
-      </StyledDateLog>
-      <StyledProfitLog>
-       + 000000원
-       <br/>
-       + 000000원
-       <br/>
-       + 000000원
-       <br/>
-       + 000000원
-       <br/>
-       + 000000원
-       <br/>
-       + 000000원
-       <br/>
-       + 000000원
-      </StyledProfitLog>
-    </StyledLog>
+      <StyledLog>{detail}</StyledLog>
     </StyledLogContainer>
   );
 }
 
+const DetailValue = styled.div``;
+
 // 기록 날짜
-const StyledDateLog = styled.div`
+const Date = styled.div`
   float: left;
   font-size: 1.2rem;
   padding-left: 20px;
@@ -48,8 +42,8 @@ const StyledDateLog = styled.div`
   color: gray;
 `;
 
-// 기록 이익 
-const StyledProfitLog = styled.div`
+// 기록 이익
+const Won = styled.div`
   font-size: 1.2rem;
   padding-right: 20px;
   width: 50%;
@@ -58,7 +52,20 @@ const StyledProfitLog = styled.div`
   text-align: right;
 `;
 
-const StyledLog = styled.div``;
+const Percent = styled.div`
+  font-size: 1.2rem;
+  padding-right: 20px;
+  width: 50%;
+  color: white;
+  float: right;
+  text-align: right;
+`;
+
+const StyledLog = styled.div`
+  color: white;
+  margin: auto;
+  font-size: 16px;
+`;
 
 const StyledLogContainer = styled.div`
   margin-top: 10px;
