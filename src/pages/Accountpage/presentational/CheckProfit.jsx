@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SwiperCore, { EffectCoverflow, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Account1 from './Account1';
-import Account2 from './Account2';
-import Account3 from './Account3';
+import Account from './Account';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import HitMapChart from './HitMapChart';
@@ -17,12 +15,20 @@ export default function CheckProfit() {
   const [aiType, setAIType] = useState('');
   const [createAt, setCreateAt] = useState('');
   const [stockList, setStockList] = useState([]);
+  //
+  const [todayTotalBalance, setTodayTotalBalance] = useState('');
+  const [totalProfitPersent, setTotalProfitPersent] = useState('');
+  const [totalProfitWon, setTotalProfitWon] = useState('');
+  const [todayProfitPersent, setTodayProfitPersent] = useState('');
+  const [todayProfitWon, setTodayProfitWon] = useState('');
+  const [profitDetail, setProfitDetail] = useState([]);
+  const [profitDetailMore, setProfitDetailMore] = useState([]);
 
   useEffect(() => {
     axios
-      .post('http://localhost:8080/checkProfit', {
-      customer_info_id: 1,
-      login_type: '00',
+      .post('http://localhost:8060', {
+        customer_info_id: 1,
+        login_type: '00',
       })
       .then((res) => {
         console.log(res.data);
@@ -30,6 +36,14 @@ export default function CheckProfit() {
         setAIType(res.data.account[accountNumber].aiType);
         setCreateAt(res.data.account[accountNumber].createAt);
         setStockList(res.data.account[accountNumber].stockList);
+        //
+        setTodayTotalBalance(res.data.account[accountNumber].todayTotalBalance);
+        setTotalProfitWon(res.data.account[accountNumber].totalProfitWon);
+        setTotalProfitPersent(res.data.account[accountNumber].totalProfitPersent);
+        setTodayProfitWon(res.data.account[accountNumber].todayProfitWon);
+        setTodayProfitPersent(res.data.account[accountNumber].todayProfitPersent);
+        setProfitDetail(res.data.account[accountNumber].profitDetail);
+        setProfitDetailMore(res.data.account[accountNumber].profitDetailMore);
       })
       .catch((err) => {
         console.log('에러');
@@ -45,21 +59,46 @@ export default function CheckProfit() {
       setAIType(accounts[accountNumber].aiType);
       setCreateAt(accounts[accountNumber].createAt);
       setStockList(accounts[accountNumber].stockList);
+      //
+      setTodayTotalBalance(accounts[accountNumber].todayTotalBalance);
+      setTotalProfitWon(accounts[accountNumber].totalProfitWon);
+      setTotalProfitPersent(accounts[accountNumber].totalProfitPersent);
+      setTodayProfitWon(accounts[accountNumber].todayProfitWon);
+      setTodayProfitPersent(accounts[accountNumber].todayProfitPersent);
+      setProfitDetail(accounts[accountNumber].profitDetail);
+      setProfitDetailMore(accounts[accountNumber].profitDetailMore);
     }
   }, [accountNumber]);
 
-  let accountCount = 3; // 계좌 개수
+  const accountSlide = accounts.map((list, index) => (
+    <SwiperSlide key={index}>
+      <Account
+        accountNum={index}
+        todayTotalBalance={todayTotalBalance}
+        totalProfitPersent={totalProfitPersent}
+        totalProfitWon={totalProfitWon}
+        todayProfitWon={todayProfitWon}
+        todayProfitPersent={todayProfitPersent}
+        profitDetail={profitDetail}
+        profitDetailMore={profitDetailMore}
+      ></Account>
+    </SwiperSlide>
+  ));
 
   return (
     <StyledLogContainer>
       <StyledScrollArea>
         <StyledCheck>
           <StyledTop>
+            <StyledSwiperTop>
+              <div className="swiper-top"></div>
+            </StyledSwiperTop>
             <StyledSwiper
               grabCursor={true}
               centeredSlides={true}
               slidesPerView={'auto'}
               pagination={{
+                el: '.swiper-top',
                 clickable: true,
                 type: 'bullets',
                 watchOverflow: true, // 계좌 1개 일때 버튼 삭제
@@ -71,31 +110,7 @@ export default function CheckProfit() {
                 setAccountNumber(e.activeIndex);
               }}
             >
-              <SwiperSlide>
-                <div className="Account1">
-                  <Account1 />
-                </div>
-              </SwiperSlide>
-
-              {accountCount >= 2 ? (
-                <SwiperSlide>
-                  <div className="Account2">
-                    <Account2 />
-                  </div>
-                </SwiperSlide>
-              ) : (
-                ''
-              )}
-
-              {accountCount >= 3 ? (
-                <SwiperSlide>
-                  <div className="Account3">
-                    <Account3 />
-                  </div>
-                </SwiperSlide>
-              ) : (
-                ''
-              )}
+              {accountSlide}
             </StyledSwiper>
           </StyledTop>
 
@@ -104,7 +119,7 @@ export default function CheckProfit() {
               <AIType>{aiType}</AIType>
               <BottomDate>
                 <div>{getFormatDate(createAt)}</div>
-                <div>{'+' + getStartDay(createAt)+ '일'}</div>
+                <div>{'+' + getStartDay(createAt) + '일'}</div>
               </BottomDate>
             </BottomTitle>
             <HitMapChart stockList={stockList} aiType={aiType} />
@@ -135,7 +150,7 @@ const getFormatDate = (date) => {
 const StyledScrollArea = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 95%;
+  height: 85%;
 `;
 
 const StyledLogContainer = styled.div`
@@ -149,6 +164,13 @@ const StyledTop = styled.div`
   border-radius: 10px;
   background-color: black;
   margin: 10px auto;
+`;
+
+const StyledSwiperTop = styled.div`
+  height: 2px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  text-align: center;
 `;
 
 const StyledSwiper = styled(Swiper)`
@@ -171,7 +193,7 @@ const StyledBottom = styled.div`
 
 const BottomTitle = styled.div`
   display: flex;
-  fiex-direction: row;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
