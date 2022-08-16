@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useRef, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+
 /*
 
 글 작성 페이지
@@ -13,17 +16,21 @@ import { useRef, useCallback } from 'react';
 */
 
 
+export default function Write(){
 
-export default function Write(props){
+    const navigate=useNavigate()
 
-    const navigate=useNavigate();
+    //링크로 값 전달하는 코드
+    const location =useLocation()
 
-    console.log(props.class)
+    const data = location.state
+    
+    console.log(data)
 
     const [form, setForm] = useState({
       Title: '',
       Content: '',
-      Class:props.class
+      Class:data // 나중에 board_id로 숫자로 보낼 예정 ex) 공지 -> 0 이런식으로 
     });
 
     const { Title, Content, Class } = form;
@@ -48,7 +55,25 @@ export default function Write(props){
     }
 
     const ClickOkBtn = () =>{
+
+      if(Title===''||Content===''){
+        alert('내용을 입력해주세요')
+        return
+      }
+
       console.log(Class,Title,Content,"-->이걸로 보냅니다!")
+
+     /* axios.post(`${process.env.REACT_APP_API}/api/community-writing`,{
+        post_type: Class,
+        customer_info_id:1,
+        content:Content,
+        title:Title
+      }).then(function (response) {
+        console.log(response)
+      }).catch((err) => {
+        console.log('에러');
+      });*/
+
       navigate(-1);
     }
 
@@ -86,12 +111,10 @@ export default function Write(props){
             color:"rgb(204, 204, 204)",
             fontSize:"30px"
           }}>
-            
           </input>
           </InputTab>
           <InputTab>
-          <textarea name="Content" placeholder='내용을 입력하세요' maxLength="1200"
-           
+          <textarea name="Content" placeholder='내용을 입력하세요' maxLength="500"   
             onChange={onChange}
             style={{
               width:"100%",
@@ -181,8 +204,4 @@ padding:3px;
 height:23px;
 border-radius:5px 5px 5px 5px;
 margin-top:10px;
-`;
-
-const Bottom=styled.div`
-height:100%;
 `;
