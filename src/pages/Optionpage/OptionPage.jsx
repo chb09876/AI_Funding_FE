@@ -6,6 +6,54 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function OptionPage() {
 
+  const [SelectTopOption, setSelectTopOption]=useState(1)
+  const [RightTopOption, setRightTopOption]=useState(2)
+  const [LeftTopOption, setLeftTopOption]=useState(0)
+  const [SelectTopOptionName,setSelectTopOptionName] = useState('첫번째')
+  const [SelectTopOptionIcon, setSelectTopOptionIcon]=useState('fa-solid fa-house')
+  const [A, setA]=useState(0)
+  const [TestList,setTestList]=useState([0,1,2])
+
+  const Options = [
+    {
+      id : 0,
+      name : '첫번째',
+      icon : 'fa-solid fa-house'
+    },
+    {
+      id : 1,
+      name : '두번째',
+      icon : 'fa-solid fa-comments'
+    },
+    {
+      id : 2,
+      name : '세번째',
+      icon : 'fa-solid fa-gear'
+    }
+  ];
+  const List = [0,1,2];
+
+  const TopFirstOption = () =>{
+    setSelectTopOption(0)
+    setSelectTopOptionName("첫번째");
+    setSelectTopOptionIcon('fa-solid fa-house')
+  }
+  const TopSecondOption = () =>{
+    setSelectTopOption(1)
+    setSelectTopOptionName("두번째");
+    setSelectTopOptionIcon('fa-solid fa-comments')
+  }
+  const TopThirdOption = () =>{
+    setSelectTopOption(2)
+    setSelectTopOptionName("세번째");
+    setSelectTopOptionIcon('fa-solid fa-gear')
+  }
+
+  const Swap=(a)=>{
+    const cur = SelectTopOption;
+    const next = a.id;
+
+  }
 
   //옵션 목록 출력 함수
   const PrintList = () => {
@@ -20,47 +68,64 @@ export default function OptionPage() {
     return result;
   }
 
+  const ClickRight=()=>{
+    console.log('right');
+    const temp=[0,1,2];
+    for (let i =0;i<3;i++){
+      temp[i] = (TestList[i]+1)%3
+      List[i] = (List[i]+1)%3;
+    }
+    setTestList(temp);
+  }
+  const ClickLeft=()=>{
+    console.log('left');
+    const temp=[0,1,2];
+    for (let i =0;i<3;i++){
+      temp[i] = (TestList[i]+2)%3
+      List[i] = (List[i]+2)%3;
+    }
+    setTestList(temp);
+  }
   return (
 
     <StyledCommunityPage className="community_page">
-
-
-
       <SearchArea>
         <SearchBox>검 색</SearchBox>
       </SearchArea>
 
 
       <TopButtenArea>
-        <TopButtenBox className='notselected'><TopButten className='notselected'>
+        <TopButtenBox className='notselected'><TopButten className='notselected'
+            onClick={ClickLeft}>
           <StyledIcon
-            icon='fa-solid fa-house'
+            icon={Options[TestList[0]].icon}
             className='notselected'
           >
           </StyledIcon>
-        </TopButten>첫번째</TopButtenBox>
+        </TopButten>{Options[TestList[0]].name}</TopButtenBox>
 
         <TopButtenBox className='selected'><TopButten className='selected'>
           <StyledIcon
-            icon='fa-solid fa-comments'
+            icon={Options[TestList[1]].icon}
             className='selected'
           >
           </StyledIcon>
-        </TopButten>두번째</TopButtenBox>
+        </TopButten>{Options[TestList[1]].name}</TopButtenBox>
 
-        <TopButtenBox className='notselected'><TopButten className='notselected'>
+        <TopButtenBox className='notselected'><TopButten className='notselected'
+            onClick={ClickRight}>
           <StyledIcon
-            icon='fa-solid fa-gear'
+            icon={Options[TestList[2]].icon}
             className='notselected'
           >
           </StyledIcon>
-        </TopButten>세번째</TopButtenBox>
+        </TopButten>{Options[TestList[2]].name}</TopButtenBox>
       </TopButtenArea>
 
       
       <div>{PrintList()}</div>
     </StyledCommunityPage>
-  );
+  ); 
 }
 //검색창 위치
 const SearchArea = styled.div`

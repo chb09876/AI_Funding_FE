@@ -51,8 +51,10 @@ export default function Board(){
       const result = [];
       for (let i=0; i< 10;i++){
         result.push(
-        <Link to="Read/1" style={{ textDecoration: 'none' }}>
-        <List SelectedClass={SelectedClass} /></Link>
+        <Link to="Read/1" key={i} style={{ textDecoration: 'none' }}>
+        <List 
+            selectedClass={SelectedClass}
+        /></Link>
         );
       }
 
@@ -117,7 +119,7 @@ export default function Board(){
        <ScrCon>
        <ScrTab>{PrintBoardList()}</ScrTab>
         </ScrCon>
-        <Link to="Write" style={{ textDecoration: 'none', color:'white', marginLeft:'80%'}}>글작성</Link>
+        <Link to="Write" state={SelectedClass} style={{ textDecoration: 'none', color:'white', marginLeft:'80%'}}>글작성</Link>
 </StyledCommunityPage>
     );
 }

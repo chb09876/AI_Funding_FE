@@ -14,7 +14,7 @@ export default function List(props){
   return(
     <BoardTab>
           <DisplayFlex>
-          <BoardTitle>{props.SelectedClass}글제목</BoardTitle>
+          <BoardTitle>{props.selectedClass}글제목</BoardTitle>
           </DisplayFlex>
           <BoardBottomTab>
           <BoardDate>작성 날짜</BoardDate><Like >♡ 좋아요수</Like><Comment>💬 댓글수</Comment>

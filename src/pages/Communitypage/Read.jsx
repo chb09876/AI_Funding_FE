@@ -14,7 +14,7 @@ import { useState } from 'react';
 
 */
 
-export default function Read(){
+export default function Read(props){
 
   const navigate=useNavigate();
 
@@ -54,6 +54,8 @@ export default function Read(){
     SetWrComment('');
   }
 
+  console.log(props.selectedClass)
+
   return (
       <StyledLogContainer>
         <StyledTab>
@@ -63,7 +65,7 @@ export default function Read(){
           <WhiteText>◀ 이전</WhiteText>
         </PreviousButton>
         <CenterTitle>
-        읽기</CenterTitle>
+        읽기{props.selectedClass}</CenterTitle>
         </DisplayFlex>
       </StyledTitle>
         </StyledTab>

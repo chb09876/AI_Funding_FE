@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import refresh from '../../../image/btn_refresh.png';
 import Logs from './Logs';
 
-export default function Account1(props) {
+export default function Account(props) {
   const [setUnit, setWon] = useState(false);
+  const accountNumber = ['첫', '두', '세'];
   return (
     <StyledCompareProfit>
       <StyledMoney>
-        <div style={{ fontSize: '1rem', fontWeight: 500, color: 'white' }}>첫번째 계좌</div>
-        <div style={{ fontSize: '2rem', fontWeight: 700, color: 'white' }}>10,000,000원</div>
+        <div style={{ fontSize: '1rem', fontWeight: 500, color: 'white' }}>
+          {accountNumber[props.accountNum]}번째 계좌
+        </div>
+        <div style={{ fontSize: '2rem', fontWeight: 700, color: 'white' }}>
+          {props.todayTotalBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') || '000,000'}원
+        </div>
       </StyledMoney>
-
       <StyledTotalProfit>
         {/* 새로고침 버튼 */}
         <Styledbtn
@@ -24,20 +28,30 @@ export default function Account1(props) {
         <StyledDetails>
           <summary>
             <StyledTotal>{setUnit === true ? '총 손익금 (원)' : '총 손익금 (퍼센트)'}</StyledTotal>
-            <StyledUnit>{setUnit === true ? '10,000,000 원' : '00.00%'}</StyledUnit>
+            <StyledUnit>
+              {setUnit === true
+                ? props.todayProfitWon.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') || '000,000'
+                : props.todayProfitPersent || 'default'}
+              {setUnit === true ? '원' : '%'}
+            </StyledUnit>
           </summary>
-          <Logs />
+          <Logs
+            profitDetail={props.profitDetail}
+            profitDetailMore={props.profitDetailMore}
+            setUnit={setUnit}
+          />
         </StyledDetails>
       </StyledTotalProfit>
-
       <StyledDayProfit>
         <StyledDayWon>
           하루 손익금
-          <br />+ 000000 원
+          <br />
+          {props.todayProfitWon.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') || '000,000'}원
         </StyledDayWon>
         <StyledDayPer>
           하루 수익률
-          <br />+ 00.00 %
+          <br />
+          {props.todayProfitPersent || 'default'}%
         </StyledDayPer>
       </StyledDayProfit>
     </StyledCompareProfit>
@@ -84,19 +98,18 @@ const StyledMoney = styled.div`
   text-align: center;
   padding-top: 10px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #b8a88e;
+  border-bottom: 1px solid gray;
 `;
 
 const StyledTotalProfit = styled.div`
-  padding-right: 20px
+  padding-right: 20px;
   padding-top: 10px;
 `;
 
 const StyledDayProfit = styled.div`
-  border-top: 1px solid #b8a88e;
+  border-top: 1px solid gray;
   text-align: center;
   height: 10vh;
-  margin-bottom: 20px;
 `;
 
 // 하루 손익금
@@ -105,8 +118,8 @@ const StyledDayWon = styled.div`
   font-size: 1.5rem;
   width: 50%;
   padding-top: 20px;
-  border-top: 1px solid gray;
   padding-bottom: 5vh;
+  border-right: 1px solid gray;
 `;
 
 // 하루 수익률
@@ -115,7 +128,5 @@ const StyledDayPer = styled.div`
   font-size: 1.5rem;
   width: 50%;
   padding-top: 20px;
-  border-left: 1px solid gray;
-  border-top: 1px solid gray;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 `;
