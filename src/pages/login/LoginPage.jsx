@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import google_img from '../../image/google_login.png';
+import google_img from '../../image/btn_google_login.svg';
 import kakao_img from '../../image/kakao_login_large_narrow.svg';
 import logo_img from '../../image/logo.svg';
+import logo_title from '../../image/logo_title.svg';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../modules/login';
 
@@ -11,6 +12,7 @@ export default function Login() {
   return (
     <LoginPageLayout>
       <Logo src={logo_img} />
+      <LogoTitle src={logo_title} />
       <KakaoButton href={`${process.env.REACT_APP_API}/api/auth/KAKAO`} />
       <GoogleButton href={`${process.env.REACT_APP_API}/api/auth/GOOGLE`} />
       <button
@@ -54,10 +56,8 @@ const KakaoButton = styled.a`
 const GoogleButton = styled.a`
   background-image: url(${google_img});
   background-size: contain;
-  background-repeat: no-repeat;
-  background-color: white;
 
-  width: 216px;
+  width: 215px;
   height: 53px;
   border-radius: 12px;
   margin-top: 7%;
@@ -70,4 +70,8 @@ const GoogleButton = styled.a`
 const Logo = styled.img`
   width: 200px;
   height: 200px;
+`;
+
+const LogoTitle = styled.img`
+  margin-top: 3px;
 `;
