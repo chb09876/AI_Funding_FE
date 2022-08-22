@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><svg id="_이어_2" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 27.82 27.82">
+    <defs>
+        <style>
+            .cls-1 {
+                fill: #b8a88e;
+            }
+
+            .cls-2 {
+                clip-path: url(#clippath);
+            }
+
+            .cls-3 {
+                fill: none;
+            }
+        </style>
+        <clipPath id="clippath">
+            <rect class="cls-3" width="27.82" height="27.82" />
+        </clipPath>
+    </defs>
+    <g id="_이어_1-2">
+        <g class="cls-2">
+            <g id="_룹_166" transform="translate(0 0)">
+                <path id="_스_917" class="cls-1" d="M2.28,0C1.02,0,0,1.02,0,2.28V14.69L14.69,0H2.28Z" />
+                <path id="_스_918" class="cls-1"
+                    d="M25.54,0h-4.27c-.51,0-.99,.2-1.35,.56L0,20.48v3.7L17.97,6.21l.95,.95c1.07,1.07,1.07,2.81,0,3.88h0L2.24,27.72l.04,.1h3.56l12.12-12.13,.95,.96c1.07,1.07,1.07,2.81,0,3.88h0l-6.14,6.14c-.26,.26-.26,.69,0,.95,.13,.13,.3,.2,.48,.2h12.28c1.26,0,2.28-1.02,2.28-2.28h0V2.28C27.82,1.02,26.8,0,25.54,0" />
+            </g>
+        </g>
+    </g>
+</svg>

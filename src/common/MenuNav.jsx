@@ -1,42 +1,43 @@
-import React, { useState } from 'react';
-import './FontAwesome';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import CommunityIcon from '../image/CommunityOff.svg';
+import HomeIcon from '../image/HomeOff.svg';
+import InvestIcon from '../image/InvestOff.svg';
+import ProfitIcon from '../image/ProfitOff.svg';
+import SetupIcon from '../image/SetupOff.svg';
+import CommunityIconOn from '../image/CommunityOn.svg';
+import HomeIconOn from '../image/HomeOn.svg';
+import InvestIconOn from '../image/InvestOn.svg';
+import ProfitIconOn from '../image/ProfitOn.svg';
+import SetupIconOn from '../image/SetupOn.svg';
 
 const MenuNav = () => {
-  const [selected, select] = useState(1);
+  const location = useLocation();
+
   return (
-    <StyledMenubar className="Menu_bar">
-      <StyledMenuButton to="/" className="Menu_button" onClick={() => select(1)}>
-        <StyledIcon
-          icon="fa-solid fa-house"
-          className={selected === 1 ? 'selected' : 'notselected'}
-        />
+    <StyledMenubar>
+      <StyledMenuButton to="/">
+        <img src={location.pathname === '/' ? HomeIconOn : HomeIcon} alt="홈" />
+        <MenuName>홈</MenuName>
       </StyledMenuButton>
-      <StyledMenuButton to="/second" className="Menu_button" onClick={() => select(2)}>
-        <StyledIcon
-          icon="fa-solid fa-comments"
-          className={selected === 2 ? 'selected' : 'notselected'}
-        />
+      <StyledMenuButton to="/ai">
+        <img src={location.pathname === '/ai' ? InvestIconOn : InvestIcon} alt="투자" />
+        <MenuName>투 자</MenuName>
       </StyledMenuButton>
-      <StyledMenuButton to="/third" className="Menu_button" onClick={() => select(3)}>
-        <StyledIcon
-          icon="fa-solid fa-gear"
-          className={selected === 3 ? 'selected' : 'notselected'}
-        />
+      <StyledMenuButton to="/accounts">
+        <img src={location.pathname === '/accounts' ? ProfitIconOn : ProfitIcon} alt="수익" />
+        <MenuName>수 익</MenuName>
       </StyledMenuButton>
-      <StyledMenuButton to="/fourth" className="Menu_button" onClick={() => select(4)}>
-        <StyledIcon
-          icon="fa-solid fa-comments"
-          className={selected === 4 ? 'selected' : 'notselected'}
+      <StyledMenuButton to="/community">
+        <img
+          src={location.pathname === '/community' ? CommunityIconOn : CommunityIcon}
+          alt="커뮤니티"
         />
+        <MenuName>커뮤니티</MenuName>
       </StyledMenuButton>
-      <StyledMenuButton to="/fifth" className="Menu_button" onClick={() => select(5)}>
-        <StyledIcon
-          icon="fa-solid fa-gear"
-          className={selected === 5 ? 'selected' : 'notselected'}
-        />
+      <StyledMenuButton to="/options">
+        <img src={location.pathname === '/options' ? SetupIconOn : SetupIcon} alt="설정" />
+        <MenuName>설 정</MenuName>
       </StyledMenuButton>
     </StyledMenubar>
   );
@@ -45,26 +46,34 @@ const MenuNav = () => {
 export default MenuNav;
 
 const StyledMenubar = styled.nav`
-  overflow: hidden;
   border-top: 2px solid rgb(184, 168, 142);
+  background-color: black;
   flex: 0 0 70px;
+
+  display: flex;
+  flex-direction: row;
 `;
 
-const StyledMenuButton = styled(Link)`
-  text-align: center;
-  float: left;
-  width: 20%;
+const StyledMenuButton = styled(NavLink)`
+  flex: 1 1 0;
+  text-decoration: none;
 
-  /* 세로길이 설정 */
-  height: 100%;
-  line-height: 45px;
-  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  & {
+    img {
+      width: 35px;
+      margin-bottom: 3px;
+    }
+  }
 `;
 
-const StyledIcon = styled(FontAwesomeIcon)`
-  ${(props) => {
-    return props.className === 'selected'
-      ? `color: rgb(184, 168, 142)`
-      : `color: rgb(119, 119, 119)`;
-  }};
+const MenuName = styled.span`
+  color: white;
+  font-size: 12px;
+
+  margin-bottom: 5px;
 `;
