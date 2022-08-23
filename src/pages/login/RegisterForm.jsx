@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router';
-import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useInputWithValidation } from '../../hooks/useInput';
 import { signIn } from '../../modules/login';
