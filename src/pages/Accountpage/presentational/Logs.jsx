@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import DetailLogs from './DetailLogs';
 
 export default function Logs(props) {
-  const [setOpen, setClosed] = useState(false);
+  const [close, setOpen] = useState(0);
   const [profitDetail, setProfitDetail] = useState([]);
 
   useEffect(() => {
@@ -29,37 +29,24 @@ export default function Logs(props) {
     <StyledLogContainer>
       <StyledLog>
         {detail}
-        {setOpen === true ? (
+        {close === true ? (
           <DetailLogs profitDetailMore={props.profitDetailMore} setUnit={props.setUnit} />
         ) : (
           ''
         )}
-        <StyledDetails>
-          <summary>
-            <StyledMoreLog
-              onClick={() => {
-                setClosed(!setOpen);
-              }}
-            >
-              {setOpen === true ? '닫기' : '더보기'}
-            </StyledMoreLog>
-          </summary>
-        </StyledDetails>
+        <StyledMoreLog
+          onClick={() => {
+            setOpen(!close);
+          }}
+        >
+          {close === true ? '닫기' : '더보기'}
+        </StyledMoreLog>
       </StyledLog>
     </StyledLogContainer>
   );
 }
 
 const DetailValue = styled.div``;
-
-const StyledDetails = styled.details`
-  & > summary {
-    color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    list-style: none;
-  }
-`;
 
 // 기록 날짜
 const Date = styled.div`
