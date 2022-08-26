@@ -71,10 +71,10 @@ export default function App() {
           // route after login
           <>
             <Route path="/" element={<Home />} />
-            <Route path="/second" element={<AiPages />} />
-            <Route path="/third" element={<AccountPage />} />
-            <Route path="/fourth/*" element={<CommunityPage />} />
-            <Route path="/fifth" element={<OptionPage />} />
+            <Route path="/ai" element={<AiPages />} />
+            <Route path="/accounts" element={<AccountPage />} />
+            <Route path="/community/*" element={<CommunityPage />} />
+            <Route path="/options" element={<OptionPage />} />
             <Route path="*" element={'404'} />
           </>
         ) : (
