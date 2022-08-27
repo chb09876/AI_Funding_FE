@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import refresh from '../../../image/btn_refresh.png';
 import Logs from './Logs';
 
 export default function Account(props) {
   const [setUnit, setWon] = useState(false);
+  const [close, setOpen] = useState(0);
   const accountNumber = ['첫', '두', '세'];
+
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      setOpen(false);
+    }
+  }, [props.realIndex]);
+
   return (
     <StyledCompareProfit>
       <StyledMoney>
@@ -25,23 +36,26 @@ export default function Account(props) {
           }}
         ></Styledbtn>
 
-        <StyledDetails>
-          <summary>
-            <StyledTotal>{setUnit === true ? '총 손익금 (원)' : '총 손익금 (퍼센트)'}</StyledTotal>
-            <StyledUnit>
-              {setUnit === true
-                ? props.todayProfitWon.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') || '000,000'
-                : props.todayProfitPersent || 'default'}
-              {setUnit === true ? '원' : '%'}
-            </StyledUnit>
-          </summary>
+        <StyledButton onClick={() => setOpen(!close)}>
+          <StyledTotal>{setUnit === true ? '총 손익금 (원)' : '총 손익금 (퍼센트)'}</StyledTotal>
+          <StyledUnit>
+            {setUnit === true
+              ? props.todayProfitWon.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') || '000,000'
+              : props.todayProfitPersent || 'default'}
+            {setUnit === true ? '원' : '%'}
+          </StyledUnit>
+        </StyledButton>
+        {close === true ? (
           <Logs
             profitDetail={props.profitDetail}
             profitDetailMore={props.profitDetailMore}
             setUnit={setUnit}
           />
-        </StyledDetails>
+        ) : (
+          ''
+        )}
       </StyledTotalProfit>
+
       <StyledDayProfit>
         <StyledDayWon>
           하루 손익금
@@ -58,13 +72,11 @@ export default function Account(props) {
   );
 }
 
-const StyledDetails = styled.details`
-  & > summary {
-    color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    list-style: none;
-  }
+const StyledButton = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
+  list-style: none;
+  display: block;
 `;
 
 //새로고침 버튼

@@ -15,7 +15,6 @@ export default function CheckProfit() {
   const [aiType, setAIType] = useState('');
   const [createAt, setCreateAt] = useState('');
   const [stockList, setStockList] = useState([]);
-  //
   const [todayTotalBalance, setTodayTotalBalance] = useState('');
   const [totalProfitPersent, setTotalProfitPersent] = useState('');
   const [totalProfitWon, setTotalProfitWon] = useState('');
@@ -36,7 +35,6 @@ export default function CheckProfit() {
         setAIType(res.data.account[accountNumber].aiType);
         setCreateAt(res.data.account[accountNumber].createAt);
         setStockList(res.data.account[accountNumber].stockList);
-        //
         setTodayTotalBalance(res.data.account[accountNumber].todayTotalBalance);
         setTotalProfitWon(res.data.account[accountNumber].totalProfitWon);
         setTotalProfitPersent(res.data.account[accountNumber].totalProfitPersent);
@@ -73,6 +71,7 @@ export default function CheckProfit() {
   const accountSlide = accounts.map((list, index) => (
     <SwiperSlide key={index}>
       <Account
+        realIndex={accountNumber}
         accountNum={index}
         todayTotalBalance={todayTotalBalance}
         totalProfitPersent={totalProfitPersent}
@@ -105,7 +104,6 @@ export default function CheckProfit() {
                 bulletActiveClass: 'swiper-pagination-bullet-active',
                 bulletClass: 'swiper-pagination-bullet-custom swiper-pagination-bullet',
               }}
-              className="mySwiper"
               onSlideChange={(e) => {
                 setAccountNumber(e.activeIndex);
               }}
