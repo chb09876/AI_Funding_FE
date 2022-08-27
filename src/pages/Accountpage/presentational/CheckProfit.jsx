@@ -6,7 +6,6 @@ import Account from './Account';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import HitMapChart from './HitMapChart';
-import { initialize } from 'workbox-google-analytics';
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 

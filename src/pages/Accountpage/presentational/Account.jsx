@@ -13,7 +13,7 @@ export default function Account(props) {
     if (!mounted.current) {
       mounted.current = true;
     } else {
-      setOpen();
+      setOpen(false);
     }
   }, [props.realIndex]);
 
