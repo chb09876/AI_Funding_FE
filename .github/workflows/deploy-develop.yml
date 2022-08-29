@@ -34,7 +34,7 @@ jobs:
         run: chmod +x scripts/makeEnv.sh
 
       - name: make envrionment variable
-        run: ./scripts/makeEnv.sh ${{ secrets.API_DEV }}
+        run: ./scripts/makeEnv.sh ${{ secrets.API_DEV }} ${{ secrets.APP_VERSION }}
 
       - name: run build
         run: CI='' npm run build
