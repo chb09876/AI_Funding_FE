@@ -20,15 +20,15 @@ export default function Read(props){
 
   const [WrComment,SetWrComment]=useState('')
 
-  const [Heart,SetHeart]=useState('');
+  const [Heart,SetHeart]=useState('unclicked');
 
   const Clicked = () => {
-    if(Heart==='' || Heart==='unclicked'){
+    if(Heart==='unclicked'){
       SetHeart('clicked')
-      console.log(Heart)
     }
     else
-      SetHeart('unclicked')
+    {  SetHeart('unclicked')}
+      
       console.log(Heart)
   }
 
@@ -45,16 +45,18 @@ export default function Read(props){
   }
 
   const onChange = (e) => {
-    console.log(e.target.value);
     SetWrComment(e.target.value);
   };
 
   const onClick = () => {
+    if(WrComment===''){
+      alert('내용을 입력해주세요.');
+      return;
+    }
+
     console.log('댓글: ',WrComment);
     SetWrComment('');
   }
-
-  console.log(props.selectedClass)
 
   return (
       <StyledLogContainer>
@@ -86,7 +88,8 @@ export default function Read(props){
         </BottomTab>
       </BoardContentTab>
 </StyledTab>
-    {PrintComment()}
+    <ScrCon>
+    <ScrTab>{PrintComment()}</ScrTab>
     <WrCommentCon>
     <input 
           name="Comment"
@@ -106,12 +109,25 @@ export default function Read(props){
           }}>
           </input>
           <div onClick={onClick} 
-          style={{color:"white",textAlign:"center", margin:"10px" }}>
+          style={{color:"white",textAlign:"center", position:'absolute', right:'10px', bottom:"15px"}}>
             확인</div>
           </WrCommentCon>
+          </ScrCon>
       </StyledLogContainer>
     );
 };
+
+//스크롤 페이지 컨테이너
+const ScrCon = styled.div`
+height: calc(100% - 510px);
+`;
+
+//스크롤 탭
+const ScrTab = styled.div`
+overflow:auto;
+height:100%;
+width: 100%;
+`;
 
 const WrCommentCon = styled.div`
   border-right: 1px solid rgb(152, 128, 101);
@@ -119,11 +135,15 @@ const WrCommentCon = styled.div`
   border-top: 1px solid rgb(152, 128, 101);
   border-radius:5px 5px 5px 5px;
   border-bottom: 1px solid rgb(152, 128, 101);
-  display:flex;
-  margin:10px
+  position:relative;
 `;
 
+//가장 큰 컨테이너의 position을 fixed 해준뒤 width와 height를 100% 설정해주면 
+//스크롤에서도 calc 사용가능
 const StyledLogContainer = styled.div`
+position:fixed;
+width:100%;    
+height:100%;
 `;
 
 const StyledTab = styled.div`
