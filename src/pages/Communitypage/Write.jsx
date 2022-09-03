@@ -24,8 +24,6 @@ export default function Write(){
     const location =useLocation()
 
     const data = location.state
-    
-    console.log(data)
 
     const [form, setForm] = useState({
       Title: '',
@@ -46,7 +44,6 @@ export default function Write(){
       ...form, // 기존의 값 복사 (spread operator)
       [e.target.name]: e.target.value, // 덮어쓰기
     };
-    console.log(nextForm);
     setForm(nextForm);
   };
 

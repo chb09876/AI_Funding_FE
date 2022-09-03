@@ -118,18 +118,22 @@ export default function Board(){
       <HotList SelectedClass={SelectedClass} /></Link>
        <ScrCon>
        <ScrTab>{PrintBoardList()}</ScrTab>
+        <Link to="Write" state={SelectedClass} style={{ textDecoration: 'none', color:'white', marginLeft:'80%', position:'absolute', right:'50px', bottom:'45px', background:'black' }}>글작성</Link>
         </ScrCon>
-        <Link to="Write" state={SelectedClass} style={{ textDecoration: 'none', color:'white', marginLeft:'80%'}}>글작성</Link>
 </StyledCommunityPage>
     );
 }
 
 const ScrCon = styled.div`
-   height:600px;
+height: calc(100% - 260px); 
+position:relative;
 `;
 
-const StyledCommunityPage = styled.div`
 
+const StyledCommunityPage = styled.div`
+position:fixed;
+width:100%;    
+height:100%;
 `;
 
 const DivisionTab = styled.div`
