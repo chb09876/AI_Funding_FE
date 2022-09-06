@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import './../../common/FontAwesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import P0 from './p0';
+import P1 from './p1';
+import P2 from './p2';
 
 
 export default function OptionPage() {
@@ -11,53 +14,69 @@ export default function OptionPage() {
   const [LeftTopOption, setLeftTopOption]=useState(0)
   const [SelectTopOptionName,setSelectTopOptionName] = useState('첫번째')
   const [SelectTopOptionIcon, setSelectTopOptionIcon]=useState('fa-solid fa-house')
-  const [A, setA]=useState(0)
+  const [A, setA]=useState(1)
   const [TestList,setTestList]=useState([0,1,2])
+
 
   const Options = [
     {
       id : 0,
-      name : '첫번째',
+      name : '계정',
       icon : 'fa-solid fa-house'
     },
     {
       id : 1,
-      name : '두번째',
+      name : '계좌',
       icon : 'fa-solid fa-comments'
     },
     {
       id : 2,
-      name : '세번째',
+      name : '앱정보',
       icon : 'fa-solid fa-gear'
     }
   ];
   const List = [0,1,2];
 
-  const TopFirstOption = () =>{
-    setSelectTopOption(0)
-    setSelectTopOptionName("첫번째");
-    setSelectTopOptionIcon('fa-solid fa-house')
-  }
-  const TopSecondOption = () =>{
-    setSelectTopOption(1)
-    setSelectTopOptionName("두번째");
-    setSelectTopOptionIcon('fa-solid fa-comments')
-  }
-  const TopThirdOption = () =>{
-    setSelectTopOption(2)
-    setSelectTopOptionName("세번째");
-    setSelectTopOptionIcon('fa-solid fa-gear')
-  }
+  // const TopFirstOption = () =>{
+  //   setSelectTopOption(0)
+  //   setSelectTopOptionName("첫번째");
+  //   setSelectTopOptionIcon('fa-solid fa-house')
+  // }
+  // const TopSecondOption = () =>{
+  //   setSelectTopOption(1)
+  //   setSelectTopOptionName("두번째");
+  //   setSelectTopOptionIcon('fa-solid fa-comments')
+  // }
+  // const TopThirdOption = () =>{
+  //   setSelectTopOption(2)
+  //   setSelectTopOptionName("세번째");
+  //   setSelectTopOptionIcon('fa-solid fa-gear')
+  // }
 
-  const Swap=(a)=>{
-    const cur = SelectTopOption;
-    const next = a.id;
+  // const Swap=(a)=>{
+  //   const cur = SelectTopOption;
+  //   const next = a.id;
 
-  }
+  // }
 
   //옵션 목록 출력 함수
   const PrintList = () => {
     const result = [];
+    if(A==0){
+      return (<P0></P0>);
+    }
+    else if(A==1){
+
+      return (<P1></P1>);
+    }
+    else if(A==2){
+
+      return (<P2></P2>);
+    }
+    else{
+      console.log("choice ERR!")
+      return;
+    }
     for (let i = 0; i < 6; i++) {
       result.push(
       <OptionTab>
@@ -76,6 +95,7 @@ export default function OptionPage() {
       List[i] = (List[i]+1)%3;
     }
     setTestList(temp);
+    setA((A+1)%3);
   }
   const ClickLeft=()=>{
     console.log('left');
@@ -85,14 +105,14 @@ export default function OptionPage() {
       List[i] = (List[i]+2)%3;
     }
     setTestList(temp);
+    setA((A+2)%3);
   }
   return (
 
-    <StyledCommunityPage className="community_page">
+    <StyledCommunityPage className="option_page">
       <SearchArea>
-        <SearchBox>검 색</SearchBox>
       </SearchArea>
-
+ 
 
       <TopButtenArea>
         <TopButtenBox className='notselected'><TopButten className='notselected'
