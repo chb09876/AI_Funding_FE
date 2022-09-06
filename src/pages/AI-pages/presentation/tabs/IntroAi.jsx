@@ -10,7 +10,7 @@ SwiperCore.use([EffectCoverflow, Pagination]);
 
 const App = () => {
   return (
-    <StyledScrollArea className="ScrollArea">
+    <StyledScrollArea>
       <StyledContainer className="Container">
         <StyledSwiper
           grabCursor={true}
@@ -53,39 +53,22 @@ const App = () => {
 };
 
 export default App;
-const StyledSwiperSlide = styled(SwiperSlide)`
-  flex: 1;
-`;
-const StyledContainer = styled.div`
-  flex-grow: 1;
-  display: flex;
-`;
+const StyledContainer = styled.div``;
 const StyledSwiper = styled(Swiper)`
   color: white;
-  flex-grow: 1;
-  position: relative;
+  height: 100%;
 `;
 const StyledScrollArea = styled.div`
   overflow: scroll;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  height: 85vh;
 `;
-const StyledSwiperContent = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow:scroll;
-  display: flex;
-  justify-content: center;
-`;
+
+const StyledSwiperContent = styled.div``;
 const StyledSwiperPagination = styled.div`
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  top: 10px;
+  top: 15px;
   height: 2px;
   z-index: 10;
 `;

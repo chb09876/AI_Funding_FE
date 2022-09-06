@@ -7,41 +7,38 @@ import Garnetgraph from './svgs/Garnetgraph.svg';
 
 export default function Intro2() {
   return (
-    <StyledIntroContainer className="intro1-container">
-      <StyledModelName className="model-name">
-        <StyledIcon>
-          <img src={Garnet} width="100%" />
-        </StyledIcon>
-        <StyledFeather1>
-          <img src={Garnetfeather1} />
-        </StyledFeather1>
-        <StyledNameEn>GARNET</StyledNameEn>
-        <StyledNameKr>가넷</StyledNameKr>
-      </StyledModelName>
-      <StyledModelDesc className="model-desc">
-        <StyledFeather2>
-          <img src={Garnetfeather2} />
-        </StyledFeather2>
-        <StyledFeather3>
-          <img src={Garnetfeather3} />
-        </StyledFeather3>
-        거래 빈도 높은 적극적인 투자 모델입니다.
-        <StyledGraph className="Graph">
-          <img src={Garnetgraph} width="100%" />
-        </StyledGraph>
-      </StyledModelDesc>
+    <StyledIntroContainer>
+      <StyledSpec>
+        <StyledTitle>
+          <StyledIcon>
+            <img src={Garnet} width="100%" />
+          </StyledIcon>
+          <StyledFeather1>
+            <img src={Garnetfeather1} />
+          </StyledFeather1>
+          <StyledNameEn>GARNET</StyledNameEn>
+          <StyledNameKr>가넷</StyledNameKr>
+        </StyledTitle>
+        <StyledDesc className="desc">
+          <StyledFeather2>
+            <img src={Garnetfeather2} />
+          </StyledFeather2>
+          <StyledFeather3>
+            <img src={Garnetfeather3} />
+          </StyledFeather3>
+          거래 빈도 높은 적극적인 투자 모델입니다.
+          <StyledGraph className="Graph">
+            <img src={Garnetgraph} width="100%" />
+          </StyledGraph>
+        </StyledDesc>
+      </StyledSpec>
     </StyledIntroContainer>
   );
 }
 const StyledIntroContainer = styled.div`
-  margin: 10px auto;
-  overflow-y:auto;
-  overflow-x:hidden;
-`;
-const StyledModelName = styled.div`
-  position: relative;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 const StyledNameEn = styled.div`
   position: relative;
@@ -50,14 +47,6 @@ const StyledNameEn = styled.div`
   text-align: center;
   z-index: 1;
   color: rgb(167, 98, 98);
-`;
-const StyledIcon = styled.div`
-  position: absolute;
-  width: 25vw;
-  top: 7vw;
-  left: 50%;
-  transform: translate(-50%);
-  z-index: 2;
 `;
 const StyledNameKr = styled.div`
   position: relative;
@@ -68,36 +57,59 @@ const StyledNameKr = styled.div`
   color: white;
   z-index: 3;
 `;
-const StyledModelDesc = styled.div`
-  font-size: 5vw;
+const StyledDesc = styled.div`
   position: relative;
   margin: auto;
   padding: 10px;
+  height: 80vw;
+  width: 90vw;
+  border-radius: 5px;
   text-align: center;
+`;
+const StyledTitle = styled.div`
+  position: relative;
+`;
+const StyledIcon = styled.div`
+  position: absolute;
+  width: 30vw;
+  top: 5vw;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 2;
 `;
 const StyledFeather1 = styled.div`
   position: absolute;
-  top: 10vh;
+  top: 25vw;
   right: 10px;
   z-index: 2;
 `;
 const StyledFeather2 = styled.div`
   position: absolute;
-  top: 5vh;
-  left: -5px;
+  top: 25vw;
+  left: 00px;
   z-index: 2;
 `;
 const StyledFeather3 = styled.div`
   position: absolute;
-  top: 25vh;
-  right: -5px;
+  top: 50vw;
+  right: 0px;
   z-index: 2;
 `;
+const StyledSpec = styled.div`
+  overflow: hidden;
+  width: 95vw;
+  background: black;
+  border-radius: 10px;
+  margin: 10px auto;
+`;
+
 const StyledGraph = styled.div`
+  overflow: hidden;
+  width: 95vw;
   background: black;
   margin: auto;
   display: flex;
   justify-content: center;
   width: 80vw;
-  margin-top: 50px;
+  margin-top: 10px;
 `;
