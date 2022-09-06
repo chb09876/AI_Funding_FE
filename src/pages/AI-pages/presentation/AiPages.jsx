@@ -67,19 +67,18 @@ export default function AiPages() {
           </StyledTabButton>
         </StyledTab>
       </StyledTabs>
-
       <StyledContent className="contents">{obj[SelectedTab]}</StyledContent>
     </StyledAiPages>
   );
 }
 const StyledAiPages = styled.div`
   flex-grow: 1;
+  display:flex;
+  flex-direction:column;
 `;
 const StyledTabs = styled.div`
+  flex:1;
   display: flex;
-  width: 100%;
-  /* 세로길이 설정 */
-  height: 60px;
   background: rgb(32, 32, 32);
 `;
 
@@ -137,4 +136,8 @@ const StyledBottomBar = styled.div`
     }
   }};
 `;
-const StyledContent = styled.div``;
+const StyledContent = styled.div`
+  flex:20;
+  display:flex;
+  background:black;
+`;
