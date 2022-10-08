@@ -18,19 +18,19 @@ export default function Read(props){
 
   const navigate=useNavigate();
 
-  const [WrComment,SetWrComment]=useState('')
+  const [wrComment,setWrComment]=useState('')
 
-  const [Heart,SetHeart]=useState('unclicked');
+  const [heart,setHeart]=useState('unclicked');
 
   const Clicked = () => {
 
-    if(Heart==='unclicked'){
-      SetHeart('clicked')
+    if(heart==='unclicked'){
+      setHeart('clicked')
     }
     else
-    {  SetHeart('unclicked')}
+    {  setHeart('unclicked')}
    
-    console.log(Heart)
+    console.log(heart)
   }
 
   //댓글 출력 함수
@@ -46,17 +46,17 @@ export default function Read(props){
   }
 
   const onChange = (e) => {
-    SetWrComment(e.target.value);
+    setWrComment(e.target.value);
   };
 
   const onClick = () => {
-    if(WrComment===''){
+    if(wrComment===''){
       alert('내용을 입력해주세요.');
       return;
     }
 
-    console.log('댓글: ',WrComment);
-    SetWrComment('');
+    console.log('댓글: ',wrComment);
+    setWrComment('');
   }
 
   return (
@@ -94,7 +94,7 @@ export default function Read(props){
     <WrCommentCon>
     <input 
           name="Comment"
-          value={WrComment}
+          value={wrComment}
           type="text"
           maxLength='50'
           onChange={onChange}
