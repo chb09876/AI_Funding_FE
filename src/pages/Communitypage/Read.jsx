@@ -23,19 +23,20 @@ export default function Read(props){
   const [Heart,SetHeart]=useState('unclicked');
 
   const Clicked = () => {
+
     if(Heart==='unclicked'){
       SetHeart('clicked')
     }
     else
     {  SetHeart('unclicked')}
-      
-      console.log(Heart)
+   
+    console.log(Heart)
   }
 
   //댓글 출력 함수
   const PrintComment = () =>{
     const result = [];
-    for (let j=0; j< 2;j++){
+    for (let j=0; j< 10;j++){
       result.push(
         <Comment />
       );
@@ -99,7 +100,7 @@ export default function Read(props){
           onChange={onChange}
           style={{
             background:"rgb(32, 32, 32)",
-            width:"85%",
+            width:"87%",
             margin:"10px",
             borderBottom:"0px",
             borderRight:"0px",
@@ -119,7 +120,9 @@ export default function Read(props){
 
 //스크롤 페이지 컨테이너
 const ScrCon = styled.div`
-height: calc(100% - 510px);
+height: calc(100% );
+padding:5px;
+position:relative;
 `;
 
 //스크롤 탭
@@ -143,7 +146,7 @@ const WrCommentCon = styled.div`
 const StyledLogContainer = styled.div`
 position:fixed;
 width:100%;    
-height:100%;
+height:calc(100% - 510px);
 `;
 
 const StyledTab = styled.div`
@@ -161,7 +164,7 @@ const BoardContentTab = styled.div`
   width:96%;
   height:320px;
   margin-left:2%;
-  padding:10px;
+  padding:5px;
   border-right: 1px solid rgb(152, 128, 101);
   border-left: 1px solid rgb(152, 128, 101);
   border-top: 1px solid rgb(152, 128, 101);
@@ -222,4 +225,3 @@ const StyledTitle = styled.div`
 const CenterTitle=styled.div`
    margin-left:calc((100% - 144px) / 2 );
 `;
-

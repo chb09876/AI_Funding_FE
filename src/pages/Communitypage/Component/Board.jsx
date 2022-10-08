@@ -3,6 +3,10 @@ import {useState} from 'react';
 import List from './List';
 import HotList from './HotList';
 import {Link} from "react-router-dom";
+import { getBoard } from '../../../modules/board';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 /*
 
@@ -20,15 +24,42 @@ export default function Board(){
     const [SelectedTab, SelectTab] = useState(0);
     const [SelectedClass,SelectClass]=useState("공지");
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
     const TabZero = () =>{
       SelectTab(0)
       SelectClass("공지");
-     
+      axios
+        .post(`http://localhost:8080/`, {
+            customer_info_id: 1,
+            loginType: '00',
+        })
+        .then((res) => {
+          dispatch(getBoard(res.data));
+        })
+        .catch((error) => {
+          console.log(error);
+          
+        });
     }
     const TabOne = () =>{
       SelectTab(1)
       SelectClass("주식");
-      
+
+      axios
+        .post(`http://localhost:8080/`, {
+          customer_info_id: 1,
+          login_type: '00',
+        })
+        .then((res) => {
+          console.log(res.data);
+          dispatch(getBoard(res.data));
+        })
+        .catch((error) => {
+          console.log(error);
+          
+        });
     }
     const TabTwo = () =>{
       SelectTab(2)
@@ -53,7 +84,7 @@ export default function Board(){
         result.push(
         <Link to="Read/1" key={i} style={{ textDecoration: 'none' }}>
         <List 
-            selectedClass={SelectedClass}
+            title={SelectClass} 
         /></Link>
         );
       }
@@ -125,7 +156,7 @@ export default function Board(){
 }
 
 const ScrCon = styled.div`
-height: calc(100% - 260px); 
+height: calc(100% ); 
 position:relative;
 `;
 
@@ -133,7 +164,7 @@ position:relative;
 const StyledCommunityPage = styled.div`
 position:fixed;
 width:100%;    
-height:100%;
+height:calc(100% - 260px); 
 `;
 
 const DivisionTab = styled.div`
@@ -192,5 +223,5 @@ const StyledTitle = styled.div`
 const ScrTab = styled.div`
 overflow:auto;
 height:100%;
-width: 100%;
+width:100%;
 `;
