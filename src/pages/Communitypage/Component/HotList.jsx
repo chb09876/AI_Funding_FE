@@ -10,7 +10,7 @@ export default function HotList(props){
     return(
         <HotBoardTab>
         <DisplayFlex>
-      <HotTitile>HOT</HotTitile><HotTitleContent>인기 {props.SelectedClass} 게시글 제목</HotTitleContent>
+      <HotTitile>HOT</HotTitile><HotTitleContent>인기 {props.selectedClass} 게시글 제목</HotTitleContent>
       </DisplayFlex>
       <BottomTab>
       <BoardDate>작성 날짜</BoardDate><Like>♡ 좋아요수</Like><Comment>💬 댓글수</Comment>

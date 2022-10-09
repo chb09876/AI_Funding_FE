@@ -59,21 +59,24 @@ export default function Write(){
       }
 
       console.log(Class,Title,Content,"-->이걸로 보냅니다!")
-
-     /* axios.post(`${process.env.REACT_APP_API}/api/community-writing`,{
+      
+     
+      axios
+      .post('http://localhost:8080/', {
         post_type: Class,
         customer_info_id:1,
         content:Content,
         title:Title
-      }).then(function (response) {
-        console.log(response)
-      }).catch((err) => {
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
         console.log('에러');
-      });*/
+      });
 
       navigate(-1);
     }
-
     return(
         <StyledLogContainer>
         <StyledTabs>
