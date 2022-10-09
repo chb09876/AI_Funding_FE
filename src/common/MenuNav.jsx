@@ -21,22 +21,25 @@ const MenuNav = () => {
         <MenuName>홈</MenuName>
       </StyledMenuButton>
       <StyledMenuButton to="/ai">
-        <img src={location.pathname === '/ai' ? InvestIconOn : InvestIcon} alt="투자" />
+        <img src={location.pathname.startsWith('/ai') ? InvestIconOn : InvestIcon} alt="투자" />
         <MenuName>투 자</MenuName>
       </StyledMenuButton>
       <StyledMenuButton to="/accounts">
-        <img src={location.pathname === '/accounts' ? ProfitIconOn : ProfitIcon} alt="수익" />
+        <img
+          src={location.pathname.startsWith('/accounts') ? ProfitIconOn : ProfitIcon}
+          alt="수익"
+        />
         <MenuName>수 익</MenuName>
       </StyledMenuButton>
       <StyledMenuButton to="/community">
         <img
-          src={location.pathname === '/community' ? CommunityIconOn : CommunityIcon}
+          src={location.pathname.startsWith('/community') ? CommunityIconOn : CommunityIcon}
           alt="커뮤니티"
         />
         <MenuName>커뮤니티</MenuName>
       </StyledMenuButton>
       <StyledMenuButton to="/options">
-        <img src={location.pathname === '/options' ? SetupIconOn : SetupIcon} alt="설정" />
+        <img src={location.pathname.startsWith('/options') ? SetupIconOn : SetupIcon} alt="설정" />
         <MenuName>설 정</MenuName>
       </StyledMenuButton>
     </StyledMenubar>
