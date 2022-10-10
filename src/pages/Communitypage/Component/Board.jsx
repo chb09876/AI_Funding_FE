@@ -84,7 +84,7 @@ export default function Board(){
         result.push(
         <Link to="Read/1" key={i} style={{ textDecoration: 'none' }}>
         <List 
-            title={SelectClass} 
+            title={selectClass} 
         /></Link>
         );
       }

@@ -85,7 +85,7 @@ export default function Read(props){
           </ContentTab>
         </DisplayFlex>
         <BottomTab>
-        {Heart==='clicked' ? <Like onClick={Clicked}>♥</Like> : <Like onClick={Clicked}>♡</Like>}<CommentStyle>💬 댓글수</CommentStyle>
+        {heart==='clicked' ? <Like onClick={Clicked}>♥</Like> : <Like onClick={Clicked}>♡</Like>}<CommentStyle>💬 댓글수</CommentStyle>
         </BottomTab>
       </BoardContentTab>
 </StyledTab>
