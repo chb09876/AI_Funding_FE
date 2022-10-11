@@ -7,6 +7,7 @@ import { getBoard } from '../../../modules/board';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import pencilIcon from './img/pencil-solid.svg';
 
 /*
 
@@ -149,7 +150,7 @@ export default function Board(){
       <HotList selectedClass={selectedClass} /></Link>
        <ScrCon>
        <ScrTab>{PrintBoardList()}</ScrTab>
-        <Link to="Write" state={selectedClass} style={{ textDecoration: 'none', color:'white', marginLeft:'80%', position:'absolute', right:'50px', bottom:'45px', background:'black' }}>글작성</Link>
+        <Link to="Write" state={selectedClass} ><div style={{ marginLeft:'80%', position:'absolute', right:'50px', bottom:'50px' }}><div style={{display:'flex',justifyContent:'center', width:'80px', height:'80px', background: 'rgb(152, 128, 101)', borderRadius:'50%'}}><img src={pencilIcon} alt="글작성" style={{width:'50px'}}></img></div></div></Link>
         </ScrCon>
 </StyledCommunityPage>
     );
