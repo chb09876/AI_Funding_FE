@@ -6,9 +6,11 @@
 
 AI투자 어플, '투비'의 프론트엔드 팀입니다.
 
+<div>
 <img src="https://i.imgur.com/IARYlv2.png" width="200" />
 <img src="https://i.imgur.com/0XBy6sA.png" width="200" />
 <img src="https://i.imgur.com/ZgUcGZa.png" width="200" />
+<div />
 
 ## 🧰 기술 스택
 
