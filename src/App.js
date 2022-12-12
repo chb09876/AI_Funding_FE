@@ -27,7 +27,7 @@ export default function App() {
         if (hasRefresh === 'true') {
           // request new access token with posting refresh token(cookie)
           axios
-            .get(`${process.env.REACT_APP_API}/auth/token`, { withCredentials: true })
+            .get(`${process.env.REACT_APP_API}/api/auth/token`, { withCredentials: true })
             .then((response) => {
               const { accessToken, UID } = response.data;
               dispatch(signIn(accessToken, UID));
