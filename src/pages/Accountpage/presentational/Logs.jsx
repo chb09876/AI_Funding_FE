@@ -12,15 +12,15 @@ export default function Logs(props) {
 
   var detail = profitDetail.map((_, index) => (
     <DetailValue key={index}>
-      <Date>{profitDetail[index].creatAt || 'default'}</Date>
+      <Date>{profitDetail[index].createAt || 'default'}</Date>
       {props.setUnit === true ? (
         <Won>
-          {profitDetail[index].creatAtProfitWon.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ||
+          {profitDetail[index].createAtProfitWon.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ||
             '000,000'}
           원
         </Won>
       ) : (
-        <Percent>{profitDetail[index].creatAtProfitPersent || 'default'}%</Percent>
+        <Percent>{profitDetail[index].createAtProfitPersent || 'default'}%</Percent>
       )}
     </DetailValue>
   ));

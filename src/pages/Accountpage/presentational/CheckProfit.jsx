@@ -25,7 +25,7 @@ export default function CheckProfit() {
 
   useEffect(() => {
     axios
-      .post('http://localhost:8060', {
+      .post(`${process.env.REACT_APP_API}/api/checkprofit`, {
         customer_info_id: 1,
         login_type: '00',
       })

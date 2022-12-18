@@ -13,7 +13,11 @@ export default function Login() {
     <LoginPageLayout>
       <Logo src={logo_img} />
       <LogoTitle src={logo_title} />
-      <KakaoButton href={`${process.env.REACT_APP_API}/api/auth/KAKAO`} />
+      <KakaoButton
+        href={`https://kauth.kakao.com/oauth/authorize?client_id=${
+          process.env.REACT_APP_KAKAO_REST_API_KEY
+        }&redirect_uri=${`http://${window.location.host}/oauth?loginType=kakao`}&response_type=code`}
+      />
       <GoogleButton href={`${process.env.REACT_APP_API}/api/auth/GOOGLE`} />
       <button
         onClick={() => {
