@@ -2,11 +2,14 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import AccountLineChart from './AccountLineChart';
 import axios from 'axios';
+import ErrorPage from '../../../common/ErrorPage';
+import Loading from '../../../common/Loading';
 
-export default function CompareProfit() {
-  const [accountList, setAccountList] = useState(null);
+const useAccounts = () => {
+  const [accounts, setAccounts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  // fetch daily profit data about all account
   useEffect(() => {
     axios
       .post(`${process.env.REACT_APP_API}/api/profit-compare`, {
@@ -14,20 +17,37 @@ export default function CompareProfit() {
         login_type: '00',
       })
       .then((response) => {
-        setAccountList(response.data.accounts);
+        setAccounts(response.data.accounts);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setError(true);
       });
   }, []);
 
+  return { accounts, loading, error };
+};
+
+export default function CompareProfit() {
+  const { accounts, loading, error } = useAccounts();
+
+  if (error === true) {
+    return <ErrorPage msg="인터넷 연결을 확인해주세요!" />;
+  }
+  if (loading === true) {
+    return <Loading />;
+  }
+
+  // fetch daily profit data about all account
+
   // get longest label(xAxis) of accounts
-  const labels = ((accountList) => {
+  const labels = ((accounts) => {
     let longestLabel = [];
-    if (!!!accountList) {
+    if (!!!accounts) {
       return longestLabel;
     }
-    accountList.foreach((account) => {
+    accounts.foreach((account) => {
       if (account.profits.length > longestLabel.length) {
         longestLabel = Object.keys(account.profits);
       }
@@ -38,7 +58,7 @@ export default function CompareProfit() {
   return (
     <>
       <ChartWrapper>
-        {accountList ? <AccountLineChart labels={labels} dataset={accountList} /> : <div />}
+        {accounts.length !== 0 ? <AccountLineChart labels={labels} dataset={accounts} /> : <div />}
       </ChartWrapper>
     </>
   );
