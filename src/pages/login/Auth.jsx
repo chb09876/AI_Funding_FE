@@ -26,11 +26,11 @@ export default function Auth() {
           const {
             data: { accessToken, UID, isExistUser },
           } = res;
-          dispatch(signIn(accessToken, UID));
           if (isExistUser === true) {
+            dispatch(signIn(accessToken, UID));
             navigate('/', { replace: true });
           } else if (isExistUser === false) {
-            navigate('/sign-up', { replace: true, state: { UID, loginType: 'GOOGLE' } });
+            navigate('/sign-up', { replace: true, state: { UID, loginType, accessToken } });
           }
         })
         .catch((error) => {

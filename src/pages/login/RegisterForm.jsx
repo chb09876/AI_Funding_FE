@@ -23,10 +23,11 @@ export default function RegisterForm() {
     event.preventDefault();
     axios
       .post(`${process.env.REACT_APP_API}/api/auth/sign-up`, {
-        nickname: nickname.value,
-        email: email.value,
+        nickname,
+        email,
         UID: location.state.UID,
         loginType: location.state.loginType,
+        accessToken: location.state.accessToken,
       })
       .then((res) => {
         const {
