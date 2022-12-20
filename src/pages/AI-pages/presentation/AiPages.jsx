@@ -17,8 +17,8 @@ export default function AiPages() {
   };
 
   useEffect(() => {
-    axios//  address + /api/ai-page 
-      .post(`${process.env.REACT_APP_API}`, {
+    axios //  address + /api/ai-page
+      .post(`${process.env.REACT_APP_API}/api/ai-page`, {
         customer_info_id: 1,
         login_type: '00',
       })
@@ -73,11 +73,11 @@ export default function AiPages() {
 }
 const StyledAiPages = styled.div`
   flex-grow: 1;
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
 `;
 const StyledTabs = styled.div`
-  flex:1;
+  flex: 1;
   display: flex;
   background: rgb(32, 32, 32);
 `;
@@ -137,7 +137,7 @@ const StyledBottomBar = styled.div`
   }};
 `;
 const StyledContent = styled.div`
-  flex:20;
-  display:flex;
-  background:black;
+  flex: 20;
+  display: flex;
+  background: black;
 `;
